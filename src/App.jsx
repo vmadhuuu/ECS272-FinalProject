@@ -86,7 +86,7 @@ function App() {
       }
 
       const processedData = processDataForSankey(cleanedData);
-      console.log("Processed Data for Sankey:", processedData); // Debugging line
+      //console.log("Processed Data for Sankey:", processedData); // Debugging line
       setSankeyData(processedData);
     });
   }, []);

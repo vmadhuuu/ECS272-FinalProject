@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { sankey, sankeyLinkHorizontal, sankeyLeft } from "d3-sankey";
+import { sankey, sankeyLinkHorizontal, sankeyJustify } from "d3-sankey";
 
 function SankeyChart({ data }) {
-  const ref = useRef();
+  const svgRef = useRef();
 
   useEffect(() => {
     if (!data || !data.nodes || !data.links) {
@@ -12,78 +12,59 @@ function SankeyChart({ data }) {
     }
 
     // Debugging logs
-    console.log("Sankey Data - Nodes:", data.nodes);
-    console.log("Sankey Data - Links:", data.links);
+    console.log("Nodes:", data.nodes);
+    console.log("Links:", data.links);
 
-    const svgElement = ref.current;
-    const svgWidth = 780;
-    const svgHeight = 350;
-    const svg = d3.select(svgElement);
+    const svg = d3.select(svgRef.current);
+    const width = 1000; // Adjust width and height as needed
+    const height = 600;
+    svg.attr("width", width).attr("height", height);
 
-    svg.selectAll("*").remove();
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    const sankeyGenerator = sankey()
-      .nodeWidth(15)
-      .nodePadding(10)
-      .nodeAlign(sankeyLeft)
-      .extent([
-        [1, 1],
-        [svgWidth - 1, svgHeight - 5],
-      ]);
-
-    let graph;
     try {
-      graph = sankeyGenerator({
+      const sankeyGenerator = sankey()
+        .nodeWidth(15)
+        .nodePadding(10)
+        .extent([
+          [1, 1],
+          [width - 1, height - 5],
+        ])
+        .nodeAlign(sankeyJustify);
+
+      const graph = sankeyGenerator({
         nodes: data.nodes.map((d) => ({ ...d })),
-        links: data.links.map((d) => ({ ...d })),
+        links: data.links.map((d) => ({ ...d, value: Math.max(d.value, 0) })),
       });
+
+      svg
+        .append("g")
+        .selectAll("rect")
+        .data(graph.nodes)
+        .enter()
+        .append("rect")
+        .attr("x", (d) => d.x0)
+        .attr("y", (d) => d.y0)
+        .attr("height", (d) => d.y1 - d.y0)
+        .attr("width", sankeyGenerator.nodeWidth())
+        .attr("fill", "blue"); // Modify as needed
+
+      svg
+        .append("g")
+        .attr("fill", "none")
+        .selectAll("path")
+        .data(graph.links)
+        .enter()
+        .append("path")
+        .attr("d", sankeyLinkHorizontal())
+        .attr("stroke", "grey") // Modify as needed
+        .attr("stroke-width", (d) => Math.max(1, d.width));
     } catch (error) {
-      console.error("Error generating Sankey diagram:", error);
-      return;
+      console.error("Error in Sankey chart rendering:", error);
     }
-
-    const link = svg
-      .append("g")
-      .attr("fill", "none")
-      .attr("stroke-opacity", 0.5)
-      .selectAll("path")
-      .data(graph.links)
-      .enter()
-      .append("path")
-      .attr("class", "link")
-      .attr("d", sankeyLinkHorizontal())
-      .attr("stroke", (d) => color(d.source.name))
-      .attr("stroke-width", (d) => Math.max(1, d.width));
-
-    const node = svg
-      .append("g")
-      .attr("stroke", "#000")
-      .selectAll("rect")
-      .data(graph.nodes)
-      .enter()
-      .append("rect")
-      .attr("x", (d) => d.x0)
-      .attr("y", (d) => d.y0)
-      .attr("height", (d) => d.y1 - d.y0)
-      .attr("width", sankeyGenerator.nodeWidth())
-      .attr("fill", (d) => color(d.name))
-      .attr("class", "node");
   }, [data]);
 
   return (
     <div className="sankeyContainer">
-      <p
-        style={{
-          color: "#ACACAC",
-          fontSize: 18,
-          fontFamily: "serif",
-          marginBottom: 3,
-        }}
-      >
-        Preferred Platforms to Preferred Genres
-      </p>
-      {/* <svg ref={ref} width={850} height={350}></svg> */}
+      <svg ref={svgRef}></svg>
     </div>
   );
 }
