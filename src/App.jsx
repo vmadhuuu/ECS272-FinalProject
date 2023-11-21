@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
 import "./App.css";
 import Sankey from "./Components/Sankey";
+import Home from "./Pages/Home";
 
 function App() {
   const [sankeyData, setSankeyData] = useState({ nodes: [], links: [] });
 
   useEffect(() => {
-    d3.csv("../data/vgsales.csv").then((loadedData) => {
+    d3.csv("../data/vgsalessample.csv").then((loadedData) => {
       // console.log(loadedData);
       const cleanedData = loadedData.filter((row) => {
         return !Object.values(row).some(
@@ -86,14 +87,15 @@ function App() {
       }
 
       const processedData = processDataForSankey(cleanedData);
-      //console.log("Processed Data for Sankey:", processedData); // Debugging line
+      console.log("Processed Data for Sankey:", processedData); // Debugging line
       setSankeyData(processedData);
     });
   }, []);
 
   return (
     <>
-      <Sankey data={sankeyData} />
+      {/* <Sankey data={sankeyData} /> */}
+      <Home />
     </>
   );
 }
