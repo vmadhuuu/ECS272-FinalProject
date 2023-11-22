@@ -44,7 +44,7 @@
 .container {
   font-family: 'Arial', sans-serif;
   color: #333;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
 }
@@ -97,4 +97,39 @@ header {
     left: calc(100% - 50px); /* Move to the end of the container, adjust 50px to the width of your character */
     background-position: -200px 0; /* End position of sprite frames, adjust -200px to your sprite sheet's width minus one frame */
   }
+}
+
+section {
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro{
+  background-color: black;
+}
+
+.container{
+  width: 3000;
+  background-color: rgb(243, 202, 249);
+}
+
+.content {
+  width: 3000;
+  background-color: goldenrod;
+}
+
+#character{
+  background-color: rgb(71, 14, 64);
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  background-color: whitesmoke;
+  color: seagreen;
 }
