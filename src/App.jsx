@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import "./App.css";
 import Sankey from "./Components/Sankey";
 import Home from "./Pages/Home";
+import BarChart from "./Components/Barchart";
 
 function App() {
   const [sankeyData, setSankeyData] = useState({ nodes: [], links: [] });
@@ -28,7 +29,7 @@ function App() {
 
           return Object.entries(totals)
             .sort((a, b) => b[1] - a[1])
-            .slice(0, 15)
+            .slice(0, 10)
             .map((item) => item[0]);
         };
 
@@ -95,7 +96,12 @@ function App() {
   return (
     <>
       {/* <Sankey data={sankeyData} /> */}
-      <Home />
+
+      {/* replace sankeyData with bardata after processing + creating component */}
+      <BarChart data={sankeyData} />
+
+      {/* bardata
+      {/* <Home /> */}
     </>
   );
 }
