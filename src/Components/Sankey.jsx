@@ -7,7 +7,7 @@ function SankeyChart() {
   const [sankeyData, setSankeyData] = useState({ nodes: [], links: [] });
 
   useEffect(() => {
-    d3.csv("../data/vgsalessample.csv").then((loadedData) => {
+    d3.csv("../data/vgsales1020pt2.csv").then((loadedData) => {
       //console.log(loadedData);
       const cleanedData = loadedData.filter((row) => {
         return !Object.values(row).some(
@@ -123,7 +123,7 @@ function SankeyChart() {
   }
 
   const svg = d3.select(svgRef.current);
-  const width = 1000; // Adjust width and height as needed
+  const width = 1500; // Adjust width and height as needed
   const height = 800;
   svg.attr("width", width).attr("height", height);
 
@@ -145,6 +145,7 @@ function SankeyChart() {
       })),
     });
 
+    //nodes
     svg
       .append("g")
       .selectAll("rect")
@@ -155,8 +156,19 @@ function SankeyChart() {
       .attr("y", (d) => d.y0)
       .attr("height", (d) => d.y1 - d.y0)
       .attr("width", sankeyGenerator.nodeWidth())
-      .attr("fill", "blue"); // Modify as needed
+      .attr("fill", "blue")
+      .on("click", (event, node) => {
+        // Reset all links to default color
+        svg.selectAll("path").attr("stroke", "grey");
 
+        // Highlight connected links
+        svg
+          .selectAll("path")
+          .filter((d) => d.source === node || d.target === node)
+          .attr("stroke", "red");
+      });
+
+    //links
     svg
       .append("g")
       .attr("fill", "none")
@@ -165,9 +177,9 @@ function SankeyChart() {
       .enter()
       .append("path")
       .attr("d", sankeyLinkHorizontal())
-      .attr("stroke", "grey") // Modify as needed
+      .attr("stroke", "grey") // Default color
       .attr("stroke-width", (d) => Math.max(1, d.width));
-
+    // text labelling
     svg
       .append("g")
       .attr("font-family", "sans-serif")
