@@ -8,9 +8,9 @@ import Home from "./Pages/Home";
 function App() {
   return (
     <>
-      <Sankey />
+      {/* <Sankey /> */}
       {/* <BarChart /> */}
-      {/* <Home /> */}
+      <Home />
     </>
   );
 }

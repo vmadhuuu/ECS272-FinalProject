@@ -104,12 +104,25 @@ function SankeyChart() {
     return { nodes, links };
   }
 
+  // Define tooltip (outside of your component's return, but inside the component function)
+  const tooltip = d3
+    .select("body")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0)
+    .style("position", "absolute")
+    .style("padding", "10px")
+    .style("background", "rgba(0, 0, 0, 0.6)")
+    .style("border-radius", "4px")
+    .style("color", "#fff")
+    .style("pointer-events", "none"); // Ensure mouse events pass through
+
   useEffect(() => {
     if (!sankeyData || !sankeyData.nodes || !sankeyData.links) return;
 
     const svg = d3.select(svgRef.current);
-    const width = 1000;
-    const height = 500;
+    const width = 1400;
+    const height = 700;
     svg.attr("width", width).attr("height", height);
 
     svg.selectAll("*").remove();
@@ -142,8 +155,8 @@ function SankeyChart() {
     const color = d3.scaleOrdinal(colors22);
 
     const sankeyGenerator = sankey()
-      .nodeWidth(20) // Increased from 15 to 20
-      .nodePadding(20) // Increased from 10 to 20
+      .nodeWidth(24) // Increased from 15 to 20
+      .nodePadding(10) // Increased from 10 to 20
       .extent([
         [1, 1],
         [width - 1, height - 5],
@@ -187,7 +200,7 @@ function SankeyChart() {
     svg
       .append("g")
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 12)
       .attr("fill", "#fff")
       .selectAll("text")
       .data(graph.nodes)
@@ -201,6 +214,19 @@ function SankeyChart() {
 
     svg.selectAll(".node").on("click", (event, d) => {
       highlightConnectedPaths(d);
+
+      // Nodes hover interaction
+      node
+        .on("mouseover", (event, d) => {
+          tooltip.transition().duration(200).style("opacity", 0.9);
+          tooltip
+            .html(`Name: ${d.name}<br>Sales: ${d.value}`) // Replace with your desired content
+            .style("left", event.pageX + "px")
+            .style("top", event.pageY - 28 + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.transition().duration(500).style("opacity", 0);
+        });
     });
   }, [sankeyData]);
 

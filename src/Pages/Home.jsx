@@ -1,22 +1,48 @@
-import React from "react";
-import { LocomotiveScrollProvider } from "react-locomotive-scroll";
-import { useRef } from "react";
+import {
+  LocomotiveScrollProvider,
+  LocomotiveScrollContext,
+} from "react-locomotive-scroll";
+import React, { useRef, useCallback, useContext } from "react";
 import "../App.css";
 
 function App() {
-  const ref = useRef(null);
+  const containerRef = useRef(null);
+  // const scrollRef = useRef(null);
+  //scrolling
+  const { scroll } = useContext(LocomotiveScrollContext);
 
-  const options = {
-    smooth: true,
-  };
+  const scrollToSection = useCallback(
+    (sectionId) => {
+      const section = document.querySelector(sectionId);
+      console.log("section", section);
+      console.log("scroll", scroll);
+      if (section && scroll) {
+        scroll.scrollTo(section);
+      }
+    },
+    [scroll]
+  );
+  // const scrollToSection = useCallback((sectionId) => {
+  //   // console.log(sectionId);
+  //   const section = document.querySelector(sectionId);
+  //   console.log("sec", section);
+  //   console.log("scroll", scrollRef);
+
+  //   // scrollRef.current.scrollTo(section);
+  // }, []);
+
   return (
-    <LocomotiveScrollProvider options={options} containerRef={ref}>
-      <main data-scroll-container ref={ref}>
-        <section className="container" data-scroll-section>
+    <LocomotiveScrollProvider containerRef={containerRef} watch={[]}>
+      <main data-scroll-container ref={containerRef}>
+        <section className="container" id="first-slide" data-scroll-section>
+          <button onClick={() => scrollToSection("#second-slide")}>
+            Go to Second Slide
+          </button>
+
           <h1>Madhumitha and Apoorva present</h1>
         </section>
 
-        <section className="content" data-scroll-section>
+        <section className="content" id="second-slide" data-scroll-section>
           <p>Video Game Dashboard</p>
         </section>
 
