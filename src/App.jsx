@@ -7,15 +7,14 @@ import Home from "./Pages/Home";
 import HeatMap from "./Components/heatmap";
 import TreeMap from "./Components/Treemap";
 
-
 function App() {
   return (
     <>
       {/* <Sankey /> */}
-      <TreeMap/>
-      <BarChart />
-      <HeatMap/>
-      
+      <TreeMap />
+      {/* <BarChart />
+      <HeatMap/> */}
+
       {/* <Home /> */}
     </>
   );
