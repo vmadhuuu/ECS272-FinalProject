@@ -4,6 +4,7 @@ import {
 } from "react-locomotive-scroll";
 import React, { useRef, useCallback, useContext } from "react";
 import "../App.css";
+import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
 
 function App() {
   const containerRef = useRef(null);
@@ -34,12 +35,29 @@ function App() {
   return (
     <LocomotiveScrollProvider containerRef={containerRef} watch={[]}>
       <main data-scroll-container ref={containerRef}>
-        <section className="container" id="first-slide" data-scroll-section>
+        <section
+          className="container"
+          style={{
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          id="first-slide"
+          data-scroll-section
+        >
+          <img src="src/Elements/mario.png" alt="Mario" className="mario" />
+          <img
+            src="src/Elements/speechbubble1.png"
+            alt="textbox"
+            className="speechbubble"
+          />
+          {/* <div className="title-text">
+            <p> Let's Play Pixel Pulse! </p>
+          </div> */}
+
           <button onClick={() => scrollToSection("#second-slide")}>
             Go to Second Slide
           </button>
-
-          <h1>Madhumitha and Apoorva present</h1>
         </section>
 
         <section className="content" id="second-slide" data-scroll-section>
