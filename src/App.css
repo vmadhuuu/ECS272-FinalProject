@@ -109,9 +109,13 @@ header {
     transform: translateX(30vw) translateY(-34vh); /* go down */
     opacity: 1;
   }
-  100% {
-    transform: translateX(55vw) translateY(-34vh); /* exit screen */
+  95% {
+    transform: translateX(45vw) translateY(-34vh); /* exit screen */
     opacity: 1;
+  }
+  100% {
+    transform: translateX(45vw) translateY(-34vh); /* exit screen */
+    opacity: 0;
   }
 }
 
@@ -120,8 +124,8 @@ header {
 .mario {
   position: absolute;
   width: auto;
-  height: 22%;
-  bottom: 130px; /* Adjust as needed */
+  height: 30%;
+  bottom: 16%; /* Adjust as needed */
   animation: marioFloat 30s ease-in-out forwards;
 }
 
@@ -152,28 +156,28 @@ header {
 
 .speechbubble {
   position: absolute;
-  top: -20%;
-  width: 1050px;
-  height: 900px;
-  bottom: 10%;
+  top: -22%;
+  width: 60%;
+  height: 100%;
+  bottom: 0%;
   animation: speechbubble-fade 30s forwards;
 }
 
 .title-textbox {
-  width: 950px; /* Adjust width as needed */
-  height: 330px; /* Adjust height as needed */
+  width: 70%; /* Adjust width as needed */
+  height: 30%; /* Adjust height as needed */
   position: absolute; /* Use 'absolute' or 'fixed' positioning */
-  top: 18%; /* Adjust to position vertically */
+  top: 10%; /* Adjust to position vertically */
   transform: translate(-10%, -10%);
+  left: 33%;
   background-color: transparent;
-  right: 12%;
   text-align: center; /* Optional: Align text */
   /* Add more styling as needed */
 }
 
 .title-subtitle {
-  font-size: 18px;
-  margin-bottom: 390px;
+  font-size: 22px;
+  margin-bottom: 45%;
   font-family: "DotGothic16", sans-serif;
 }
 
@@ -239,7 +243,7 @@ header {
   font-size: 61px;
   font-family: "DotGothic16", sans-serif;
   animation: typing 5s steps(30) forwards, blinkCursor 0.75s step-end infinite,
-    fadeOutText 30s ease forwards;
+    
 }
 
 /* Moving cloud animation */
@@ -274,21 +278,25 @@ header {
   height: 100px;
 }
 
-.sun1 {
+/* top right */
+.sun1 { 
   position: relative;
   top: -470px;
-  right: -1100px;
+  right: -990px;
 }
 
+/* bottom centre */
 .sun2 {
   position: relative;
   top: 490px;
-  right: 10px;
+  right: 100px;
 }
+
+/* top left */
 .sun3 {
   position: relative;
   top: -470px;
-  left: -550px;
+  left: -620px;
 }
 
 section {
