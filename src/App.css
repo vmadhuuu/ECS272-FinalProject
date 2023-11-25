@@ -54,8 +54,8 @@ header {
 .character {
   background-image: url("/data/src/Elements/mario.png"); /* Replace with your character sprite sheet */
   background-repeat: no-repeat;
-  height: 200px; /* Height of the character or frame in the sprite sheet */
-  width: 100%; /* Width of each frame in the sprite sheet */
+  height: 200vh; /* Height of the character or frame in the sprite sheet */
+  width: 100vw; /* Width of each frame in the sprite sheet */
   position: relative;
   animation: walkAnimation 4s steps(4) forwards; /* Adjust time and steps as needed */
 }
@@ -124,8 +124,8 @@ header {
 .mario {
   position: absolute;
   width: auto;
-  height: 30%;
-  bottom: 16%; /* Adjust as needed */
+  height: 30vh;
+  bottom: 16vh; /* Adjust as needed */
   animation: marioFloat 30s ease-in-out forwards;
 }
 
@@ -156,20 +156,19 @@ header {
 
 .speechbubble {
   position: absolute;
-  top: -22%;
-  width: 60%;
-  height: 100%;
+  top: -22vh;
+  width: 60vw;
+  height: 100vh;
   bottom: 0%;
   animation: speechbubble-fade 30s forwards;
 }
 
 .title-textbox {
-  width: 70%; /* Adjust width as needed */
-  height: 30%; /* Adjust height as needed */
+  width: 70vw; /* Adjust width as needed */
+  height: 40vh; /* Adjust height as needed */
   position: absolute; /* Use 'absolute' or 'fixed' positioning */
-  top: 10%; /* Adjust to position vertically */
-  transform: translate(-10%, -10%);
-  left: 33%;
+  top: 8vh; /* Adjust to position vertically */
+  left: 26vw;
   background-color: transparent;
   text-align: center; /* Optional: Align text */
   /* Add more styling as needed */
@@ -177,7 +176,7 @@ header {
 
 .title-subtitle {
   font-size: 22px;
-  margin-bottom: 45%;
+  margin-bottom: 45vh;
   font-family: "DotGothic16", sans-serif;
 }
 
@@ -258,8 +257,8 @@ header {
 
 .moving-cloud {
   position: absolute;
-  top: 31%; /* Adjust the vertical position as needed */
-  width: 300px; /* Adjust the size of the cloud as needed */
+  top: 31vh; /* Adjust the vertical position as needed */
+  width: 17vw; /* Adjust the size of the cloud as needed */
   animation: moveCloud 40s linear infinite;
 }
 
