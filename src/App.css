@@ -5,7 +5,6 @@
   text-align: center;
 }
 
-
 .card {
   padding: 2em;
 }
@@ -15,7 +14,7 @@
 }
 
 .container {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
   max-width: 100%;
   margin: 0 auto;
@@ -53,7 +52,7 @@ header {
 }
 
 .character {
-  background-image: url('/data/src/Elements/mario.png'); /* Replace with your character sprite sheet */
+  background-image: url("/data/src/Elements/mario.png"); /* Replace with your character sprite sheet */
   background-repeat: no-repeat;
   height: 200px; /* Height of the character or frame in the sprite sheet */
   width: 100%; /* Width of each frame in the sprite sheet */
@@ -63,7 +62,7 @@ header {
 
 /* NEED TO IMPROVE */
 /* mario character animation */
-@keyframes marioFloat { 
+@keyframes marioFloat {
   0% {
     transform: translateX(-55vw); /* Start off-screen */
     opacity: 1;
@@ -116,20 +115,19 @@ header {
   }
 }
 
-  
 /* -Y means move Up, Y means move Down,  -X means move to R , X means move to L */
 
 .mario {
   position: absolute;
   width: auto;
-  height: 300px;
-  bottom: 180px; /* Adjust as needed */
+  height: 22%;
+  bottom: 130px; /* Adjust as needed */
   animation: marioFloat 30s ease-in-out forwards;
 }
 
 /* speech bubble animation */
 
-@keyframes speechbubble-fade { 
+@keyframes speechbubble-fade {
   0% {
     opacity: 0;
   }
@@ -154,35 +152,36 @@ header {
 
 .speechbubble {
   position: absolute;
-  top: -32%;
+  top: -20%;
   width: 1050px;
-  height: 1450px;
-  bottom: 100px; 
+  height: 900px;
+  bottom: 10%;
   animation: speechbubble-fade 30s forwards;
 }
 
 .title-textbox {
-  width: 950px;      /* Adjust width as needed */
-  height: 330px;     /* Adjust height as needed */
+  width: 950px; /* Adjust width as needed */
+  height: 330px; /* Adjust height as needed */
   position: absolute; /* Use 'absolute' or 'fixed' positioning */
-  top: 23%;        /* Adjust to position vertically */
-  left: 50%;        /* Adjust to position horizontally */
-  transform: translate(-50%, -50%); /* Center the container */
-  background-color: transparent; /* Optional: Set a background color */     
+  top: 18%; /* Adjust to position vertically */
+  transform: translate(-10%, -10%);
+  background-color: transparent;
+  right: 12%;
   text-align: center; /* Optional: Align text */
   /* Add more styling as needed */
 }
 
-.title-text{
-  font-size: 63px;
-  font-family: 'DotGothic16', sans-serif;
+.title-subtitle {
+  font-size: 18px;
+  margin-bottom: 390px;
+  font-family: "DotGothic16", sans-serif;
 }
 
-.title-subtitle{
-  font-size: 21px;
-  font-family: 'DotGothic16', sans-serif;
-}
+.title-text {
+  font-size: 18px;
 
+  font-family: "DotGothic16", sans-serif;
+}
 /* Animation for title slide text to fade in and out */
 
 @keyframes fadeOutText {
@@ -194,6 +193,9 @@ header {
   }
 
   10% {
+    opacity: 0;
+  }
+  35% {
     opacity: 1;
   }
   44% {
@@ -208,34 +210,45 @@ header {
   }
 }
 
-/* NEED TO EDIT THIS */
-/* Typing animation */
+.title-subtitle {
+  overflow: hidden;
+  animation: typing 4s steps(300) forwards, blinkCursor 0.75s step-end infinite,
+    fadeOutText 30s ease forwards;
+}
+
 @keyframes typing {
-  from { width: 0; }
-  to { width: 700px; }            /* Width expands to reveal all text */
+  from {
+    width: 0;
+  }
+  to {
+    width: 920px;
+  }
 }
 
-/* Cursor blink animation */
 @keyframes blinkCursor {
-  from, to { border-color: transparent; }
-  50% { border-color: black; }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
 }
 
-.title-textbox {
-  border-right: 3px solid;       /* Simulates the text cursor */
-  white-space: nowrap;           /* Keeps the text in a single line */
-  overflow: hidden;              /* Hides the text that overflows the container */
-  width: 0;                      /* Initial width, which will expand */
-  animation: typing 5s steps(30) forwards, blinkCursor 0.75s step-end infinite, fadeOutText 30s ease forwards; /* Adjust '5s' to control the total duration */
+.title-text {
+  font-size: 61px;
+  font-family: "DotGothic16", sans-serif;
+  animation: typing 5s steps(30) forwards, blinkCursor 0.75s step-end infinite,
+    fadeOutText 30s ease forwards;
 }
 
 /* Moving cloud animation */
 @keyframes moveCloud {
   0% {
-    left: -55vw; /* Start from the left beyond the screen */
+    left: -55vw;
   }
   100% {
-    left: 100%; /* Move to the right beyond the screen */
+    left: 100%;
   }
 }
 
@@ -259,7 +272,6 @@ header {
 .rotating-sun {
   animation: rotateSun 2s linear infinite;
   height: 100px;
-  
 }
 
 .sun1 {
@@ -286,19 +298,18 @@ section {
   align-items: center;
   justify-content: center;
 }
-.intro{
+.intro {
   background-color: black;
 }
 
-
 /* FIRST SLIDE */
-.container{
+.container {
   width: 100vw;
   max-width: 100vw;
   background-color: rgb(243, 202, 249);
-  background-image: url('src/Elements/classic-world-video-game-background-free-vector.jpg');
+  background-image: url("src/Elements/classic-world-video-game-background-free-vector.jpg");
   background-size: cover; /* Cover ensures that the background covers the entire slide */
-  background-position: center; 
+  background-position: center;
 }
 
 /* SECOND SLIDE */
@@ -309,7 +320,7 @@ section {
 }
 
 /* THIRD SLIDE */
-#third{
+#third {
   background-color: rgb(71, 14, 64);
   display: flex;
   height: 100vh;
@@ -348,35 +359,35 @@ button {
 /* locomotive scroll */
 
 html.has-scroll-smooth {
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 html.has-scroll-dragging {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; 
+  user-select: none;
 }
 
 .has-scroll-smooth body {
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .has-scroll-smooth [data-scroll-container] {
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 [data-scroll-direction="horizontal"] [data-scroll-container] {
   height: 100vh;
   display: inline-block;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 [data-scroll-direction="horizontal"] [data-scroll-section] {
   display: inline-block;
   vertical-align: top;
   white-space: nowrap;
-  height: 100%; 
+  height: 100%;
 }
 
 .c-scrollbar {
@@ -387,15 +398,17 @@ html.has-scroll-dragging {
   height: 100%;
   transform-origin: center right;
   transition: transform 0.3s, opacity 0.3s;
-  opacity: 0; 
+  opacity: 0;
 }
 
-  .c-scrollbar:hover {
-    transform: scaleX(1.45); 
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
 }
 
-.c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
-  opacity: 1; 
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
 }
 
 [data-scroll-direction="horizontal"] .c-scrollbar {
@@ -403,11 +416,11 @@ html.has-scroll-dragging {
   height: 10px;
   top: auto;
   bottom: 0;
-  transform: scaleY(1); 
+  transform: scaleY(1);
 }
 
 [data-scroll-direction="horizontal"] .c-scrollbar:hover {
-    transform: scaleY(1.3); 
+  transform: scaleY(1.3);
 }
 
 .c-scrollbar_thumb {
@@ -420,14 +433,14 @@ html.has-scroll-dragging {
   border-radius: 10px;
   margin: 2px;
   cursor: -webkit-grab;
-  cursor: grab; 
+  cursor: grab;
 }
-  .has-scroll-dragging .c-scrollbar_thumb {
-    cursor: -webkit-grabbing;
-    cursor: grabbing; 
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
   right: auto;
-  bottom: 0; 
+  bottom: 0;
 }

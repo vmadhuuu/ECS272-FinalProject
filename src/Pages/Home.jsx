@@ -63,10 +63,9 @@ function App() {
               analytics and fun facts! Embark on this adventure with us, and
               discover the hidden gems in the gaming galaxy! 👾
             </p>
-            <p className="title-text">
-              <b> Let's Play Pixel Pulse! </b>
-            </p>
+            <span className="title-text">Let's Play Pixel Pulse!</span>
           </div>
+
           <img
             src="src/Elements/cloud.png"
             alt="Cloud"
@@ -89,9 +88,9 @@ function App() {
             class="rotating-sun sun3"
           />
 
-          <button onClick={() => scrollToSection("#second-slide")}>
+          {/* <button onClick={() => scrollToSection("#second-slide")}>
             Go to Second Slide
-          </button>
+          </button> */}
         </section>
 
         <section className="second" id="second-slide" data-scroll-section>
