@@ -96,6 +96,5 @@ const TreeMap = () => {
       </>
     );
   });
-
-  export default TreeMap;
 };
+export default TreeMap;
