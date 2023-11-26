@@ -2,14 +2,24 @@ import {
   LocomotiveScrollProvider,
   LocomotiveScrollContext,
 } from "react-locomotive-scroll";
-import React, { useRef, useCallback, useContext } from "react";
+import React, { useRef, useCallback, useContext, useEffect } from "react";
 import "../App.css";
 import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
+import SecondPage from "../Components/SecondPage";
+import mariojump from "../Elements/mariojump.mp3";
 
 function App() {
   const containerRef = useRef(null);
-
+  const audioRef = useRef(null);
   const { scroll } = useContext(LocomotiveScrollContext);
+  // Function to play sound after a delay
+  const playSoundWithDelay = useCallback((delay) => {
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }, delay);
+  }, []);
 
   const options = {
     smooth: true,
@@ -85,6 +95,16 @@ function App() {
             alt="Cloud2"
             className="cloud-right-to-left"
           />
+
+          <audio
+            ref={audioRef}
+            src="src/Elements/mariojump.mp3"
+            preload="auto"
+          />
+
+          <button onClick={() => scrollToSection("#second-slide")}>
+            Go to Second Slide
+          </button>
         </section>
         <section className="contents" data-scroll-section>
           <h1
