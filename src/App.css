@@ -44,6 +44,11 @@ header {
   transition: opacity 10s;
 }
 
+.fadeInFast {
+  opacity: 1;
+
+  transition: opacity 3s;
+}
 .second-title {
   font-size: 172;
 }
@@ -81,7 +86,6 @@ header {
 
   /* dont change above */
 
-
   50% {
     transform: translateX(-20vw) translateY(-25vh); /* move upwards */
     opacity: 1;
@@ -91,7 +95,7 @@ header {
     transform: translateX(-8vw) translateY(-35vh); /* move slight right up diagonal */
     opacity: 1;
   }
-      
+
   60% {
     transform: translateX(-1vw) translateY(-30vh); /* move very slight down right diagonal, land on block */
     opacity: 1;
