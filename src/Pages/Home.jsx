@@ -2,16 +2,24 @@ import {
   LocomotiveScrollProvider,
   LocomotiveScrollContext,
 } from "react-locomotive-scroll";
-import React, { useRef, useCallback, useContext } from "react";
+import React, { useRef, useCallback, useContext, useEffect } from "react";
 import "../App.css";
 import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
 import SecondPage from "../Components/SecondPage";
+import mariojump from "../Elements/mariojump.mp3";
 
 function App() {
   const containerRef = useRef(null);
-  // const scrollRef = useRef(null);
-  //scrolling
+  const audioRef = useRef(null);
   const { scroll } = useContext(LocomotiveScrollContext);
+  // Function to play sound after a delay
+  const playSoundWithDelay = useCallback((delay) => {
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }, delay);
+  }, []);
 
   const scrollToSection = useCallback(
     (sectionId) => {
@@ -24,6 +32,26 @@ function App() {
     },
     [scroll]
   );
+
+  useEffect(() => {
+    // Calculate delay for 50% of the animation
+    const animationDuration = 8000; // 8 seconds
+    const startAt = 0.5; // Corresponding to 50% of the animation
+    const delay = animationDuration * startAt;
+
+    // Call the function with the calculated delay
+    playSoundWithDelay(delay);
+
+    // Clean up the timeout when the component unmounts
+    return () => {
+      clearTimeout(playSoundWithDelay);
+    };
+  }, [playSoundWithDelay]);
+
+  {
+    /* music sound effect */
+  }
+
   // const scrollToSection = useCallback((sectionId) => {
   //   // console.log(sectionId);
   //   const section = document.querySelector(sectionId);
@@ -104,6 +132,12 @@ function App() {
             src="src/Elements/cloud.png"
             alt="Cloud2"
             className="cloud-right-to-left"
+          />
+
+          <audio
+            ref={audioRef}
+            src="src/Elements/mariojump.mp3"
+            preload="auto"
           />
 
           <button onClick={() => scrollToSection("#second-slide")}>
