@@ -48,7 +48,7 @@ header {
   font-size: 172;
 }
 .content {
-  background-color: #f2e5d5;
+  background-color: #50504f;
   margin: 20px 0;
   padding: 40px 20px;
 }
@@ -78,14 +78,20 @@ header {
     transform: translateX(-20vw); /* move towards the right and stop */
     opacity: 1;
   }
+
+  /* dont change above */
+
+
   50% {
     transform: translateX(-20vw) translateY(-25vh); /* move upwards */
     opacity: 1;
   }
+
   55% {
     transform: translateX(-8vw) translateY(-35vh); /* move slight right up diagonal */
     opacity: 1;
   }
+      
   60% {
     transform: translateX(-1vw) translateY(-30vh); /* move very slight down right diagonal, land on block */
     opacity: 1;
@@ -176,9 +182,9 @@ header {
 
 .speechbubble {
   position: absolute;
-  top: -22vh;
+  top: -25vh;
   width: 60vw;
-  height: 100vh;
+  height: 110vh;
   bottom: 0%;
   animation: speechbubble-fade 30s forwards;
 }
@@ -187,7 +193,7 @@ header {
   width: 70vw; /* Adjust width as needed */
   height: 40vh; /* Adjust height as needed */
   position: absolute; /* Use 'absolute' or 'fixed' positioning */
-  top: 8vh; /* Adjust to position vertically */
+  top: 5vh; /* Adjust to position vertically */
   left: 26vw;
   background-color: transparent;
   text-align: center; /* Optional: Align text */
@@ -195,7 +201,7 @@ header {
 }
 
 .title-subtitle {
-  font-size: 22px;
+  font-size: 26px;
   margin-bottom: 45vh;
   font-family: "DotGothic16", sans-serif;
 }
@@ -281,6 +287,22 @@ header {
   animation: moveCloud 40s linear infinite;
 }
 
+/* Moving cloud animation */
+@keyframes moveCloudright {
+  0% {
+    right: -55vw;
+  }
+  100% {
+    right: 100%;
+  }
+}
+.cloud-right-to-left {
+  position: absolute;
+  top: 5vh; /* Adjust the vertical position as needed */
+  width: 17vw; /* Adjust the size of the cloud as needed */
+  animation: moveCloudright 40s linear infinite;
+}
+
 /* Rotating sun */
 @keyframes rotateSun {
   from {
@@ -300,7 +322,7 @@ header {
 .sun1 {
   position: relative;
   top: -470px;
-  right: -990px;
+  right: -1050px;
 }
 
 /* bottom centre */
