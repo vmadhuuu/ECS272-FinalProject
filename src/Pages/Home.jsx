@@ -122,23 +122,167 @@ function App() {
             How Data Data Data Data Data?
           </h1>
         </section>
+        <section className="contents" data-scroll-section>
+          <h3
+            className="op-class"
+            data-scroll
+            style={{ fontSize: 100 }}
+            data-scroll-class="fadeInFast"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            The Dawn of Pixels (1960s-1970s):
+          </h3>
+        </section>
 
-        <section className="contents" id="second-slide" data-scroll-section>
+        <section className="contents" data-scroll-section>
           <h1
             data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
             data-scroll-direction="horizontal"
-            data-scroll-speed="9"
+            data-scroll-speed="2"
+            font
           >
-            Content for something here
+            In the 1960s, a galaxy far far away from our current gaming
+            universe, the seeds of interactive electronic entertainment were
+            sown. The earliest games were born in the hallowed halls of research
+            institutions, rudimentary by today's standards but revolutionary for
+            their time.
           </h1>
-          <h2
+          <span
             data-scroll
             data-scroll-direction="vertical"
-            data-scroll-speed="9"
+            data-scroll-speed="4"
           >
-            hihihi
-          </h2>
-          <h4>iuub</h4>
+            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
+          </span>
+        </section>
+        <section className="contents" data-scroll-section>
+          <h1
+            data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
+            data-scroll-direction="horizontal"
+            data-scroll-speed="2"
+            font
+          >
+            Pioneers like "Spacewar!" laid the foundation for what was to become
+            a cultural phenomenon.
+          </h1>
+        </section>
+
+        <section className="contents" data-scroll-section>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeInFast"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            The Home Console Revolution (1990s):
+          </h1>
+        </section>
+        <section className="contents" data-scroll-section>
+          <span
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="4"
+          >
+            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
+          </span>
+          <h1
+            data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
+            data-scroll-direction="vertical"
+            data-scroll-speed="2"
+            font
+          >
+            The 1990s ushered in the era of home consoles, with the likes of
+            Nintendo, Sega, and Sony battling for dominance in living rooms
+            around the world. The Super Mario Bros., Sonic the Hedgehog, and the
+            birth of PlayStation brought gaming to a personal level. This decade
+            also saw the rise of 3D graphics, changing the visual landscape of
+            gaming forever.
+          </h1>
+        </section>
+
+        <section className="contents" data-scroll-section>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeInFast"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            Online Gaming and the Expansion of Worlds (2000s):
+          </h1>
+        </section>
+        <section className="contents" data-scroll-section>
+          <h1
+            data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
+            data-scroll-direction="horizontal"
+            data-scroll-speed="2"
+            font
+          >
+            As the new millennium turned, online connectivity transformed gaming
+            into a global community. The internet era gave rise to multiplayer
+            experiences, with games like "World of Warcraft" and
+            "Counter-Strike" leading the charge.
+          </h1>
+          <span
+            data-scroll
+            data-scroll-direction="vertical"
+            data-scroll-speed="4"
+          >
+            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
+          </span>
+        </section>
+        <section className="contents" data-scroll-section>
+          <h1
+            data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
+            data-scroll-direction="horizontal"
+            data-scroll-speed="2"
+            font
+          >
+            Gaming was no longer a solitary activity but a shared adventure
+            across continents.
+          </h1>
+        </section>
+        <section className="contents" data-scroll-section>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeInFast"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            The Age of Immersion and Innovation (2010s-Present):
+          </h1>
+        </section>
+        <section className="contents" data-scroll-section>
+          <span
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="4"
+          >
+            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
+          </span>
+          <h1
+            data-scroll
+            style={{ fontSize: 32, textAlign: "justify" }}
+            data-scroll-direction="vertical"
+            data-scroll-speed="2"
+            font
+          >
+            The current gaming era is marked by immersive experiences, with
+            virtual reality and augmented reality adding new dimensions to
+            gameplay. Photorealistic graphics and deep storytelling define
+            titles like "The Last of Us" and "Red Dead Redemption," which are
+            akin to interactive cinema. The indie game movement continues to
+            push creative boundaries, ensuring that the heart of gaming beats
+            strong with innovation.
+          </h1>
         </section>
 
         <section id="stick" className="contents" data-scroll-section>
