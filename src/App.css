@@ -40,13 +40,11 @@ header {
 }
 .fadeIn {
   opacity: 1;
-
-  transition: opacity 10s;
+  transition: opacity 8s;
 }
 
 .fadeInFast {
   opacity: 1;
-
   transition: opacity 3s;
 }
 .second-title {
@@ -210,11 +208,6 @@ header {
   font-family: "DotGothic16", sans-serif;
 }
 
-.title-text {
-  font-size: 18px;
-
-  font-family: "DotGothic16", sans-serif;
-}
 /* Animation for title slide text to fade in and out */
 
 @keyframes fadeOutText {
@@ -270,9 +263,15 @@ header {
 
 .title-text {
   font-size: 61px;
+  margin-top: 50;
   font-family: "DotGothic16", sans-serif;
-  animation: typing 5s steps(30) forwards, blinkCursor 0.75s step-end infinite;
+  animation: typing 5s steps(20) forwards;
 }
+/* .title-text {
+  font-size: 61px;
+  font-family: "DotGothic16", sans-serif;
+  /* 
+} */
 
 /* Moving cloud animation */
 @keyframes moveCloud {

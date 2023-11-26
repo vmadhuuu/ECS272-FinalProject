@@ -5,33 +5,12 @@ import {
 import React, { useRef, useCallback, useContext } from "react";
 import "../App.css";
 import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
-import SecondPage from "../Components/SecondPage";
 
 function App() {
   const containerRef = useRef(null);
-  // const scrollRef = useRef(null);
-  //scrolling
+
   const { scroll } = useContext(LocomotiveScrollContext);
 
-  const scrollToSection = useCallback(
-    (sectionId) => {
-      const section = document.querySelector(sectionId);
-      console.log("section", section);
-      console.log("scroll", scroll);
-      if (section && scroll) {
-        scroll.scrollTo(section);
-      }
-    },
-    [scroll]
-  );
-  // const scrollToSection = useCallback((sectionId) => {
-  //   // console.log(sectionId);
-  //   const section = document.querySelector(sectionId);
-  //   console.log("sec", section);
-  //   console.log("scroll", scrollRef);
-
-  //   // scrollRef.current.scrollTo(section);
-  // }, []);
   const options = {
     smooth: true,
   };
@@ -91,7 +70,8 @@ function App() {
               engaging analytics and fun facts! Embark on this adventure with
               us, and discover the hidden gems in the gaming galaxy! 👾
             </p>
-            <span className="title-text">Let's Play Pixel Pulse!</span>
+
+            <div className="title-text">Let's Play Pixel Pulse!</div>
           </div>
 
           {/* clouds */}
@@ -105,10 +85,6 @@ function App() {
             alt="Cloud2"
             className="cloud-right-to-left"
           />
-
-          <button onClick={() => scrollToSection("#second-slide")}>
-            Go to Second Slide
-          </button>
         </section>
         <section className="contents" data-scroll-section>
           <h1
@@ -271,7 +247,7 @@ function App() {
           <h1
             data-scroll
             style={{ fontSize: 32, textAlign: "justify" }}
-            data-scroll-direction="vertical"
+            data-scroll-direction="horizontal"
             data-scroll-speed="2"
             font
           >
@@ -323,7 +299,7 @@ function App() {
             How Data Data Data Data Data?
           </h1>
         </section>
-        <section className="contents" id="second-slide" data-scroll-section>
+        <section className="contents" data-scroll-section>
           <h1
             data-scroll
             data-scroll-direction="horizontal"
