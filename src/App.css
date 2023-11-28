@@ -18,6 +18,15 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.highlighted {
+  stroke: #f00; /* Example: red stroke */
+  stroke-width: 3px; /* Example: 3px stroke width */
+}
+
+.parent-highlighted {
+  fill: rgba(255, 255, 0, 0.5); /* Example: semi-transparent yellow fill */
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -42,7 +51,7 @@
 }
 
 .container {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
   max-width: 1000px;
   margin: 0 auto;
@@ -80,7 +89,7 @@ header {
 }
 
 .character {
-  background-image: url('/data/src/Elements/mario.png'); /* Replace with your character sprite sheet */
+  background-image: url("/data/src/Elements/mario.png"); /* Replace with your character sprite sheet */
   background-repeat: no-repeat;
   height: 200px; /* Height of the character or frame in the sprite sheet */
   width: 50px; /* Width of each frame in the sprite sheet */
@@ -94,7 +103,9 @@ header {
     background-position: 0; /* Start position of sprite frames */
   }
   100% {
-    left: calc(100% - 50px); /* Move to the end of the container, adjust 50px to the width of your character */
+    left: calc(
+      100% - 50px
+    ); /* Move to the end of the container, adjust 50px to the width of your character */
     background-position: -200px 0; /* End position of sprite frames, adjust -200px to your sprite sheet's width minus one frame */
   }
 }
@@ -106,11 +117,11 @@ section {
   align-items: center;
   justify-content: center;
 }
-.intro{
+.intro {
   background-color: black;
 }
 
-.container{
+.container {
   width: 3000;
   background-color: rgb(243, 202, 249);
 }
@@ -120,7 +131,7 @@ section {
   background-color: goldenrod;
 }
 
-#character{
+#character {
   background-color: rgb(71, 14, 64);
   display: flex;
   height: 100vh;

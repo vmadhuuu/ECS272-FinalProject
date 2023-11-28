@@ -1,9 +1,41 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
+import "../App.css";
 
 const TreeMap = () => {
   const [data, setData] = useState(null); // Change to null to signify no data initially
   const svgRef = useRef(null);
+  const OFFSET = 3;
+
+  // Function to handle mouseover
+  const handleMouseOver = (d, element) => {
+    // The 'd' parameter is the bound data object for the element being hovered.
+    d3.select(element)
+      .attr("stroke", "black") // Set the stroke to black on hover
+      .attr("stroke-width", 3);
+  };
+  // Function to handle mouseout
+  const handleMouseOut = (d, element) => {
+    // The 'd' parameter is the bound data object for the element being hovered.
+    d3.select(element)
+      .attr("stroke", d.depth === 1 ? "none" : "white") // Reset the stroke color
+      .attr("stroke-width", 1); // Reset the stroke width
+    // Hide the tooltip code could go here
+  };
+
+  function adjustTextFontSize(selection, padding) {
+    selection.each(function (d) {
+      const self = d3.select(this);
+      let fontSize = parseInt(self.style("font-size"));
+      const rectWidth = d.x1 - d.x0 - padding * 2; // Calculate the available width in the rectangle
+
+      // While the text's width is greater than the space available, reduce the font size
+      while (self.node().getComputedTextLength() > rectWidth && fontSize > 0) {
+        fontSize -= 1; // Decrease the font size by 1
+        self.style("font-size", `${fontSize}px`); // Set the new font size
+      }
+    });
+  }
 
   useEffect(() => {
     const width = 1200; // Declare width and height before use
@@ -30,19 +62,8 @@ const TreeMap = () => {
           value: value,
         })),
       }));
-      
-      // //Transform rollupData into a hierarchical structure
-      // const hierarchyData = {
-      //   name: "all",
-      //   children: Array.from(root, ([platform, genres]) => ({
-      //     name: platform,
-      //     children: Array.from(genres, ([genre, value]) => ({
-      //       name: genre,
-      //       value: value,
-      //     })),
-      //   })),
-      // };
-      console.log(hierarchyData, "hierarchyData")
+
+      console.log(hierarchyData, "hierarchyData");
 
       // Create the root of the hierarchy
       const hierarchyRoot = d3
@@ -50,13 +71,11 @@ const TreeMap = () => {
         .sum((d) => d.value) // Compute the 'value' of each level
         .sort((a, b) => b.value - a.value); // Sort the nodes
 
-      // // Create the root of the hierarchy
-      // const hierarchyRoot = d3
-      // .hierarchy(hierarchyData)
-      // .sum((d) => d.value) // Compute the 'value' of each level
-      // .sort((a, b) => b.value - a.value); // Sort the nodes
-
-      const treemap = d3.treemap().size([width, height]).paddingInner(1);
+      const treemap = d3
+        .treemap()
+        .size([width, height])
+        .paddingInner(6)
+        .paddingOuter(10);
       treemap(hierarchyRoot); // Apply the treemap layout
 
       setData(hierarchyRoot);
@@ -70,29 +89,40 @@ const TreeMap = () => {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove(); // Clear previous SVG elements
 
-      // //custom colorscale
-      // const extendedSchemeSet2 = [
-      //   "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", 
-      //   "#e5c494", "#b3b3b3", // Original schemeSet2 colors
-      //   "#f46d43", "#d53e4f", "#9e0142", "#5e4fa2", // Some colors from schemeSet3
-      //   "#3288bd", "#66c2a5", "#abdda4", "#e6f598", "#fee08b", "#fdae61",
-      //   "#f46d43", "#d53e4f", // Additional colors inspired by spectral schemes
-      //   "#9e0142", "#5e4fa2", "#3288bd", "#66c2a5", "#abdda4", "#e6f598",
-      //   "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", // More pastel-like tones
-      //   "#ffed6f", "#8dd3c7", "#ffffb3", "#bebada", "#fb8072", // Light and distinct colors
-      //   "#80b1d3", "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd",
-      //   "#ccebc5", "#ffed6f", "#8dd3c7", "#ffffb3", "#bebada", // Repeating with variation
-      //   "#fb8072", "#80b1d3", "#fdb462", "#b3de69", "#fccde5"
-      // ];
-
       //custom colors
       const customColorScale = [
-        "#66c2a5", "#fc8d62", "#8da0cb", "#e78ac3", "#a6d854", "#ffd92f", "#e5c494", "#b3b3b3",
-        "#1f78b4", "#33a02c", "#e31a1c", "#ff7f00", "#6a3d9a", "#b15928", "#ffff99", "#b2df8a",
-        "#fb9a99", "#fdbf6f", "#cab2d6", "#ffffb3", "#8dd3c7", "#bebada", "#fb8072", "#80b1d3",
-        "#fdb462", "#b3de69", "#fccde5", "#d9d9d9", "#bc80bd", "#ccebc5", "#ffed6f"
-    ];
-    
+        "#66c2a5",
+        "#fc8d62",
+        "#8da0cb",
+        "#e78ac3",
+        "#a6d854",
+        "#ffd92f",
+        "#e5c494",
+        "#b3b3b3",
+        "#1f78b4",
+        "#33a02c",
+        "#e31a1c",
+        "#ff7f00",
+        "#6a3d9a",
+        "#b15928",
+        "#ffff99",
+        "#b2df8a",
+        "#fb9a99",
+        "#fdbf6f",
+        "#cab2d6",
+        "#ffffb3",
+        "#8dd3c7",
+        "#bebada",
+        "#fb8072",
+        "#80b1d3",
+        "#fdb462",
+        "#b3de69",
+        "#fccde5",
+        "#d9d9d9",
+        "#bc80bd",
+        "#ccebc5",
+        "#ffed6f",
+      ];
 
       // Create a color scale for platforms
       const colorScale = d3.scaleOrdinal(customColorScale);
@@ -105,7 +135,87 @@ const TreeMap = () => {
         .append("g")
         .attr("transform", (d) => `translate(${d.x0},${d.y0})`);
 
-        var tooltip = d3.select("body").append("div")
+      nodes.each(function (d) {
+        const node = d3.select(this);
+
+        if (d.depth === 2) {
+          // Replace 2 with the correct depth of your small boxes
+          const nodeGroup = d3.select(this);
+
+          // Move the group down by OFFSET
+          nodeGroup.attr("transform", `translate(${d.x0},${d.y0 + OFFSET})`);
+
+          // Select and move the rectangle down by OFFSET
+          nodeGroup.select("rect").attr("y", (d) => d.y0 + OFFSET); // Update this only if needed
+
+          // If you have text or other elements inside that need to be moved down as well:
+          nodeGroup
+            .select("text")
+            .attr(
+              "y",
+              (d) => /* your calculation for text's y position */ +OFFSET
+            );
+        }
+      });
+
+      nodes
+        .filter((d) => d.children)
+        .append("rect")
+        .attr("width", (d) => d.x1 - d.x0)
+        .attr("height", (d) => d.y1 - d.y0)
+        .attr("fill", "none") // Make these transparent or set a background color
+        .attr("stroke", "black") // Set the color of the border for the group
+        .attr("stroke-width", 3) // Adjust the stroke width as needed
+        .on("mouseover", function (event, d) {
+          d3.select(this).classed("highlighted", true); // Add a class to the hovered rect
+          if (d.depth === 1) {
+            // Check if it's a parent node
+            d3.selectAll("#rect-" + d.data.name).classed(
+              "parent-highlighted",
+              true
+            ); // Highlight all rects with the same ID
+          }
+        })
+        .on("mouseout", function (event, d) {
+          d3.select(this).classed("highlighted", false); // Remove the class from the rect
+          if (d.depth === 1) {
+            d3.selectAll("#rect-" + d.data.name).classed(
+              "parent-highlighted",
+              false
+            ); // Remove highlighting from all rects with the same ID
+          }
+        });
+
+      // Now append the child rectangles
+      nodes
+        .filter((d) => !d.children)
+        .append("rect")
+        .attr("width", (d) => d.x1 - d.x0)
+        .attr("height", (d) => d.y1 - d.y0)
+        .attr("fill", (d) => colorScale(d.parent.data.name)) // Fill with color based on the parent node
+        .on("mouseover", function (event, d) {
+          d3.select(this).classed("highlighted", true); // Add a class to the hovered rect
+          if (d.depth === 1) {
+            // Check if it's a parent node
+            d3.selectAll("#rect-" + d.data.name).classed(
+              "parent-highlighted",
+              true
+            ); // Highlight all rects with the same ID
+          }
+        })
+        .on("mouseout", function (event, d) {
+          d3.select(this).classed("highlighted", false); // Remove the class from the rect
+          if (d.depth === 1) {
+            d3.selectAll("#rect-" + d.data.name).classed(
+              "parent-highlighted",
+              false
+            ); // Remove highlighting from all rects with the same ID
+          }
+        });
+
+      var tooltip = d3
+        .select("body")
+        .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0)
         .style("position", "absolute")
@@ -118,83 +228,78 @@ const TreeMap = () => {
         .style("border-radius", "8px")
         .style("pointer-events", "none"); // Tooltip should not interfere with other mouse events
 
-
       // Append rectangles to the node groups
+      const format = d3.format(".2f");
       nodes
         .append("rect")
+        .attr("id", (d) => "rect-" + d.data.name)
         .attr("width", (d) => d.x1 - d.x0)
         .attr("height", (d) => d.y1 - d.y0)
         .attr("fill", (d) => (d.depth === 1 ? colorScale(d.data.name) : "none"))
         .attr("stroke", "white")
+        .attr("stroke-width", 1.5)
         // Add mouseover event
-        .on("mouseover", function(event, d) {
-          tooltip.transition()
+        .on("mouseover", function (event, d) {
+          tooltip
+            .transition()
             .duration(200) // Transition for smooth appearance
             .style("opacity", 0.9); // Make tooltip visible
-          tooltip.html(`Platform: ${d.data.name}<br>Global Sales: ${d.value}`) // Content of the tooltip
-            .style("left", (event.pageX + 10) + "px")
-            .style("top", (event.pageY - 10) + "px");
+
+          tooltip
+            .html(
+              `Platform: ${d.data.name}<br>Global Sales: ${format(d.value)}`
+            )
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY - 10 + "px");
         })
-        .on("mouseout", function() {
-          tooltip.transition()
+        .on("mouseout", function () {
+          tooltip
+            .transition()
             .duration(500) // Transition for smooth disappearance
             .style("opacity", 0); // Hide tooltip
         });
 
-     // Append text to the node groups for platform names
-     nodes
-     .filter((d) => d.depth === 1) // Filter for platform nodes
-     .append("text")
-     .attr("x", (d) => (d.x1 - d.x0) / 2) // Position at the horizontal center of the rectangle
-     .attr("y", (d) => (d.y1 - d.y0) / 2) // Position at the vertical center of the rectangle
-     .attr("text-anchor", "middle") // Center the text horizontally
-     .attr("alignment-baseline", "central") // Center the text vertically
-     .text((d) => d.data.name) // Set the text to the platform name
-     .attr("fill", "white") // Adjust the text color for visibility
-     .attr("font-size", (d) => {
-       // Calculate font size based on the rectangle's size
-       const rectWidth = d.x1 - d.x0;
-       const rectHeight = d.y1 - d.y0;
-       const minDimension = Math.min(rectWidth, rectHeight);
-       return Math.max(10, minDimension / 8) + "px"; // Modify as needed
-     });
-     
-      // Append text to the node groups
       nodes
-        .filter((d) => d.depth === 2) // Only add text to genre nodes
+        .filter((d) => d.depth === 1)
         .append("text")
-        .selectAll("tspan")
-        .data((d) => d.data.name.split(/(?=[A-Z][^A-Z])/g)) // Split the name at camelCase
-        .enter()
-        .append("tspan")
-        .text((d) => d)
-        .attr("x", 4)
-        .attr("y", (d, i) => 13 + i * 10) // Offset each tspan element
+        .attr("x", 5) // Adjust for padding
+        .attr("y", (d) => d.y0 + OFFSET + 10) // Adjust for padding and OFFSET
+        .text((d) => d.data.name)
+        .attr("y", 3) // A small top padding from the edge of the parent box
+        .attr("dominant-baseline", "hanging") // This ensures the text hangs from the top y position
+        .attr("text-anchor", "start") // This ensures text starts at the given x position
         .attr("fill", "black")
-        //.attr("font-size", '10px');
-        .attr("font-size", (d, i, nodes) => {
-          const parentNode = d3.select(nodes[i].parentNode.parentNode).datum();
-          const rectWidth = parentNode.x1 - parentNode.x0;
-          const rectHeight = parentNode.y1 - parentNode.y0;
-          const minDimension = Math.min(rectWidth, rectHeight);
-          return Math.max(4, minDimension / 15) + "px"; // Modify as needed
-        });
-
-        // // Append title to the SVG container
-        // svg.append("text")
-        // .attr("x", 4000 / 2) // Position at the center of the SVG
-        // .attr("y", 20) // Position at the top, accounting for margin
-        // .attr("text-anchor", "middle") // Center the text horizontally
-        // .style("font-size", "20px") // Set font size
-        // .text("Your Treemap Title") // Set the title text
-        // .style("fill", "white")
+        .attr("font-size", "6px") // Adjust font size as needed
+        .style("pointer-events", "none")
+        .call(adjustTextFontSize, 5);
+      nodes
+        .filter((d) => d.depth === 2)
+        .append("text")
+        .attr("x", 5) // Adjust for padding
+        .attr("y", (d) => d.y0 + OFFSET + 10) // Adjust for padding and OFFSET
+        .text((d) => d.data.name)
+        .attr("y", 3) // A small top padding from the edge of the parent box
+        .attr("dominant-baseline", "hanging") // This ensures the text hangs from the top y position
+        .attr("text-anchor", "start") // This ensures text starts at the given x position
+        .attr("fill", "black")
+        .attr("font-size", "6px") // Adjust font size as needed
+        .style("pointer-events", "none")
+        .call(adjustTextFontSize, 5);
     }
   }, [data]);
 
   return (
     <>
-      <span style={{ fontFamily: "text-anchor, sans-serif", textDecoration: "underline" , fontSize: "20px"}}>Platform Power</span>
-      <svg ref={svgRef} width={4000} height={500}></svg>
+      <span
+        style={{
+          fontFamily: "text-anchor, sans-serif",
+          textDecoration: "underline",
+          fontSize: "20px",
+        }}
+      >
+        Platform Power
+      </span>
+      <svg ref={svgRef} width={4200} height={1000}></svg>
     </>
   );
 };
