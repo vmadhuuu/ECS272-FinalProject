@@ -67,6 +67,10 @@ header {
   color: #888;
 }
 
+.contents {
+  height: 125vh;
+}
+
 /* NEED TO IMPROVE */
 /* mario character animation */
 @keyframes marioFloat {
@@ -343,6 +347,27 @@ header {
   left: -620px;
 }
 
+/* mario animation for fun fact 1*/
+@keyframes mariofunfact {
+  0% {
+    transform: translateX(-20vw); /* Start off-screen */
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-2vw); /* move towards the right and stop */
+    opacity: 1;
+  }
+}
+
+.mario1 {
+  animation: mariofunfact 5s ease-in-out forwards;
+  height: 30vh;
+  width: auto; 
+  
+}
+
+
+/* background transition */
 section {
   height: 100vh;
   color: white;
@@ -350,6 +375,9 @@ section {
   align-items: center;
   justify-content: center;
 }
+
+
+
 .intro {
   background-color: black;
 }
@@ -364,28 +392,6 @@ section {
   background-position: center;
 }
 
-/* SECOND SLIDE */
-.second {
-  width: 100vw;
-  height: 200vh;
-  background-color: goldenrod;
-}
-
-/* THIRD SLIDE */
-#third {
-  background-color: rgb(71, 14, 64);
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* FOURTH SLIDE */
-.fourth {
-  background-color: whitesmoke;
-  color: seagreen;
-}
 
 .tooltip {
   opacity: 0;
