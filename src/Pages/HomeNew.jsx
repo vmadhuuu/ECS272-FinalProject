@@ -1,40 +1,67 @@
+import React, {
+  useRef,
+  useEffect,
+  useContext,
+  useCallback,
+  useState,
+} from "react";
 import {
   LocomotiveScrollProvider,
   LocomotiveScrollContext,
 } from "react-locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
-
-import React, {
-  useRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-// import "../App.css";
 import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
 
-function App() {
-  const audioRef = useRef(null);
-  const containerRef = useRef(null);
-  const sectionRefs = useRef([]); // Refs for each section
-
+const ScrollApp = () => {
   const { scroll } = useContext(LocomotiveScrollContext);
-  console.log(scroll);
+  const [backgroundColor, setBackgroundColor] = useState("#FFFFFF"); // Default color
+  const containerRef = useRef(null);
+  const sectionRefs = useRef([]);
+
+  // Array of colors for each section
+  const sectionColors = ["#FF5733", "#33D1FF", "#8D33FF", "#FF5733", "#33FFD1"];
+
+  const audioRef = useRef(null);
+
+  const addSectionRef = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
 
   // Function to play sound after a delay
-  // const playSoundWithDelay = useCallback((delay) => {
-  //   setTimeout(() => {
-  //     if (audioRef.current) {
-  //       audioRef.current.play();
-  //     }
-  //   }, delay);
-  // }, []);
+  const playSoundWithDelay = useCallback((delay) => {
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.play();
+      }
+    }, delay);
+  }, []);
 
   useEffect(() => {
     if (scroll) {
       scroll.on("scroll", (instance) => {
-        console.log("Scroll position:", instance.scroll.y);
+        let progress = 0;
+        for (let i = 0; i < sectionRefs.current.length - 1; i++) {
+          const current = sectionRefs.current[i];
+          const next = sectionRefs.current[i + 1];
+          const currentTop =
+            current.getBoundingClientRect().top + window.scrollY;
+          const nextTop = next.getBoundingClientRect().top + window.scrollY;
+
+          if (instance.scroll.y >= currentTop && instance.scroll.y < nextTop) {
+            progress =
+              (instance.scroll.y - currentTop) / (nextTop - currentTop);
+            setBackgroundColor(
+              interpolateColors(
+                sectionColors[i],
+                sectionColors[i + 1],
+                progress
+              )
+            );
+            break;
+          }
+        }
       });
     }
 
@@ -44,29 +71,60 @@ function App() {
       }
     };
   }, [scroll]);
+
   const options = {
     smooth: true,
   };
 
+  const interpolateColors = (color1, color2, factor) => {
+    const color1RGB = hexToRgb(color1);
+    const color2RGB = hexToRgb(color2);
+
+    const resultRGB = {
+      r: Math.round(color1RGB.r + factor * (color2RGB.r - color1RGB.r)),
+      g: Math.round(color1RGB.g + factor * (color2RGB.g - color1RGB.g)),
+      b: Math.round(color1RGB.b + factor * (color2RGB.b - color1RGB.b)),
+    };
+
+    return `rgb(${resultRGB.r}, ${resultRGB.g}, ${resultRGB.b})`;
+  };
+
+  const hexToRgb = (hex) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null;
+  };
   return (
     <LocomotiveScrollProvider
       options={options}
       containerRef={containerRef}
       watch={[]}
     >
-      <main data-scroll-container ref={containerRef}>
+      <main
+        data-scroll-container
+        ref={containerRef}
+        style={{
+          transition: "background-color 0.3s ease",
+          backgroundColor: backgroundColor,
+        }}
+      >
         <section
           className="container"
           style={{
             backgroundImage: `url(${backgroundImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            height: "100vh",
           }}
           id="first-slide"
           data-scroll-speed="4"
           data-scroll-section
         >
+          <h1 data-scroll>Section 1</h1>
           <img
             src="src/Elements/sun.png"
             alt="Rotating Sun"
@@ -118,6 +176,7 @@ function App() {
           />
         </section>
         <section
+          ref={addSectionRef}
           style={{ height: "100vh" }}
           className="contents"
           data-scroll-section
@@ -134,11 +193,15 @@ function App() {
           </h1>
         </section>
         <section
-          className="contents"
+          ref={addSectionRef}
+          style={{
+            height: "100vh",
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           data-scroll-section
-          style={{ height: "100vh" }}
-
-          // style={{ backgroundColor: sectionColors[1] }}
+          className="contents"
         >
           <h3
             className="op-class"
@@ -151,8 +214,8 @@ function App() {
             The Dawn of Pixels (1960s-1970s):
           </h3>
         </section>
-
         <section
+          ref={addSectionRef}
           style={{ height: "100vh" }}
           className="contents"
           data-scroll-section
@@ -179,6 +242,7 @@ function App() {
           </span>
         </section>
         <section
+          ref={addSectionRef}
           style={{ height: "100vh" }}
           className="contents"
           data-scroll-section
@@ -193,11 +257,16 @@ function App() {
             a cultural phenomenon.
           </h1>
         </section>
-
         <section
+          ref={addSectionRef}
           className="contents"
           data-scroll-section
-          style={{ height: "100vh" }}
+          style={{
+            height: "100vh",
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
           <h1
             className="op-class"
@@ -210,6 +279,7 @@ function App() {
           </h1>
         </section>
         <section
+          ref={addSectionRef}
           className="contents"
           style={{ height: "100vh" }}
           data-scroll-section
@@ -235,176 +305,27 @@ function App() {
             gaming forever.
           </h1>
         </section>
-
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            className="op-class"
-            data-scroll
-            data-scroll-class="fadeInFast"
-            data-scroll-repeat="true"
-            data-scroll-speed="1"
-          >
-            Online Gaming and the Expansion of Worlds (2000s):
-          </h1>
-        </section>
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            data-scroll
-            style={{ fontSize: 32, textAlign: "justify" }}
-            data-scroll-direction="horizontal"
-            data-scroll-speed="2"
-          >
-            As the new millennium turned, online connectivity transformed gaming
-            into a global community. The internet era gave rise to multiplayer
-            experiences, with games like "World of Warcraft" and
-            "Counter-Strike" leading the charge.
-          </h1>
-          <span
-            data-scroll
-            data-scroll-direction="vertical"
-            data-scroll-speed="4"
-          >
-            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
-          </span>
-        </section>
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            data-scroll
-            style={{ fontSize: 32, textAlign: "justify" }}
-            data-scroll-direction="horizontal"
-            data-scroll-speed="2"
-          >
-            Gaming was no longer a solitary activity but a shared adventure
-            across continents.
-          </h1>
-        </section>
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            className="op-class"
-            data-scroll
-            data-scroll-class="fadeInFast"
-            data-scroll-repeat="true"
-            data-scroll-speed="1"
-          >
-            The Age of Immersion and Innovation (2010s-Present):
-          </h1>
-        </section>
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <span
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="4"
-          >
-            <img src="src/assets/image1.jpeg" alt="Cloud2"></img>
-          </span>
-          <h1
-            data-scroll
-            style={{ fontSize: 32, textAlign: "justify" }}
-            data-scroll-direction="horizontal"
-            data-scroll-speed="2"
-          >
-            The current gaming era is marked by immersive experiences, with
-            virtual reality and augmented reality adding new dimensions to
-            gameplay. Photorealistic graphics and deep storytelling define
-            titles like "The Last of Us" and "Red Dead Redemption," which are
-            akin to interactive cinema. The indie game movement continues to
-            push creative boundaries, ensuring that the heart of gaming beats
-            strong with innovation.
-          </h1>
-        </section>
-
-        <section
-          id="stick"
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            data-scroll
-            data-scroll-speed="5"
-            data-scroll-sticky // Attibute that enables the sticky scroll
-            data-scroll-target="#stick"
-          >
-            Bar Chart content here
-          </h1>
-
-          <p>other contents</p>
-          <p>other contents</p>
-          <p>other contents</p>
-        </section>
-
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            className="op-class"
-            data-scroll
-            data-scroll-class="fadeIn"
-            data-scroll-direction="horizontal"
-            data-scroll-speed="9"
-          >
-            How Data Data Data Data Data?
-          </h1>
-        </section>
-
-        <section
-          className="contents"
-          data-scroll-section
-          style={{ height: "100vh" }}
-        >
-          <h1
-            className="op-class"
-            data-scroll
-            data-scroll-class="fadeIn"
-            data-scroll-direction="horizontal"
-            data-scroll-speed="9"
-          >
-            How Data Data Data Data Data?
-          </h1>
-        </section>
-        <section className="contents" data-scroll-section>
-          <h1
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="9"
-          >
-            Content for something here
-          </h1>
-          <h2
-            data-scroll
-            data-scroll-direction="vertical"
-            data-scroll-speed="9"
-          >
-            hihihi
-          </h2>
-          <h4>iuub</h4>
-        </section>
-        {/* The character's sprite will be displayed here */}
+        {/* Add more sections as needed */}
       </main>
+    </LocomotiveScrollProvider>
+  );
+};
+
+function HomeNew() {
+  const containerRef = useRef(null);
+
+  return (
+    <LocomotiveScrollProvider
+      options={{
+        smooth: true,
+        // ... other options you might want to use
+      }}
+      containerRef={containerRef}
+      watch={[]}
+    >
+      <ScrollApp />
     </LocomotiveScrollProvider>
   );
 }
 
-export default App;
+export default HomeNew;
