@@ -28,45 +28,6 @@ function App() {
     }, delay);
   }, []);
 
-  const scrollToSection = useCallback(
-    (sectionId) => {
-      const section = document.querySelector(sectionId);
-      console.log("section", section);
-      console.log("scroll", scroll);
-      if (section && scroll) {
-        scroll.scrollTo(section);
-      }
-    },
-    [scroll]
-  );
-
-  useEffect(() => {
-    // Calculate delay for 50% of the animation
-    const animationDuration = 8000; // 8 seconds
-    const startAt = 0.5; // Corresponding to 50% of the animation
-    const delay = animationDuration * startAt;
-
-    // Call the function with the calculated delay
-    playSoundWithDelay(delay);
-
-    // Clean up the timeout when the component unmounts
-    return () => {
-      clearTimeout(playSoundWithDelay);
-    };
-  }, [playSoundWithDelay]);
-
-  {
-    /* music sound effect */
-  }
-
-  // const scrollToSection = useCallback((sectionId) => {
-  //   // console.log(sectionId);
-  //   const section = document.querySelector(sectionId);
-  //   console.log("sec", section);
-  //   console.log("scroll", scrollRef);
-
-  //   // scrollRef.current.scrollTo(section);
-  // }, []);
   const options = {
     smooth: true,
   };
@@ -128,7 +89,8 @@ function App() {
               engaging analytics and fun facts! Embark on this adventure with
               us, and discover the hidden gems in the gaming galaxy! 👾
             </p>
-            <span className="title-text">Let's Play Pixel Pulse!</span>
+
+            <div className="title-text">Let's Play Pixel Pulse!</div>
           </div>
 
           {/* clouds */}
