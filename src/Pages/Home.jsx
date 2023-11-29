@@ -2,6 +2,7 @@ import {
   LocomotiveScrollProvider,
   LocomotiveScrollContext,
 } from "react-locomotive-scroll";
+
 import React, {
   useRef,
   useCallback,
@@ -529,9 +530,9 @@ function App() {
             data-scroll-speed="4"
           >
             <img
-              src="src/assets/reddead.jpeg"
+              src="src/Elements/reddead.gif"
               alt="Cloud2"
-              style={{ maxWidth: "80%", height: "auto" }}
+              style={{ width: "180%", height: "auto" }}
             ></img>
           </span>
         </section>
