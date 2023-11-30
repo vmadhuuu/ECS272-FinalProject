@@ -289,7 +289,7 @@ const ScrollApp = () => {
                 textAlign: "justify",
                 width: "700px",
                 marginLeft: "-15vw",
-                fontFamily: "superhelio_regular",
+                fontFamily: "superhelio _regular, sans-serif",
               }}
               data-scroll-direction="horizontal"
               data-scroll-speed="2"
