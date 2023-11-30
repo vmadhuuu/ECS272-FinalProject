@@ -13,7 +13,7 @@ import "locomotive-scroll/dist/locomotive-scroll.css";
 import "../App.css";
 
 // components
-import BarChart from "../Components/Sankey.jsx"; // Update the path to the actual location of your component
+import Sankey from "../Components/Sankey.jsx"; // Update the path to the actual location of your component
 
 import firstslideimg from "../Elements/firstslideimg.jpg";
 import pixelimg from "../Elements/pixelbg.jpeg";
@@ -817,7 +817,7 @@ const ScrollApp = () => {
             data-scroll-direction="horizontal"
             data-scroll-speed="9"
           >
-            <BarChart />
+            <Sankey />
           </h1>
           <h2
             data-scroll
