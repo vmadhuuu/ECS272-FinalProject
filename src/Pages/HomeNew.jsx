@@ -764,7 +764,7 @@ const ScrollApp = () => {
             data-scroll-target="#stick"
           >
             {/* Replace the placeholder text with your component */}
-            <BarChart />
+            hi hi
           </h1>
 
           <p>other contents</p>
@@ -817,7 +817,7 @@ const ScrollApp = () => {
             data-scroll-direction="horizontal"
             data-scroll-speed="9"
           >
-            Content for something here
+            <BarChart />
           </h1>
           <h2
             data-scroll
