@@ -11,7 +11,7 @@ import React, {
   useState,
 } from "react";
 import "../App.css";
-import backgroundImg from "../Elements/classic-world-video-game-background-free-vector.jpg";
+import backgroundImg from "../Elements/firstslideimg.jpg";
 
 function App() {
   const containerRef = useRef(null);
