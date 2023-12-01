@@ -46,7 +46,6 @@ const BarChart = () => {
         .padding(0.1);
 
       const yScale = d3.scaleLinear()
-        // .domain([0, d3.max(data, d => d.sales)])
         .domain([0, 1800])
         .range([height, 0]);
 
@@ -67,34 +66,26 @@ const BarChart = () => {
         .attr("y", height)
         .attr("width", xScale.bandwidth())
         .attr("height", 0)
-        .attr("fill", (d, i) => colorScale(i));
-        //highlighing each bar
-        // .each(function(d, i) {
-        //   // Store the original color in a data attribute
-        //   d3.select(this).attr("originalColor", d3.select(this).attr('fill'));
-        // })
-        // .on("mouseover", function (d, i) {
-        //   d3.select(this)
-        //     .transition()
-        //     .duration(200)
-        //     .attr("x", xScale(d.genre) - 5) // Decrease the x position slightly
-        //     .attr("width", xScale.bandwidth() + 10) // Increase the width
-        //     .attr("y", yScale(d.sales) - 5) // Decrease the y position slightly
-        //     .attr("height", height - yScale(d.sales) + 5) // Increase the height
-        //     .attr("fill", "blue")
-        // })
-        // .on("mouseout", function (d, i) {
-        //   // Retrieve the original color from the bar's property
-        //   const originalColor = d3.select(this).property('originalColor')
-        //   d3.select(this)
-        //     .transition()
-        //     .duration(200)
-        //     .attr("x", xScale(d.genre))
-        //     .attr("width", xScale.bandwidth())
-        //     .attr("y", yScale(d.sales))
-        //     .attr("height", height - yScale(d.sales))
-        //     .attr("fill", originalColor);
-        // });
+        .attr("fill", (d, i) => colorScale(i))
+        .each(function(d) { // Store the original color
+          d.originalColor = d3.select(this).attr("fill");
+      })
+      .on("mouseover", function (event, d) {
+          d3.select(this)
+              .transition()
+              .duration(200)
+              .attr("fill", "blue")  // Highlight color
+              .attr("width", xScale.bandwidth() + 5)
+              .attr("x", xScale(d.genre) - 2.5);
+      })
+      .on("mouseout", function (event, d) {
+          d3.select(this)
+              .transition()
+              .duration(200)
+              .attr("fill", d.originalColor)  // Restore original color
+              .attr("width", xScale.bandwidth())
+              .attr("x", xScale(d.genre));
+      });
 
       // Apply the transition to grow the bars
       bars.transition()
