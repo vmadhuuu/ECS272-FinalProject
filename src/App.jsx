@@ -9,8 +9,6 @@ import HeatMap from "./Components/heatmap";
 import TreeMap from "./Components/Treemap";
 import HomeNew from "./Pages/HomeNew";
 import SecondPage from "./Components/SecondPage";
-// import HeatMap from "./Components/heatmap";
-// import TreeMap from "./Components/Treemap";
 
 function App() {
   return (
