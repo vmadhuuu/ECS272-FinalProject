@@ -268,7 +268,7 @@ header {
   font-size: 61px;
   margin-top: 50;
   font-family: "DotGothic16", sans-serif;
-  animation: typing 5s steps(20) forwards;
+  animation: typing 5s steps(10) forwards;
 }
 /* .title-text {
   font-size: 61px;

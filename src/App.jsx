@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
 
 import "./App.css";
-//import Sankey from "./Components/Sankey";
+import Sankey from "./Components/Sankey";
 // import BarChart from "./Components/Barchart";
 import Home from "./Pages/Home";
 import HomeNew from "./Pages/HomeNew";
@@ -13,12 +13,12 @@ import SecondPage from "./Components/SecondPage";
 function App() {
   return (
     <>
-      {/* <Sankey /> */}
+      <Sankey />
       {/* <TreeMap /> */}
       {/* <BarChart /> */}
       {/* HeatMap/> */}
       {/* <SecondPage /> */}
-      <HomeNew />
+      {/* <HomeNew /> */}
       {/* <Home /> */}
     </>
   );

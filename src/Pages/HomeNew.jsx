@@ -21,6 +21,8 @@ import sky from "../Elements/darksky.jpeg";
 import map from "../Elements/worldmap.jpeg";
 import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
+import dawn from "../Elements/dawn.jpeg";
+import fire from "../Elements/fire.jpeg";
 
 const ScrollApp = () => {
   const { scroll } = useContext(LocomotiveScrollContext);
@@ -31,18 +33,18 @@ const ScrollApp = () => {
   // Array of colors for each section
   // light blue, purple, black, dark purple, orange, red, green, gold, dark blue, turqoise, dark green, babypink
   const sectionColors = [
-    "#00c0ff", // lightblue
+    "#0ba1f4", // lightblue
     "#00c0ff", // dark purple
     "#360a26", // dark red pink
     "#000000", // black nightsky
     "#000000", // black
-    "#59113f", // dark purple pink
+    "#2e0820", // dark purple pink
     "#041B15", // grey
     "#000000", // black
-    "#080336", // dark blue
     "#000000", // black
-    "#000000", //turquoise
-    "#000000", // dark green
+    "#000000", // black
+    "#000000", // black
+    "#000000", // black
     "#b5919c", //babypink
   ];
 
@@ -150,7 +152,6 @@ const ScrollApp = () => {
           data-scroll-speed="4"
           data-scroll-section
         >
-          <h1 data-scroll>Section 1</h1>
           <img
             src="src/Elements/sun.png"
             alt="Rotating Sun"
@@ -208,9 +209,10 @@ const ScrollApp = () => {
 
         <section
           ref={addSectionRef}
-          style={{ height: "100vh" }}
+          // style={{ height: "100vh" }}
           className="contents"
           data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
         >
           <div
             className="background-image-container"
@@ -221,20 +223,36 @@ const ScrollApp = () => {
               backgroundImage: `url(${pixel2})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              opacity: "20%",
+              opacity: "30%",
               zIndex: -1,
             }}
           ></div>
-          <h1
+          <h3
             className="op-class"
             data-scroll
-            style={{ fontSize: 172 }}
+            style={{
+              fontSize: 80,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#111B5D",
+              maxWidth: "90vw",
+            }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
-            How Data Data Data Data Data?
-          </h1>
+            Ever wondered how gaming evolved from pixelated screens to immersive
+            universes?
+          </h3>
+
+          <h3
+            style={{
+              fontFamily: "superhelio _regular, sans-serif",
+              fontSize: 30,
+            }}
+          >
+            <br />
+            Scroll down to travel through the decades of gaming history
+          </h3>
         </section>
 
         <section
@@ -250,30 +268,32 @@ const ScrollApp = () => {
               position: "absolute",
               width: "100%",
               height: "100%",
-              backgroundImage: `url(${pixel2})`,
+              backgroundImage: `url(${dawn})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: "20%",
               zIndex: -1,
             }}
           ></div>
-
           <h3
             className="op-class"
             data-scroll
             style={{
               fontSize: 70,
-              width: "80%",
+              width: "70%",
               textAlign: "center",
               fontFamily: "M04_FATAL FURY BLACK",
+              color: "#e36d30",
             }}
             data-scroll-class="fadeInFast"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
-            The Dawn of Pixels (1960s-1970s):
+            The Dawn of Pixels{" "}
           </h3>
-
+          <h3 style={{ fontFamily: "DePixel, sans-serif", fontSize: 40 }}>
+            (1960s-1970s)
+          </h3>
           <div
             style={{
               display: "flex",
@@ -285,20 +305,20 @@ const ScrollApp = () => {
             <h1
               data-scroll
               style={{
-                fontSize: 30,
+                fontSize: 28,
                 textAlign: "justify",
-                width: "700px",
+                width: "32vw",
                 marginLeft: "-15vw",
                 fontFamily: "superhelio _regular, sans-serif",
               }}
               data-scroll-direction="horizontal"
               data-scroll-speed="2"
             >
-              In the 1960s, a galaxy far far away from our current gaming
-              universe, the seeds of interactive electronic entertainment were
-              sown. The earliest games were born in the hallowed halls of
-              research institutions, rudimentary by today's standards but
-              revolutionary for their time.
+              In the 1960s, at the dawn of the digital age, the foundations of
+              what we now know as video gaming were quietly laid. TThese tiny
+              dots, called pixels, fundamental yet groundbreaking, were the
+              building blocks of the video game revolution, transforming screens
+              into gateways of interactive entertainment.
             </h1>
             <span
               data-scroll
@@ -312,7 +332,7 @@ const ScrollApp = () => {
               <img
                 src="src/assets/pixel.jpeg"
                 alt="Cloud2"
-                style={{ maxWidth: "90%", height: "auto" }}
+                style={{ maxWidth: "75%", height: "auto" }}
               ></img>
             </span>
           </div>
@@ -334,7 +354,11 @@ const ScrollApp = () => {
           ></div>
           <h1
             data-scroll
-            style={{ fontSize: 32, textAlign: "justify" }}
+            style={{
+              fontSize: 28,
+              textAlign: "justify",
+              fontFamily: "superhelio _regular, sans-serif",
+            }}
             data-scroll-direction="horizontal"
             data-scroll-speed="2"
           >
@@ -350,7 +374,6 @@ const ScrollApp = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            // backgroundImage: `url(${pixelimg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -375,14 +398,18 @@ const ScrollApp = () => {
               fontSize: 70,
               width: "80%",
               textAlign: "center",
-              margintop: "8vh",
+              margintop: "15vh",
               fontFamily: "M04_FATAL FURY BLACK",
+              color: "#fbfb00",
             }}
             data-scroll-class="fadeInFast"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
-            The Arcade Explosion (1980s):
+            The Arcade Explosion{" "}
+          </h3>
+          <h3 style={{ fontFamily: "DePixel, sans-serif", fontSize: 40 }}>
+            (1980s)
           </h3>
           <div
             style={{
@@ -395,13 +422,13 @@ const ScrollApp = () => {
             <span
               data-scroll
               data-scroll-direction="horizontal"
-              data-scroll-speed="4"
+              data-scroll-speed="2"
               style={{ textAlign: "center", marginBottom: "40px" }}
             >
               <img
                 src="src/assets/spacealien.jpeg"
                 alt="Cloud2"
-                style={{ maxWidth: "60%", height: "auto", marginLeft: "4vw" }}
+                style={{ maxWidth: "50%", height: "auto", marginLeft: "4vw" }}
               ></img>
             </span>
             <span
@@ -413,17 +440,18 @@ const ScrollApp = () => {
               <img
                 src="src/Elements/pacman.gif"
                 alt="Cloud2"
-                style={{ width: "70%", height: "auto", marginRight: "20vw" }}
+                style={{ width: "50%", height: "auto", marginRight: "30vw" }}
               />
             </span>
           </div>
           <h1
             data-scroll
             style={{
-              fontSize: 32,
+              fontSize: 28,
               textAlign: "justify",
-              maxWidth: "800px",
+              maxWidth: "40vw",
               marginleft: "20vw",
+              fontFamily: "superhelio _regular, sans-serif",
             }}
             data-scroll-direction="horizontal"
             data-scroll-speed="2"
@@ -467,14 +495,16 @@ const ScrollApp = () => {
               width: "80%",
               textAlign: "center",
               fontFamily: "M04_FATAL FURY BLACK",
-              marginTop: "25vh",
+              marginTop: "15vh",
+              color: "#A5C882",
             }}
             data-scroll-class="fadeInFast"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
             The Home Console Revolution
-            <br />
+          </h3>
+          <h3 style={{ fontFamily: "DePixel, sans-serif", fontSize: 40 }}>
             (1990s)
           </h3>
           <div
@@ -488,11 +518,12 @@ const ScrollApp = () => {
             <h1
               data-scroll
               style={{
-                fontSize: 32,
+                fontSize: 27,
                 textAlign: "justify",
-                maxWidth: "700px",
+                maxWidth: "35vw",
                 marginLeft: "1vw",
-                marginRight: "5vw",
+                marginRight: "10vw",
+                fontFamily: "superhelio _regular, sans-serif",
               }}
               data-scroll-direction="horizontal"
               data-scroll-speed="2"
@@ -513,7 +544,12 @@ const ScrollApp = () => {
               <img
                 src="src/Elements/supermario.gif"
                 alt="Cloud2"
-                style={{ width: "70%", height: "auto", marginRight: "20vw" }}
+                style={{
+                  height: "60%",
+                  width: "auto",
+
+                  marginbottom: "50vh",
+                }}
               ></img>
             </span>
           </div>
@@ -526,7 +562,7 @@ const ScrollApp = () => {
             <img
               src="src/Elements/sonichedgehog.gif" // Replace with your image path
               alt="sonic"
-              style={{ width: "130%", height: "auto" }}
+              style={{ height: "100%", width: "auto" }}
             />
           </span>
         </section>
@@ -559,9 +595,11 @@ const ScrollApp = () => {
           <h1
             data-scroll
             style={{
-              fontSize: 32,
+              fontSize: 35,
+              maxWidth: "80vw",
               marginBottom: "0px",
-              marginTop: "35vh", // Reduce the bottom margin to bring text closer to the image
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
             }}
             data-scroll-direction="vertical"
             data-scroll-speed="2"
@@ -608,16 +646,21 @@ const ScrollApp = () => {
             className="op-class"
             data-scroll
             style={{
-              fontSize: 70,
-              width: "80%",
+              fontSize: 68,
+              width: "73%",
               textAlign: "center",
               fontFamily: "M04_FATAL FURY BLACK",
+              // color: "#AFBE8F",
+              color: "#FFFBBD",
             }}
             data-scroll-class="fadeInFast"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
-            Online Gaming and the Expansion of Worlds (2000s):
+            Online Gaming and the Expansion of Worlds{" "}
+          </h3>
+          <h3 style={{ fontFamily: "DePixel, sans-serif", fontSize: 40 }}>
+            (2000s)
           </h3>
           <div
             style={{
@@ -630,11 +673,12 @@ const ScrollApp = () => {
             <h1
               data-scroll
               style={{
-                fontSize: 32,
+                fontSize: 28,
                 textAlign: "justify",
-                maxWidth: "800px",
+                maxWidth: "35vw",
                 marginLeft: "1vw",
-                marginRight: "15vw",
+                marginRight: "10vw",
+                fontFamily: "superhelio _regular, sans-serif",
               }}
               data-scroll-direction="vertical"
               data-scroll-speed="2"
@@ -665,7 +709,7 @@ const ScrollApp = () => {
             <img
               src="src/assets/worldofwar.jpeg"
               alt="Cloud2"
-              style={{ maxWidth: "170%", height: "auto", margintop: "0vh" }}
+              style={{ maxWidth: "auto", height: "90%", margintop: "0vh" }}
             ></img>
           </span>
         </section>
@@ -681,22 +725,38 @@ const ScrollApp = () => {
             alignItems: "center",
           }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${fire})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h3
             className="op-class"
             data-scroll
             style={{
-              fontSize: 70,
+              fontSize: 67,
               width: "80%",
               textAlign: "center",
               fontFamily: "M04_FATAL FURY BLACK",
+              marginTop: "25vh",
+              color: "#A56415 ",
             }}
             data-scroll-class="fadeInFast"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
             The Age of Immersion and Innovation
-            <br />
-            (2010s-Present):
+          </h3>
+          <h3 style={{ fontFamily: "DePixel, sans-serif", fontSize: 40 }}>
+            (2010s-Present)
           </h3>
           <div
             style={{
@@ -714,19 +774,20 @@ const ScrollApp = () => {
               <img
                 src="src/assets/lastofus.jpeg"
                 alt="Cloud2"
-                style={{ maxWidth: "70%", height: "auto" }}
+                style={{ maxWidth: "60%", height: "auto", marginLeft: "15vw" }}
               ></img>
             </span>
             <h1
-              data-scroll
+              // data-scroll
               style={{
-                fontSize: 32,
+                fontSize: 26,
                 textAlign: "justify",
-                maxWidth: "750px",
-                marginRight: "5vw",
+                maxWidth: "35vw",
+                marginRight: "15vw",
+                fontFamily: "superhelio _regular, sans-serif",
               }}
-              data-scroll-direction="horizontal"
-              data-scroll-speed="2"
+              // data-scroll-direction="horizontal"
+              // data-scroll-speed="4"
             >
               The current gaming era is marked by immersive experiences, with
               virtual reality and augmented reality adding new dimensions to
@@ -745,7 +806,7 @@ const ScrollApp = () => {
             <img
               src="src/Elements/reddead.gif"
               alt="Cloud2"
-              style={{ width: "180%", height: "auto" }}
+              style={{ width: "150%", height: "auto" }}
             ></img>
           </span>
         </section>

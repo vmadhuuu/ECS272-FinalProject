@@ -120,36 +120,55 @@ function SankeyChart() {
   useEffect(() => {
     if (!sankeyData || !sankeyData.nodes || !sankeyData.links) return;
 
-    const svg = d3.select(svgRef.current);
-    const width = 1400;
+    const margin = { top: 30, right: 50, bottom: 30, left: 60 };
+    const legendWidth = 200; // Space allocated for the legend
+    const totalWidth = 1500; // Total SVG width
+    const width = totalWidth - margin.left - margin.right - legendWidth; // Width for the Sankey chart
     const height = 700;
+
+    const svg = d3
+      .select(svgRef.current)
+      .attr("width", totalWidth)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
     svg.attr("width", width).attr("height", height);
 
     svg.selectAll("*").remove();
 
     const colors22 = [
-      "#66c2a5",
-      "#fc8d62",
-      "#8da0cb",
-      "#e78ac3",
-      "#a6d854",
-      "#ffd92f",
-      "#e5c494",
-      "#b3b3b3",
-      "#7E57C2",
-      "#00A4B4",
-      "#29B6F6",
-      "#9E0031",
-      "#5C6BC0",
-      "#AF97B4",
-      "#D4E157",
-      "#8D6E63",
-      "#e789c3",
-      "#D56D6D",
-      "#F05822",
-      "#FFA6C9",
-      "#BA68C8",
-      "#FF7043",
+      "#66c2a5", // sage green
+      "#fc8d62", // light orange
+      "#8da0cb", // pale lavender blue
+      "#e78ac3", // baby pink
+      "#a6d854", // lime green
+      "#ffd92f", // little dark yellow
+      "#e5c494", // pale orange yellow
+      "#b3b3b3", // greyish white
+      "#7E57C2", // light purple
+      "#00A4B4", // turquoise
+      "#29B6F6", // light blue
+      "#9E0031", // bright red
+      "#56445D", // english violet
+      "#053C5E", // indigo dye
+      "#776D5A", // dim grey
+      "#8D6E63", // greyish orange
+      "#AA1155", // amaranth pink
+      "#D56D6D", // pinkish red
+      "#F05822", // bright orange
+      "#034732", // british green
+      "#BA68C8", // pinkish purple
+      "#9F4A54", // red wood
+      // 23
+      "#B57F50", //copper
+      "#7D80DA", // indigo
+      "#FF9770", // tangerine
+      "#5C374C", // eggplant
+      "#D3FAD6", //tea green
+      "#E1BC29", //saffron
+      "#09BC8A", //mint green
+      "#A599B5", //rose quartz
     ];
 
     const color = d3.scaleOrdinal(colors22);
@@ -212,6 +231,31 @@ function SankeyChart() {
       .attr("text-anchor", (d) => (d.x0 < width / 2 ? "start" : "end"))
       .text((d) => d.name);
 
+    // node titles
+    svg
+      .append("text")
+      .attr("x", -15) // Adjust position as needed
+      .attr("y", -5) // Adjust position as needed
+      .text("Publishers") // Replace with dynamic labels as needed
+      .style("font-size", "15px") // Adjust styling as needed
+      .attr("fill", "white");
+
+    svg
+      .append("text")
+      .attr("x", 560) // Adjust position as needed
+      .attr("y", -5) // Adjust position as needed
+      .text("Platforms") // Replace with dynamic labels as needed
+      .style("font-size", "15px") // Adjust styling as needed
+      .attr("fill", "white");
+
+    svg
+      .append("text")
+      .attr("x", 1150) // Adjust position as needed
+      .attr("y", -5) // Adjust position as needed
+      .text("Genres") // Replace with dynamic labels as needed
+      .style("font-size", "15px") // Adjust styling as needed
+      .attr("fill", "white");
+
     svg.selectAll(".node").on("click", (event, d) => {
       highlightConnectedPaths(d);
 
@@ -227,6 +271,35 @@ function SankeyChart() {
         .on("mouseout", () => {
           tooltip.transition().duration(500).style("opacity", 0);
         });
+    });
+
+    const colorToNameMapping = {};
+    graph.nodes.forEach((node) => {
+      colorToNameMapping[color(node.name)] = node.name;
+    });
+
+    const legend = svg.append("g").attr("transform", "translate(1250,50)"); // Adjust position as needed
+
+    colors22.forEach((color, index) => {
+      const legendItem = legend
+        .append("g")
+        .attr("transform", `translate(0, ${index * 20})`);
+
+      legendItem
+        .append("rect")
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", color);
+
+      legendItem
+        .append("text")
+        .attr("x", 20)
+        .attr("y", 8)
+        .attr("dy", ".35em")
+        .text(colorToNameMapping[color]) // Display node name instead of color code
+        .style("font-size", "10px") // Reduced font size
+        .style("text-anchor", "start")
+        .style("fill", "white");
     });
   }, [sankeyData]);
 
