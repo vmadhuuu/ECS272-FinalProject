@@ -1,36 +1,8 @@
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
@@ -42,9 +14,8 @@
 }
 
 .container {
-  font-family: 'Arial', sans-serif;
   color: #333;
-  max-width: 1000px;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -63,9 +34,23 @@ header {
   cursor: pointer;
   font-weight: bold;
 }
+.op-class {
+  opacity: 0;
+}
+.fadeIn {
+  opacity: 1;
+  transition: opacity 8s;
+}
 
+.fadeInFast {
+  opacity: 1;
+  transition: opacity 3s;
+}
+.second-title {
+  font-size: 172;
+}
 .content {
-  background-color: #f2e5d5;
+  background-color: #50504f;
   margin: 20px 0;
   padding: 40px 20px;
 }
@@ -79,26 +64,308 @@ header {
   color: #888;
 }
 
-.character {
-  background-image: url('/data/src/Elements/mario.png'); /* Replace with your character sprite sheet */
-  background-repeat: no-repeat;
-  height: 200px; /* Height of the character or frame in the sprite sheet */
-  width: 50px; /* Width of each frame in the sprite sheet */
-  position: relative;
-  animation: walkAnimation 4s steps(4) forwards; /* Adjust time and steps as needed */
+.contents {
+  height: 125vh;
 }
 
-@keyframes walkAnimation {
+/* NEED TO IMPROVE */
+/* mario character animation */
+@keyframes marioFloat {
   0% {
-    left: 0;
-    background-position: 0; /* Start position of sprite frames */
+    transform: translateX(-55vw); /* Start off-screen */
+    opacity: 1;
+  }
+  10% {
+    transform: translateX(-20vw); /* move towards the right and stop */
+    opacity: 1;
+  }
+
+  45% {
+    transform: translateX(-20vw); /* move towards the right and stop */
+    opacity: 1;
+  }
+
+  /* dont change above */
+
+  50% {
+    transform: translateX(-20vw) translateY(-25vh); /* move upwards */
+    opacity: 1;
+  }
+
+  55% {
+    transform: translateX(-8vw) translateY(-35vh); /* move slight right up diagonal */
+    opacity: 1;
+  }
+
+  60% {
+    transform: translateX(-1vw) translateY(-30vh); /* move very slight down right diagonal, land on block */
+    opacity: 1;
+  }
+  65% {
+    transform: translateX(-1vw) translateY(-50vh); /* move upwards */
+    opacity: 1;
+  }
+
+  70% {
+    transform: translateX(8vw) translateY(-60vh); /* move diagonally towards cloud */
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(18vw) translateY(-57vh); /* land on cloud */
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(30vw) translateY(-57vh); /* go right for jump */
+    opacity: 1;
+  }
+  90% {
+    transform: translateX(30vw) translateY(-34vh); /* go down */
+    opacity: 1;
+  }
+  95% {
+    transform: translateX(45vw) translateY(-34vh); /* exit screen */
+    opacity: 1;
   }
   100% {
-    left: calc(100% - 50px); /* Move to the end of the container, adjust 50px to the width of your character */
-    background-position: -200px 0; /* End position of sprite frames, adjust -200px to your sprite sheet's width minus one frame */
+    transform: translateX(45vw) translateY(-34vh); /* exit screen */
+    opacity: 0;
   }
 }
 
+/* -Y means move Up, Y means move Down,  -X means move to R , X means move to L */
+
+.mario {
+  position: absolute;
+  width: auto;
+  height: 30vh;
+  bottom: 16vh; /* Adjust as needed */
+  animation: marioFloat 30s ease-in-out forwards;
+}
+
+/* speech bubble animation */
+
+@keyframes speechbubble-fade {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.mario-walk {
+  position: absolute;
+  width: auto;
+  height: 30vh;
+  bottom: 530px; /* Adjust as needed */
+  /* animation: walk 0.5s linear infinite; */
+}
+
+@keyframes walk {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.speechbubble {
+  position: absolute;
+  top: -25vh;
+  width: 60vw;
+  height: 110vh;
+  bottom: 0%;
+  animation: speechbubble-fade 30s forwards;
+}
+
+.title-textbox {
+  width: 70vw; /* Adjust width as needed */
+  height: 40vh; /* Adjust height as needed */
+  position: absolute; /* Use 'absolute' or 'fixed' positioning */
+  top: 5vh; /* Adjust to position vertically */
+  left: 26vw;
+  background-color: transparent;
+  text-align: center; /* Optional: Align text */
+  /* Add more styling as needed */
+}
+
+.title-subtitle {
+  font-size: 26px;
+  margin-bottom: 45vh;
+  font-family: "DotGothic16", sans-serif;
+}
+
+/* Animation for title slide text to fade in and out */
+
+@keyframes fadeOutText {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.title-subtitle {
+  overflow: hidden;
+  animation: typing 4s steps(300) forwards, blinkCursor 0.75s step-end infinite,
+    fadeOutText 30s ease forwards;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 920px;
+  }
+}
+
+@keyframes blinkCursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+
+.title-text {
+  font-size: 61px;
+  margin-top: 50;
+  font-family: "DotGothic16", sans-serif;
+  animation: typing 5s steps(10) forwards;
+}
+/* .title-text {
+  font-size: 61px;
+  font-family: "DotGothic16", sans-serif;
+  /* 
+} */
+
+/* Moving cloud animation */
+@keyframes moveCloud {
+  0% {
+    left: -55vw;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.moving-cloud {
+  position: absolute;
+  top: 31vh; /* Adjust the vertical position as needed */
+  width: 17vw; /* Adjust the size of the cloud as needed */
+  animation: moveCloud 40s linear infinite;
+}
+
+/* Moving cloud animation */
+@keyframes moveCloudright {
+  0% {
+    right: -55vw;
+  }
+  100% {
+    right: 100%;
+  }
+}
+.cloud-right-to-left {
+  position: absolute;
+  top: 5vh; /* Adjust the vertical position as needed */
+  width: 17vw; /* Adjust the size of the cloud as needed */
+  animation: moveCloudright 40s linear infinite;
+}
+
+/* Rotating sun */
+@keyframes rotateSun {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-sun {
+  animation: rotateSun 2s linear infinite;
+  height: 100px;
+}
+
+/* top right */
+.sun1 {
+  position: relative;
+  top: -470px;
+  right: -1050px;
+}
+
+/* bottom centre */
+.sun2 {
+  position: relative;
+  top: 490px;
+  right: 100px;
+}
+
+/* top left */
+.sun3 {
+  position: relative;
+  top: -470px;
+  left: -620px;
+}
+
+/* mario animation for fun fact 1*/
+@keyframes mariofunfact {
+  0% {
+    transform: translateX(-20vw); /* Start off-screen */
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-2vw); /* move towards the right and stop */
+    opacity: 1;
+  }
+}
+
+.mario1 {
+  animation: mariofunfact 8s ease-in-out forwards;
+  height: 30vh;
+  width: auto; 
+  
+}
+
+
+/* background transition */
 section {
   height: 100vh;
   color: white;
@@ -106,30 +373,130 @@ section {
   align-items: center;
   justify-content: center;
 }
-.intro{
+
+
+
+.intro {
   background-color: black;
 }
 
-.container{
-  width: 3000;
+/* FIRST SLIDE */
+.container {
+  width: 100vw;
+  max-width: 100vw;
   background-color: rgb(243, 202, 249);
+  background-image: url("src/Elements/classic-world-video-game-background-free-vector.jpg");
+  background-size: cover; /* Cover ensures that the background covers the entire slide */
+  background-position: center;
 }
 
-.content {
-  width: 3000;
-  background-color: goldenrod;
+
+.tooltip {
+  opacity: 0;
+  position: absolute;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  color: #fff;
+  pointer-events: none; /* This line is important: it makes the tooltip ignore mouse events */
 }
 
-#character{
-  background-color: rgb(71, 14, 64);
-  display: flex;
+/* button */
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #ffda00;
+  border: none;
+  cursor: pointer;
+  /* Add more styling as needed */
+}
+
+/* locomotive scroll */
+
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction="horizontal"] [data-scroll-container] {
   height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-.footer {
-  background-color: whitesmoke;
-  color: seagreen;
+[data-scroll-direction="horizontal"] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+  opacity: 1;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+[data-scroll-direction="horizontal"] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
 }
