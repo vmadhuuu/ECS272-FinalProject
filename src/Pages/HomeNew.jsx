@@ -14,6 +14,9 @@ import "../App.css";
 
 // components
 import Sankey from "../Components/Sankey.jsx"; // Update the path to the actual location of your component
+import BarChart from "../Components/Barchart";
+import HeatMap from "../Components/heatmap";
+import TreeMap from "../Components/Treemap";
 
 import firstslideimg from "../Elements/firstslideimg.jpg";
 import pixelimg from "../Elements/pixelbg.jpeg";
@@ -45,6 +48,10 @@ const ScrollApp = () => {
     "#000000", // black
     "#000000", // black
     "#000000", // black
+    "#000000", // black
+    "#000000", // black
+    "#2e0820", // dark purple pink
+    "#360a26", // dark red pink
     "#b5919c", //babypink
   ];
 
@@ -811,6 +818,293 @@ const ScrollApp = () => {
           </span>
         </section>
 
+        {/* GENRE DOMINANCE SECTIONS */}
+        <section
+          ref={addSectionRef}
+          // style={{ height: "100vh" }}
+          className="contents"
+          data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 70,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#111B5D",
+              maxWidth: "90vw",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            Genre Dominance
+          </h3>
+
+          <h3
+            style={{
+              fontFamily: "superhelio _regular, sans-serif",
+              fontSize: 30,
+            }}
+          >
+            <br />
+            Scroll down to travel through the decades of gaming history
+          </h3>
+        </section>
+
+        {/* FLYING GENRES SECTIONS */}
+        <section
+          ref={addSectionRef}
+          id="section10"
+          className="contents"
+          data-scroll-section
+          style={{ height: "30vh" }}
+        >
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Action
+          </h1>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="vertical"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Sports
+          </h1>
+        </section>
+        <section
+          ref={addSectionRef}
+          id="section10"
+          className="contents"
+          data-scroll-section
+          style={{ height: "40vh" }}
+        >
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Shooter
+          </h1>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="vertical"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Role-Playing
+          </h1>
+        </section>
+
+        <section
+          ref={addSectionRef}
+          id="section10"
+          className="contents"
+          data-scroll-section
+          style={{ height: "40vh" }}
+        >
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Racing
+          </h1>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Fighting
+          </h1>
+        </section>
+
+        <section
+          ref={addSectionRef}
+          id="section10"
+          className="contents"
+          data-scroll-section
+          style={{ height: "40vh" }}
+        >
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Simulation
+          </h1>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="vertical"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Puzzle
+          </h1>
+        </section>
+
+        <section
+          ref={addSectionRef}
+          id="section10"
+          className="contents"
+          data-scroll-section
+          style={{ height: "40vh" }}
+        >
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="horizontal"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Adventure
+          </h1>
+          <h1
+            className="op-class"
+            data-scroll
+            data-scroll-class="fadeIn"
+            data-scroll-direction="vertical"
+            data-scroll-speed="9"
+            style={{
+              fontSize: 35,
+              maxWidth: "80vw",
+              marginBottom: "0px",
+              marginTop: "30vh",
+              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+            }}
+          >
+            Strategy
+          </h1>
+        </section>
+
+        {/* BARCHART */}
+        <section
+          ref={addSectionRef}
+          // style={{ height: "100vh" }}
+          className="contents"
+          data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+
+          <h3
+            style={{
+              fontFamily: "superhelio _regular, sans-serif",
+              fontSize: 30,
+            }}
+          >
+            <br />
+            Scroll down to travel through the decades of gaming history
+          </h3>
+          <BarChart />
+        </section>
+
         <section
           ref={addSectionRef}
           id="stick"
@@ -851,6 +1145,18 @@ const ScrollApp = () => {
         </section>
 
         <section
+          className="sankey-chart"
+          data-scroll-section
+          ref={addSectionRef}
+          data-scroll-class="fadeIn"
+          data-scroll-repeat="true"
+          data-scroll-speed="1"
+        >
+          {/* <Sankey />
+          Sankey component is now outside of the `data-scroll-section` */}
+        </section>
+
+        <section
           ref={addSectionRef}
           id="section10"
           className="contents"
@@ -873,13 +1179,6 @@ const ScrollApp = () => {
           id="section11"
           data-scroll-section
         >
-          <h1
-            data-scroll
-            data-scroll-direction="horizontal"
-            data-scroll-speed="9"
-          >
-            <Sankey />
-          </h1>
           <h2
             data-scroll
             data-scroll-direction="vertical"

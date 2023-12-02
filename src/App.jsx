@@ -16,7 +16,7 @@ function App() {
       {/* <Sankey /> */}
       {/* <TreeMap /> */}
       {/* <BarChart /> */}
-      {/* HeatMap/> */}
+      {/* <HeatMap /> */}
       {/* <SecondPage /> */}
       <HomeNew />
     </>

@@ -77,7 +77,7 @@ header {
 }
 .fadeIn {
   opacity: 1;
-  transition: opacity 8s;
+  transition: opacity 5s;
 }
 
 .fadeInFast {
@@ -438,6 +438,14 @@ section {
   white-space: nowrap;
 }
 
+.sankey-chart{
+  position: relative; /* or static, depending on your layout needs */
+  overflow: hidden; /* Prevents any internal content from spilling out */
+  z-index: 1;
+}
+
+
+/* SCROLLING DO NOT EDIT */
 [data-scroll-direction="horizontal"] [data-scroll-section] {
   display: inline-block;
   vertical-align: top;
