@@ -300,6 +300,30 @@ const HeatMap = () => {
       });
       svg.call(zoom);
 
+      // Add X-axis label
+      svg.append("text")
+      .attr("class", "x-axis-label")
+      .attr("x", width / 2)
+      .attr("y", height + margin.bottom) // Adjust the position as needed
+      .style("text-anchor", "middle")
+      .style("font-size", "10px") // Adjust font size as needed
+      .style("fill", "white")
+      .text("Sales"); // Replace with your label text
+
+      // Add Y-axis label
+      svg.append("text")
+      .attr("class", "y-axis-label")
+      .attr("transform", "rotate(-90)") // Rotate the text for vertical alignment
+      .attr("y", 0 - margin.left + 3) // Adjust the position as needed
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .style("font-size", "10px") // Adjust font size as needed
+      .style("fill", "white")
+      .text("Genres"); // Replace with your label text
+
+
+
 
     }
   }, [data]);

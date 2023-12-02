@@ -6,23 +6,22 @@ const TreeMap = () => {
   const [data, setData] = useState(null); // Change to null to signify no data initially
   const svgRef = useRef(null);
   const OFFSET = 3;
-
-  // Function to handle mouseover
+    
+  // to handle mouseover
   const handleMouseOver = (d, element) => {
     // The 'd' parameter is the bound data object for the element being hovered.
     d3.select(element)
       .attr("stroke", "black") // Set the stroke to black on hover
       .attr("stroke-width", 3);
   };
-  // Function to handle mouseout
+  // to handle mouseout
   const handleMouseOut = (d, element) => {
-    // The 'd' parameter is the bound data object for the element being hovered.
     d3.select(element)
       .attr("stroke", d.depth === 1 ? "none" : "white") // Reset the stroke color
       .attr("stroke-width", 1); // Reset the stroke width
-    // Hide the tooltip code could go here
   };
 
+  // to handle text adjustment
   function adjustTextFontSize(selection, padding) {
     selection.each(function (d) {
       const self = d3.select(this);
@@ -54,6 +53,8 @@ const TreeMap = () => {
         (d) => d.Genre // second level of the hierarchy
       );
 
+      //console.log(root, "root")
+
       // Transform rollupData into a hierarchical structure
       const hierarchyData = Array.from(root, ([platform, genres]) => ({
         name: platform,
@@ -63,7 +64,7 @@ const TreeMap = () => {
         })),
       }));
 
-      console.log(hierarchyData, "hierarchyData");
+      //console.log(hierarchyData, "hierarchyData");
 
       // Create the root of the hierarchy
       const hierarchyRoot = d3
@@ -71,12 +72,15 @@ const TreeMap = () => {
         .sum((d) => d.value) // Compute the 'value' of each level
         .sort((a, b) => b.value - a.value); // Sort the nodes
 
+      //console.log(hierarchyRoot, "hierarchyRoot")
+
+      // Apply the treemap layout
       const treemap = d3
         .treemap()
         .size([width, height])
         .paddingInner(6)
         .paddingOuter(10);
-      treemap(hierarchyRoot); // Apply the treemap layout
+      treemap(hierarchyRoot); 
 
       setData(hierarchyRoot);
 
@@ -86,7 +90,8 @@ const TreeMap = () => {
 
   useEffect(() => {
     if (data) {
-      const svg = d3.select(svgRef.current);
+      const svg = d3.select(svgRef.current)
+                    .attr('width', 2000)
       svg.selectAll("*").remove(); // Clear previous SVG elements
 
       //custom colors
@@ -127,8 +132,11 @@ const TreeMap = () => {
       // Create a color scale for platforms
       const colorScale = d3.scaleOrdinal(customColorScale);
 
-      // Create groups for each node
-      const nodes = svg
+      const treemapGroup = svg.append("g"); //append to treemap group instead of directly to svg
+
+
+      // Create groups for each node and append to treemapGroup
+      const nodes = treemapGroup
         .selectAll("g")
         .data(data.descendants())
         .enter()
@@ -139,7 +147,6 @@ const TreeMap = () => {
         const node = d3.select(this);
 
         if (d.depth === 2) {
-          // Replace 2 with the correct depth of your small boxes
           const nodeGroup = d3.select(this);
 
           // Move the group down by OFFSET
@@ -175,6 +182,7 @@ const TreeMap = () => {
               true
             ); // Highlight all rects with the same ID
           }
+          
         })
         .on("mouseout", function (event, d) {
           d3.select(this).classed("highlighted", false); // Remove the class from the rect
@@ -184,7 +192,11 @@ const TreeMap = () => {
               false
             ); // Remove highlighting from all rects with the same ID
           }
-        });
+        })
+        .style("opacity", 0) // start with opacity 0
+        .transition() // apply transition
+        .duration(2000) // duration of fade-in in milliseconds
+        .style("opacity", 1); // end with opacity 1
 
       // Now append the child rectangles
       nodes
@@ -194,6 +206,8 @@ const TreeMap = () => {
         .attr("height", (d) => d.y1 - d.y0)
         .attr("fill", (d) => colorScale(d.parent.data.name)) // Fill with color based on the parent node
         .on("mouseover", function (event, d) {
+           // Capture the fill color of the current rectangle
+          const rectColor = d3.select(this).style("fill");
           d3.select(this).classed("highlighted", true); // Add a class to the hovered rect
           if (d.depth === 1) {
             // Check if it's a parent node
@@ -202,6 +216,22 @@ const TreeMap = () => {
               true
             ); // Highlight all rects with the same ID
           }
+          tooltip
+          .transition()
+          .duration(500) // Transition for smooth appearance
+          .style("opacity", 1); // Make tooltip visible
+
+          tooltip
+          .style("background", rectColor);
+
+          let tooltipContent = `Genre: ${d.data.name}`;
+          if (d.value) {
+            tooltipContent += `<br> Sales: ${format(d.value)}`;
+          }
+          tooltip
+            .html(tooltipContent)
+            .style("left", event.pageX + 15 + "px")
+            .style("top", event.pageY - 28 + "px");
         })
         .on("mouseout", function (event, d) {
           d3.select(this).classed("highlighted", false); // Remove the class from the rect
@@ -211,6 +241,10 @@ const TreeMap = () => {
               false
             ); // Remove highlighting from all rects with the same ID
           }
+          tooltip
+            .transition()
+            .duration(500) // Transition for smooth disappearance
+            .style("opacity", 0); // Hide tooltip
         });
 
       var tooltip = d3
@@ -220,11 +254,11 @@ const TreeMap = () => {
         .style("opacity", 0)
         .style("position", "absolute")
         .style("text-align", "center")
-        .style("color", "white")
+        .style("color", "black")
         .style("padding", "8px")
         .style("font", "12px sans-serif")
         .style("background", "black")
-        .style("border", "0px")
+        .style("border", "2px solid white")
         .style("border-radius", "8px")
         .style("pointer-events", "none"); // Tooltip should not interfere with other mouse events
 
@@ -242,7 +276,7 @@ const TreeMap = () => {
         .on("mouseover", function (event, d) {
           tooltip
             .transition()
-            .duration(200) // Transition for smooth appearance
+            .duration(500) // Transition for smooth appearance
             .style("opacity", 0.9); // Make tooltip visible
 
           tooltip
@@ -257,7 +291,11 @@ const TreeMap = () => {
             .transition()
             .duration(500) // Transition for smooth disappearance
             .style("opacity", 0); // Hide tooltip
-        });
+        })
+        .style("opacity", 0) // start with opacity 0
+        .transition() // apply transition
+        .duration(2000) // duration of fade-in in milliseconds
+        .style("opacity", 1); // end with opacity 1
 
       nodes
         .filter((d) => d.depth === 1)
@@ -284,7 +322,55 @@ const TreeMap = () => {
         .attr("fill", "black")
         .attr("font-size", "6px") // Adjust font size as needed
         .style("pointer-events", "none")
-        .call(adjustTextFontSize, 5);
+        .call(adjustTextFontSize, 5)
+        .style("opacity", 0) // start with opacity 0
+        .transition() // apply transition
+        .duration(2000) // duration of fade-in in milliseconds
+        .style("opacity", 1); // end with opacity 1
+      
+      //zoom in and out
+      const zoom = d3.zoom()
+      .scaleExtent([1, 5]) // Set the minimum and maximum scale
+      .on("zoom", (event) => {
+        treemapGroup.attr("transform", event.transform); // Apply the current zoom transform to the treemap group
+      });
+
+      svg.call(zoom);
+      
+      // Define legend data based on colorScale domain
+    const legendData = colorScale.domain().map(platform => {
+      return { name: platform, color: colorScale(platform) };
+    });
+
+    // Create a legend group
+    const legend = svg.append("g")
+                      .attr("class", "legend")
+                      .attr("transform", "translate(1250, ${height + 50})"); // Replace x, y with desired position
+    
+    const legendSpacing = 100;
+
+    // Draw legend items
+    const legendItem = legend.selectAll(".legend-item")
+                             .data(legendData)
+                             .enter()
+                             .append("g")
+                             .attr("class", "legend-item")
+                             .attr("transform", (d, i) => `translate(1250, ${i * 20})`); // Adjust spacing
+
+    // Draw rectangles for color
+    legendItem.append("rect")
+              .attr("width", 10)
+              .attr("height", 10)
+              .attr("fill", d => d.color);
+
+    // Add text labels
+    legendItem.append("text")
+              .attr("x", 15) // Adjust the position
+              .attr("y", 10)
+              .text(d => d.name)
+              .style("fill", "white")
+              .attr("font-size", "10px");
+
     }
   }, [data]);
 
@@ -299,7 +385,8 @@ const TreeMap = () => {
       >
         Platform Power
       </span>
-      <svg ref={svgRef} width={4200} height={1000}></svg>
+      <svg ref={svgRef} width={4200} height={1000}>
+      </svg>
     </>
   );
 };
