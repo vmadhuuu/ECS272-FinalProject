@@ -54,6 +54,20 @@ const BarChart = () => {
       const xAxis = d3.axisBottom(xScale);
       const yAxis = d3.axisLeft(yScale);
 
+      // Define the filter
+      var defs = svg.append("defs");
+
+      var filter = defs.append("filter").attr("id", "glow");
+
+      filter
+        .append("feGaussianBlur")
+        .attr("stdDeviation", "3.5")
+        .attr("result", "coloredBlur");
+
+      var feMerge = filter.append("feMerge");
+      feMerge.append("feMergeNode").attr("in", "coloredBlur");
+      feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
       // Append group element and transform it to leave space for axes
       const plotArea = svg
         .append("g")
@@ -90,7 +104,8 @@ const BarChart = () => {
             .attr("fill", d.originalColor) // Restore original color
             .attr("width", xScale.bandwidth())
             .attr("x", xScale(d.genre));
-        });
+        })
+        .style("filter", "url(#glow)");
 
       // Apply the transition to grow the bars
       bars
@@ -159,6 +174,29 @@ const BarChart = () => {
         .attr("dy", "0.32em")
         .style("fill", "white")
         .text((d) => d.genre);
+
+      //xaxis label
+      xAxisGroup
+        .append("text")
+        .attr("class", "axis-label")
+        .attr("x", width / 2)
+        .attr("y", margin.bottom - 10) // Adjust this value to position the label correctly
+        .style("text-anchor", "middle")
+        .style("fill", "white") // Adjust the color as needed
+        .text("Genres"); // Replace with your actual label
+
+      //y axis label
+      plotArea
+        .append("text")
+        .attr("class", "axis-label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - height / 2)
+        .attr("dy", "1em") // Adjust this value to position the label correctly
+        .style("text-anchor", "middle")
+        .style("fill", "white") // Adjust the color as needed
+        .style("font-size", "10px")
+        .text("Gobal Sales in Miliions"); // Replace with your actual label
     }
   }, [data]);
 
