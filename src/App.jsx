@@ -11,9 +11,9 @@ function App() {
   return (
     <>
       {/* <Sankey /> */}
-      <TreeMap />
-      {/* <BarChart />
-      <HeatMap/> */}
+      <TreeMap/>
+      <BarChart/>
+      <HeatMap/>
 
       {/* <Home /> */}
     </>
