@@ -205,6 +205,15 @@ header {
   }
 }
 
+.speechbubble {
+  position: absolute;
+  top: -25vh;
+  width: 60vw;
+  height: 110vh;
+  bottom: 0%;
+  animation: speechbubble-fade 30s forwards;
+}
+
 .mario-walk {
   position: absolute;
   width: auto;
@@ -223,14 +232,7 @@ header {
   }
 }
 
-.speechbubble {
-  position: absolute;
-  top: -25vh;
-  width: 60vw;
-  height: 110vh;
-  bottom: 0%;
-  animation: speechbubble-fade 30s forwards;
-}
+
 
 .title-textbox {
   width: 70vw; /* Adjust width as needed */
@@ -443,6 +445,62 @@ section {
   overflow: hidden; /* Prevents any internal content from spilling out */
   z-index: 1;
 }
+
+.genremario {
+  position: absolute;
+  width: auto;
+  height: 30vh;
+  bottom: 16vh;
+  animation: mariogenre 10s ease-in-out forwards;
+  transform: scaleX(-1);
+}
+
+@keyframes mariogenre {
+  0% {
+    transform: translateX(60vw) translateY(-20vh);
+  }
+  100% {
+      transform: translateX(40vw) translateY(-20vh); /* exit screen */
+     
+    }
+    
+  }
+
+
+
+  .speechbubble2 {
+    position: absolute;
+    width: auto;
+    height: 60vh;
+    left: 65vw;
+    top: 10vw;
+    animation: speechbubble2 30s forwards;
+  }
+
+  @keyframes speechbubble2 {
+    0% {
+      opacity: 0;
+    }
+    5% {
+      opacity: 0;
+    }
+  
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .small-bubbletext {
+    bottom: 520vh;
+
+
+
+  }
+
+
 
 
 /* SCROLLING DO NOT EDIT */

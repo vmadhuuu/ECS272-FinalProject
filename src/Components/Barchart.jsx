@@ -3,44 +3,115 @@ import * as d3 from "d3";
 
 const BarChart = () => {
   const [data, setData] = useState([]);
+  const [maxSalesValue, setMaxSalesValue] = useState(0);
+  const [salesType, setSalesType] = useState("Global_Sales"); // State to track the selected sales type
   const svgRef = useRef(null);
 
+  const processData = (loadedData, salesType) => {
+    const genreSales = loadedData.reduce((acc, row) => {
+      const genre = row.Genre;
+      const sales = parseFloat(row[salesType]) || 0; // Use the selected sales type
+      acc[genre] = (acc[genre] || 0) + sales; // Sum up the sales for this genre
+      return acc;
+    }, {});
+
+    const sortedGenreSales = Object.entries(genreSales)
+      .map(([genre, sales]) => ({
+        genre,
+        sales,
+      }))
+      .sort((a, b) => b.sales - a.sales);
+
+    const maxSales =
+      sortedGenreSales.length > 0
+        ? d3.max(sortedGenreSales, (d) => d.sales)
+        : 0;
+
+    return { sortedGenreSales, maxSales };
+  };
+
+  const handleSalesTypeChange = (event) => {
+    setSalesType(event.target.value);
+  };
+
   useEffect(() => {
-    const svg = d3.select(svgRef.current);
     d3.csv("../data/vgsales.csv").then((loadedData) => {
-      // Group and sum the data by genre
-      const genreSales = loadedData.reduce((acc, row) => {
-        const genre = row.Genre;
-        const sales = parseFloat(row.Global_Sales) || 0; // Parse the Global Sales as a number
-        acc[genre] = (acc[genre] || 0) + sales; // Sum up the sales for this genre
-        return acc;
-      }, {});
-
-      // Convert to array and sort by sales in descending order
-      const sortedGenreSales = Object.entries(genreSales)
-        .map(([genre, sales]) => ({
-          genre,
-          sales,
-        }))
-        .sort((a, b) => b.sales - a.sales);
-
-      setData(sortedGenreSales); // Update state with the loaded data
+      const { sortedGenreSales, maxSales } = processData(loadedData, salesType);
+      setData(sortedGenreSales);
+      setMaxSalesValue(maxSales); // Store the max sales value in state
     });
   }, []);
+
+  // useEffect(() => {
+  //   const svg = d3.select(svgRef.current);
+  //   d3.csv("../data/vgsales.csv").then((loadedData) => {
+  //     // Group and sum the data by genre
+  //     const processData = (loadedData, salesType) => {
+  //       const genreSales = loadedData.reduce((acc, row) => {
+  //         const genre = row.Genre;
+  //         const sales = parseFloat(row[salesType]) || 0; // Use the selected sales type
+  //         acc[genre] = (acc[genre] || 0) + sales; // Sum up the sales for this genre
+  //         return acc;
+  //       }, {});
+
+  //       // Convert to array and sort by sales in descending order
+  //       return Object.entries(genreSales)
+  //         .map(([genre, sales]) => ({
+  //           genre,
+  //           sales,
+  //         }))
+  //         .sort((a, b) => b.sales - a.sales);
+  //     };
+  //     // Convert to array and sort by sales in descending order
+  //     const sortedGenreSales = Object.entries(genreSales)
+  //       .map(([genre, sales]) => ({
+  //         genre,
+  //         sales,
+  //       }))
+  //       .sort((a, b) => b.sales - a.sales);
+
+  //     setData(sortedGenreSales); // Update state with the loaded data
+  //   });
+  // }, []);
 
   useEffect(() => {
     if (data.length > 0) {
       const svg = d3.select(svgRef.current);
       svg.selectAll("*").remove(); // Clear the SVG
+
+      // Group and sum the data by genre based on the selected sales type
+      const genreSales = data.reduce((acc, row) => {
+        const genre = row.Genre;
+        const sales = parseFloat(row[salesType]) || 0; // Use the selected sales type
+        acc[genre] = (acc[genre] || 0) + sales; // Sum up the sales for this genre
+        return acc;
+      }, {});
       // code for barchart using the loaded data
-      const svgWidth = svg.node().getBoundingClientRect().width;
-      const svgHeight = svg.node().getBoundingClientRect().height;
-      const margin = { top: 40, right: 30, bottom: 60, left: 50 };
+      // height is 800
+      // width is 1200
+      const svgWidth = 1000; // Fixed SVG width
+      const svgHeight = 600;
+      const margin = { top: 40, right: 100, bottom: 60, left: 80 };
       const width = svgWidth - margin.left - margin.right;
       const height = svgHeight - margin.top - margin.bottom;
 
       // Color scale
-      const colorScale = d3.scaleOrdinal(d3.schemeSet2);
+      const colors22 = [
+        "#8CB369", // olivine
+        "#F4E285", // flax yellow
+        "#F4A259", // sandy brown
+        "#5B8E7D", // viridian
+        "#BC4B51", //bittersweet shimmer red
+        "#E3D0D8", // pale purple
+        "#BCAC9B", // khakhi
+        "#D4EAC8", // light green
+        "#C94277", //pink
+        "#9CF6F6", // ice blue
+        "#09BC8A", //mint green
+        "#A599B5", //rose quartz
+      ];
+      const colorScale = d3.scaleOrdinal(colors22);
+
       // Set up scales
       const xScale = d3
         .scaleBand()
@@ -48,7 +119,10 @@ const BarChart = () => {
         .rangeRound([0, width])
         .padding(0.1);
 
-      const yScale = d3.scaleLinear().domain([0, 1800]).range([height, 0]);
+      const yScale = d3
+        .scaleLinear()
+        .domain([0, maxSalesValue])
+        .range([height, 0]);
 
       // Set up axes
       const xAxis = d3.axisBottom(xScale);
@@ -138,12 +212,17 @@ const BarChart = () => {
       // Rotate the text of x-axis labels
       xAxisGroup
         .selectAll("text")
+        .style("font-size", "15px")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
-        .attr("dy", ".15em")
+        .attr("dy", ".10em")
         .attr("transform", "rotate(-45)"); // Rotate labels by -45 degrees
 
-      plotArea.append("g").attr("class", "y-axis").call(yAxis);
+      plotArea
+        .append("g")
+        .attr("class", "y-axis")
+        .call(yAxis)
+        .style("font-size", "15px");
 
       // Append title to the SVG
 
@@ -179,8 +258,9 @@ const BarChart = () => {
       xAxisGroup
         .append("text")
         .attr("class", "axis-label")
+        .attr("font-size", 15)
         .attr("x", width / 2)
-        .attr("y", margin.bottom - 10) // Adjust this value to position the label correctly
+        .attr("y", margin.bottom + 8) // Adjust this value to position the label correctly
         .style("text-anchor", "middle")
         .style("fill", "white") // Adjust the color as needed
         .text("Genres"); // Replace with your actual label
@@ -195,14 +275,36 @@ const BarChart = () => {
         .attr("dy", "1em") // Adjust this value to position the label correctly
         .style("text-anchor", "middle")
         .style("fill", "white") // Adjust the color as needed
-        .style("font-size", "10px")
-        .text("Gobal Sales in Miliions"); // Replace with your actual label
+        .attr("font-size", 15)
+        .text("Sales in Miliions"); // Replace with your actual label
     }
-  }, [data]);
+  }, [data, maxSalesValue]);
+
+  useEffect(() => {
+    d3.csv("../data/vgsales.csv").then((loadedData) => {
+      const { sortedGenreSales, maxSales } = processData(loadedData, salesType);
+      setData(sortedGenreSales);
+      setMaxSalesValue(maxSales); // Update the max sales value
+    });
+  }, [salesType]);
 
   return (
     <>
-      <svg ref={svgRef} width={600} height={500}></svg>
+      <div style={{ marginLeft: "-10vw" }}>
+        <label htmlFor="sales-type-select">Select:</label>
+        <select
+          id="sales-type-select"
+          value={salesType}
+          onChange={handleSalesTypeChange}
+        >
+          <option value="Global_Sales">Global Sales</option>
+          <option value="NA_Sales">North America Sales</option>
+          <option value="EU_Sales">Europe Sales</option>
+          <option value="JP_Sales">Japan Sales</option>
+          <option value="Other_Sales">Other Sales</option>
+        </select>
+      </div>
+      <svg ref={svgRef} width={1200} height={620}></svg>
     </>
   );
 };

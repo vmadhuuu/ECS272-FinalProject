@@ -6,7 +6,7 @@ const TreeMap = () => {
   const [data, setData] = useState(null); // Change to null to signify no data initially
   const svgRef = useRef(null);
   const OFFSET = 3;
-    
+
   // to handle mouseover
   const handleMouseOver = (d, element) => {
     // The 'd' parameter is the bound data object for the element being hovered.
@@ -38,7 +38,7 @@ const TreeMap = () => {
 
   useEffect(() => {
     const width = 1200; // Declare width and height before use
-    const height = 500;
+    const height = 600;
 
     d3.csv("../data/vgsales.csv").then((loadedData) => {
       loadedData.forEach((d) => {
@@ -80,7 +80,7 @@ const TreeMap = () => {
         .size([width, height])
         .paddingInner(6)
         .paddingOuter(10);
-      treemap(hierarchyRoot); 
+      treemap(hierarchyRoot);
 
       setData(hierarchyRoot);
 
@@ -90,8 +90,7 @@ const TreeMap = () => {
 
   useEffect(() => {
     if (data) {
-      const svg = d3.select(svgRef.current)
-                    .attr('width', 2000)
+      const svg = d3.select(svgRef.current).attr("width", 2000);
       svg.selectAll("*").remove(); // Clear previous SVG elements
 
       //custom colors
@@ -133,7 +132,6 @@ const TreeMap = () => {
       const colorScale = d3.scaleOrdinal(customColorScale);
 
       const treemapGroup = svg.append("g"); //append to treemap group instead of directly to svg
-
 
       // Create groups for each node and append to treemapGroup
       const nodes = treemapGroup
@@ -182,7 +180,6 @@ const TreeMap = () => {
               true
             ); // Highlight all rects with the same ID
           }
-          
         })
         .on("mouseout", function (event, d) {
           d3.select(this).classed("highlighted", false); // Remove the class from the rect
@@ -206,7 +203,7 @@ const TreeMap = () => {
         .attr("height", (d) => d.y1 - d.y0)
         .attr("fill", (d) => colorScale(d.parent.data.name)) // Fill with color based on the parent node
         .on("mouseover", function (event, d) {
-           // Capture the fill color of the current rectangle
+          // Capture the fill color of the current rectangle
           const rectColor = d3.select(this).style("fill");
           d3.select(this).classed("highlighted", true); // Add a class to the hovered rect
           if (d.depth === 1) {
@@ -217,12 +214,11 @@ const TreeMap = () => {
             ); // Highlight all rects with the same ID
           }
           tooltip
-          .transition()
-          .duration(500) // Transition for smooth appearance
-          .style("opacity", 1); // Make tooltip visible
+            .transition()
+            .duration(500) // Transition for smooth appearance
+            .style("opacity", 1); // Make tooltip visible
 
-          tooltip
-          .style("background", rectColor);
+          tooltip.style("background", rectColor);
 
           let tooltipContent = `Genre: ${d.data.name}`;
           if (d.value) {
@@ -327,50 +323,54 @@ const TreeMap = () => {
         .transition() // apply transition
         .duration(2000) // duration of fade-in in milliseconds
         .style("opacity", 1); // end with opacity 1
-      
+
       //zoom in and out
-      const zoom = d3.zoom()
-      .scaleExtent([1, 5]) // Set the minimum and maximum scale
-      .on("zoom", (event) => {
-        treemapGroup.attr("transform", event.transform); // Apply the current zoom transform to the treemap group
-      });
+      const zoom = d3
+        .zoom()
+        .scaleExtent([1, 5]) // Set the minimum and maximum scale
+        .on("zoom", (event) => {
+          treemapGroup.attr("transform", event.transform); // Apply the current zoom transform to the treemap group
+        });
 
       svg.call(zoom);
-      
+
       // Define legend data based on colorScale domain
-    const legendData = colorScale.domain().map(platform => {
-      return { name: platform, color: colorScale(platform) };
-    });
+      const legendData = colorScale.domain().map((platform) => {
+        return { name: platform, color: colorScale(platform) };
+      });
 
-    // Create a legend group
-    const legend = svg.append("g")
-                      .attr("class", "legend")
-                      .attr("transform", "translate(1250, ${height + 50})"); // Replace x, y with desired position
-    
-    const legendSpacing = 100;
+      // Create a legend group
+      const legend = svg
+        .append("g")
+        .attr("class", "legend")
+        .attr("transform", "translate(1250, ${height + 50})"); // Replace x, y with desired position
 
-    // Draw legend items
-    const legendItem = legend.selectAll(".legend-item")
-                             .data(legendData)
-                             .enter()
-                             .append("g")
-                             .attr("class", "legend-item")
-                             .attr("transform", (d, i) => `translate(1250, ${i * 20})`); // Adjust spacing
+      const legendSpacing = 100;
 
-    // Draw rectangles for color
-    legendItem.append("rect")
-              .attr("width", 10)
-              .attr("height", 10)
-              .attr("fill", d => d.color);
+      // Draw legend items
+      const legendItem = legend
+        .selectAll(".legend-item")
+        .data(legendData)
+        .enter()
+        .append("g")
+        .attr("class", "legend-item")
+        .attr("transform", (d, i) => `translate(1250, ${i * 20})`); // Adjust spacing
 
-    // Add text labels
-    legendItem.append("text")
-              .attr("x", 15) // Adjust the position
-              .attr("y", 10)
-              .text(d => d.name)
-              .style("fill", "white")
-              .attr("font-size", "10px");
+      // Draw rectangles for color
+      legendItem
+        .append("rect")
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("fill", (d) => d.color);
 
+      // Add text labels
+      legendItem
+        .append("text")
+        .attr("x", 15) // Adjust the position
+        .attr("y", 10)
+        .text((d) => d.name)
+        .style("fill", "white")
+        .attr("font-size", "10px");
     }
   }, [data]);
 
@@ -385,8 +385,9 @@ const TreeMap = () => {
       >
         Platform Power
       </span>
-      <svg ref={svgRef} width={4200} height={1000}>
-      </svg>
+      <div style={{ marginLeft: "40vw", marginTop: "10vh" }}>
+        <svg ref={svgRef} width={4000} height={1000}></svg>
+      </div>
     </>
   );
 };

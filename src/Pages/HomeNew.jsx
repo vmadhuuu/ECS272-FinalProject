@@ -26,6 +26,8 @@ import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
+import { color } from "d3";
+// import gameconsole from "../Elements/gameconsole.png";
 
 const ScrollApp = () => {
   const { scroll } = useContext(LocomotiveScrollContext);
@@ -42,17 +44,24 @@ const ScrollApp = () => {
     "#000000", // black nightsky
     "#000000", // black
     "#2e0820", // dark purple pink
-    "#041B15", // grey
-    "#000000", // black
-    "#000000", // black
-    "#000000", // black
-    "#000000", // black
-    "#000000", // black
-    "#000000", // black
-    "#000000", // black
-    "#2e0820", // dark purple pink
+    "#041B15", // grey - home console revolution
+    "#000000", // black - globe
+    "#000000", // black - shooting
+    "#000000", // black - fire
+    "#002642", // prussian blue - genre dominance
+    "#002642", //prussian blue - 1
+    "#002642", //prussian blue 2
+    "#002642", //picton blue
+    "#002642", //prussian blue 4
+    "#002642", //prussian blue 5
+    "#002642", //prussian blue - barchart
+    "#002642", //prussian blue - sticky hi hi
     "#360a26", // dark red pink
-    "#b5919c", //babypink
+    "#360a26", // dark red pink
+
+    // // "#2e0820", // dark purple pink
+    // "#360a26", // dark red pink
+    // "#b5919c", //babypink
   ];
 
   const audioRef = useRef(null);
@@ -845,7 +854,7 @@ const ScrollApp = () => {
             style={{
               fontSize: 70,
               fontFamily: "M04_FATAL FURY BLACK",
-              color: "#111B5D",
+              color: "#F72585",
               maxWidth: "90vw",
             }}
             data-scroll-class="fadeIn"
@@ -862,7 +871,7 @@ const ScrollApp = () => {
             }}
           >
             <br />
-            Scroll down to travel through the decades of gaming history
+            Put some text here
           </h3>
         </section>
 
@@ -885,10 +894,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Action
+            Action 🥊
           </h1>
           <h1
             className="op-class"
@@ -901,10 +911,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Sports
+            Sports ⚽️
           </h1>
         </section>
         <section
@@ -925,10 +936,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Shooter
+            Shooter 🔫
           </h1>
           <h1
             className="op-class"
@@ -941,10 +953,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Role-Playing
+            Role-Playing 👩🏼‍🎤
           </h1>
         </section>
 
@@ -966,10 +979,20 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Racing
+            Racing 🏎️
+          </h1>
+          <h1
+            style={{
+              maxWidth: "40vw",
+              fontFamily: "superhelio _regular, sans-serif",
+            }}
+          >
+            There are numerous popular game genres but how did they all perform
+            in sales?{" "}
           </h1>
           <h1
             className="op-class"
@@ -982,10 +1005,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Fighting
+            Fighting 👊🏼
           </h1>
         </section>
 
@@ -1007,10 +1031,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Simulation
+            Simulation 🌎
           </h1>
           <h1
             className="op-class"
@@ -1023,10 +1048,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Puzzle
+            Puzzle 🧩
           </h1>
         </section>
 
@@ -1048,10 +1074,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Adventure
+            Adventure 🪂
           </h1>
           <h1
             className="op-class"
@@ -1064,10 +1091,11 @@ const ScrollApp = () => {
               maxWidth: "80vw",
               marginBottom: "0px",
               marginTop: "30vh",
-              fontFamily: "superhelio _regular, sans-serif", // Reduce the bottom margin to bring text closer to the image
+              fontFamily: "superhelio _regular, sans-serif",
+              color: "#F72585",
             }}
           >
-            Strategy
+            Strategy 🔎
           </h1>
         </section>
 
@@ -1094,15 +1122,322 @@ const ScrollApp = () => {
           ></div>
 
           <h3
+            className="op-class"
+            data-scroll
             style={{
-              fontFamily: "superhelio _regular, sans-serif",
               fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#FFFFFF",
+              maxWidth: "90vw",
+              marginRight: "12vw",
+              marginTop: "-5vh",
             }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
           >
             <br />
-            Scroll down to travel through the decades of gaming history
+            Bestselling Genres
           </h3>
           <BarChart />
+          {/* Textbox under the chart */}
+          <div
+            className="chart-description"
+            data-scroll
+            style={{
+              color: "#FFFFFF",
+              margin: "0",
+              maxWidth: "30vw",
+              marginBottom: "0vh",
+              marginLeft: "0vw",
+              marginRight: "10vw",
+              fontSize: "18px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-speed="1"
+          >
+            <p
+              style={{
+                fontFamily: "superhelio _regular, sans-serif",
+                width: "30vw",
+                marginRight: "75vw",
+                fontStyle: "italic",
+                color: "#9cf6f6",
+              }}
+            >
+              This chart represents the distribution of all-time sales of video
+              game genres of each region. The data is compiled from years
+              1960-2015, highlighting the popularity and market trends in the
+              video game industry across various countries. Select the region
+              you want, and watch for the X axis!
+            </p>
+          </div>
+          <div
+            data-scroll
+            data-scroll-speed="5"
+            data-scroll-sticky // Attribute that enables the sticky scroll
+            data-scroll-target="#stick"
+          >
+            <img src="src/Elements/marioflip.png" alt="Mario" />
+          </div>
+
+          <p
+            className="small-bubbletext"
+            style={{ marginLeft: "65vw", marginTop: "0vh" }}
+          >
+            Hi there! hwyyyyyyyyyyyyyy
+          </p>
+
+          <img
+            src="src/Elements/speechbubble2.png"
+            alt="speechbubble"
+            className="speechbubble2"
+          />
+        </section>
+
+        {/* HEATMAP */}
+        <section
+          ref={addSectionRef}
+          // style={{ height: "100vh" }}
+          className="contents"
+          data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#FFFFFF",
+              maxWidth: "90vw",
+              marginRight: "12vw",
+              marginTop: "-5vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Bestselling Genres
+          </h3>
+          <HeatMap />
+          {/* Textbox under the chart */}
+          <div
+            className="chart-description"
+            data-scroll
+            style={{
+              color: "#FFFFFF",
+              margin: "0",
+              maxWidth: "30vw",
+              marginBottom: "0vh",
+              marginLeft: "0vw",
+              marginRight: "10vw",
+              fontSize: "18px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-speed="1"
+          >
+            <p
+              style={{
+                fontFamily: "superhelio _regular, sans-serif",
+                width: "30vw",
+                marginRight: "75vw",
+                fontStyle: "italic",
+                color: "#9cf6f6",
+              }}
+            >
+              This chart represents the distribution of all-time sales of video
+              game genres of each region. The data is compiled from years video
+              game industry across various countries. Select the region you
+              want, and watch for the X axis!
+            </p>
+          </div>
+          <div
+            data-scroll
+            data-scroll-speed="5"
+            data-scroll-sticky // Attribute that enables the sticky scroll
+            data-scroll-target="#stick"
+          >
+            {/* <img src="src/Elements/marioflip.png" alt="Mario" /> */}
+          </div>
+
+          <img
+            src="src/Elements/speechbubble2.png"
+            alt="speechbubble"
+            className="speechbubble2"
+          />
+          <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
+            Hi there! hwyyyyyyyyyyyyyy
+          </h3>
+        </section>
+
+        {/* TREEMAP */}
+        <section
+          ref={addSectionRef}
+          // style={{ height: "100vh" }}
+          className="contents"
+          data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#FFFFFF",
+              maxWidth: "90vw",
+              marginRight: "12vw",
+              marginTop: "-5vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Bestselling Genres
+          </h3>
+          <TreeMap />
+          {/* Textbox under the chart */}
+          <div
+            className="chart-description"
+            data-scroll
+            style={{
+              color: "#FFFFFF",
+              margin: "0",
+              maxWidth: "30vw",
+              marginBottom: "0vh",
+              marginLeft: "0vw",
+              marginRight: "10vw",
+              fontSize: "18px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-speed="1"
+          >
+            <p
+              style={{
+                fontFamily: "superhelio _regular, sans-serif",
+                width: "30vw",
+                marginRight: "75vw",
+                fontStyle: "italic",
+                color: "#9cf6f6",
+              }}
+            >
+              This chart represents the distribution of all-time sales of video
+              game genres of each region. The data is compiled from years
+              1960-2015, highlighting the popularity and market trends in the
+              video game industry across various countries. Select the region
+              you want, and watch for the X axis!
+            </p>
+          </div>
+        </section>
+
+        {/* SANKEY */}
+        <section
+          ref={addSectionRef}
+          // style={{ height: "100vh" }}
+          className="contents"
+          data-scroll-section
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#FFFFFF",
+              maxWidth: "90vw",
+              marginRight: "12vw",
+              marginTop: "-5vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Bestselling Genres
+          </h3>
+          {/* <Sankey /> */}
+          {/* Textbox under the chart */}
+          <div
+            className="chart-description"
+            data-scroll
+            style={{
+              color: "#FFFFFF",
+              margin: "0",
+              maxWidth: "30vw",
+              marginBottom: "0vh",
+              marginLeft: "0vw",
+              marginRight: "10vw",
+              fontSize: "18px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-speed="1"
+          >
+            <p
+              style={{
+                fontFamily: "superhelio _regular, sans-serif",
+                width: "30vw",
+                marginRight: "75vw",
+                fontStyle: "italic",
+                color: "#9cf6f6",
+              }}
+            >
+              This chart represents the distribution of all-time sales of video
+              game genres of each region. The data is compiled from years
+              1960-2015, highlighting the popularity and market trends in the
+              video game industry across various countries. Select the region
+              you want, and watch for the X axis!
+            </p>
+          </div>
         </section>
 
         <section
