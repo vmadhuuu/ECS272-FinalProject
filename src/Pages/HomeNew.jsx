@@ -1103,6 +1103,7 @@ const ScrollApp = () => {
         <section
           ref={addSectionRef}
           // style={{ height: "100vh" }}
+          id="stick"
           className="contents"
           data-scroll-section
           style={{ display: "flex", flexDirection: "column" }}
@@ -1141,7 +1142,7 @@ const ScrollApp = () => {
           </h3>
           <BarChart />
           {/* Textbox under the chart */}
-          <div
+          {/* <div
             className="chart-description"
             data-scroll
             style={{
@@ -1172,14 +1173,18 @@ const ScrollApp = () => {
               video game industry across various countries. Select the region
               you want, and watch for the X axis!
             </p>
-          </div>
+          </div> */}
           <div
             data-scroll
             data-scroll-speed="5"
             data-scroll-sticky // Attribute that enables the sticky scroll
             data-scroll-target="#stick"
           >
-            <img src="src/Elements/marioflip.png" alt="Mario" />
+            <img
+              src="src/Elements/marioflip.png"
+              className="genremario"
+              alt="Mario"
+            />
           </div>
 
           <p
@@ -1189,20 +1194,19 @@ const ScrollApp = () => {
             Hi there! hwyyyyyyyyyyyyyy
           </p>
 
-          <img
+          {/* <img
             src="src/Elements/speechbubble2.png"
             alt="speechbubble"
             className="speechbubble2"
-          />
+          /> */}
         </section>
 
         {/* HEATMAP */}
         <section
           ref={addSectionRef}
-          // style={{ height: "100vh" }}
+          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
           className="contents"
           data-scroll-section
-          style={{ display: "flex", flexDirection: "column" }}
         >
           <div
             className="background-image-container"
@@ -1291,10 +1295,9 @@ const ScrollApp = () => {
         {/* TREEMAP */}
         <section
           ref={addSectionRef}
-          // style={{ height: "100vh" }}
+          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
           className="contents"
           data-scroll-section
-          style={{ display: "flex", flexDirection: "column" }}
         >
           <div
             className="background-image-container"

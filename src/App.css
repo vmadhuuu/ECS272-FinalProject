@@ -51,7 +51,7 @@
 }
 
 .container {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
   max-width: 100%;
   margin: 0 auto;
@@ -232,8 +232,6 @@ header {
   }
 }
 
-
-
 .title-textbox {
   width: 70vw; /* Adjust width as needed */
   height: 40vh; /* Adjust height as needed */
@@ -400,10 +398,8 @@ header {
 .mario1 {
   animation: mariofunfact 8s ease-in-out forwards;
   height: 30vh;
-  width: auto; 
-  
+  width: auto;
 }
-
 
 /* background transition */
 section {
@@ -413,8 +409,6 @@ section {
   align-items: center;
   justify-content: center;
 }
-
-
 
 .intro {
   background-color: black;
@@ -432,7 +426,7 @@ section {
   background-color: goldenrod;
 }
 
-#character{
+#character {
   background-color: rgb(71, 14, 64);
   display: flex;
   height: 100vh;
@@ -440,7 +434,7 @@ section {
   white-space: nowrap;
 }
 
-.sankey-chart{
+.sankey-chart {
   position: relative; /* or static, depending on your layout needs */
   overflow: hidden; /* Prevents any internal content from spilling out */
   z-index: 1;
@@ -450,7 +444,7 @@ section {
   position: absolute;
   width: auto;
   height: 30vh;
-  bottom: 16vh;
+  bottom: -20vh;
   animation: mariogenre 10s ease-in-out forwards;
   transform: scaleX(-1);
 }
@@ -460,48 +454,38 @@ section {
     transform: translateX(60vw) translateY(-20vh);
   }
   100% {
-      transform: translateX(40vw) translateY(-20vh); /* exit screen */
-     
-    }
-    
+    transform: translateX(40vw) translateY(-20vh); /* exit screen */
+  }
+}
+
+.speechbubble2 {
+  position: absolute;
+  width: auto;
+  height: 60vh;
+  left: 65vw;
+  top: 10vw;
+  animation: speechbubble2 30s forwards;
+}
+
+@keyframes speechbubble2 {
+  0% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
   }
 
-
-
-  .speechbubble2 {
-    position: absolute;
-    width: auto;
-    height: 60vh;
-    left: 65vw;
-    top: 10vw;
-    animation: speechbubble2 30s forwards;
+  90% {
+    opacity: 1;
   }
-
-  @keyframes speechbubble2 {
-    0% {
-      opacity: 0;
-    }
-    5% {
-      opacity: 0;
-    }
-  
-    90% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
+}
 
-  .small-bubbletext {
-    bottom: 520vh;
-
-
-
-  }
-
-
-
+.small-bubbletext {
+  bottom: 520vh;
+}
 
 /* SCROLLING DO NOT EDIT */
 [data-scroll-direction="horizontal"] [data-scroll-section] {
