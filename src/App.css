@@ -444,7 +444,7 @@ section {
   position: absolute;
   width: auto;
   height: 30vh;
-  bottom: -20vh;
+  bottom: -10vh;
   animation: mariogenre 10s ease-in-out forwards;
   transform: scaleX(-1);
 }
@@ -454,7 +454,7 @@ section {
     transform: translateX(60vw) translateY(-20vh);
   }
   100% {
-    transform: translateX(40vw) translateY(-20vh); /* exit screen */
+    transform: translateX(35vw) translateY(-20vh); /* exit screen */
   }
 }
 

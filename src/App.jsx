@@ -7,8 +7,9 @@ import BarChart from "./Components/Barchart";
 import Home from "./Pages/Home";
 import HeatMap from "./Components/heatmap";
 import TreeMap from "./Components/Treemap";
-import HomeNew from "./Pages/HomeNew";
+import Sankey from "./Components/Sankey";
 import SecondPage from "./Components/SecondPage";
+import HomeNew from "./Pages/HomeNew";
 
 function App() {
   return (
