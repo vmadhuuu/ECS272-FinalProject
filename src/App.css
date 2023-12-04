@@ -249,6 +249,29 @@ header {
   font-family: "DotGothic16", sans-serif;
 }
 
+.title-subtitle {
+  overflow: hidden;
+  animation: typing 4s steps(300) forwards, blinkCursor 0.75s step-end infinite,
+    fadeOutText 30s ease forwards;
+}
+
+.titlebox {
+  width: 70vw; /* Adjust width as needed */
+  height: 40vh; /* Adjust height as needed */
+  position: absolute; /* Use 'absolute' or 'fixed' positioning */
+  top: 5vh; /* Adjust to position vertically */
+
+  background-color: transparent;
+  text-align: center; /* Optional: Align text */
+  /* Add more styling as needed */
+}
+
+.title-text {
+  font-size: 61px;
+  margin-top: 60vh;
+  height: 90%;
+}
+
 /* Animation for title slide text to fade in and out */
 
 @keyframes fadeOutText {
@@ -277,12 +300,6 @@ header {
   }
 }
 
-.title-subtitle {
-  overflow: hidden;
-  animation: typing 4s steps(300) forwards, blinkCursor 0.75s step-end infinite,
-    fadeOutText 30s ease forwards;
-}
-
 @keyframes typing {
   from {
     width: 0;
@@ -301,18 +318,6 @@ header {
     border-color: black;
   }
 }
-
-.title-text {
-  font-size: 61px;
-  margin-top: 50;
-  font-family: "DotGothic16", sans-serif;
-  animation: typing 5s steps(10) forwards;
-}
-/* .title-text {
-  font-size: 61px;
-  font-family: "DotGothic16", sans-serif;
-  /* 
-} */
 
 /* Moving cloud animation */
 @keyframes moveCloud {

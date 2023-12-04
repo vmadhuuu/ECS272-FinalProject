@@ -26,7 +26,7 @@ import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
-import { color } from "d3";
+
 // import gameconsole from "../Elements/gameconsole.png";
 
 const ScrollApp = () => {
@@ -58,10 +58,6 @@ const ScrollApp = () => {
     "#002642", //prussian blue - sticky hi hi
     "#360a26", // dark red pink
     "#360a26", // dark red pink
-
-    // // "#2e0820", // dark purple pink
-    // "#360a26", // dark red pink
-    // "#b5919c", //babypink
   ];
 
   const audioRef = useRef(null);
@@ -203,9 +199,16 @@ const ScrollApp = () => {
               engaging analytics and fun facts! Embark on this adventure with
               us, and discover the hidden gems in the gaming galaxy! 👾
             </p>
-
-            <div className="title-text">Let's Play Pixel Pulse!</div>
           </div>
+          <div className="titlebox">
+            <img
+              src="src/Elements/button.png"
+              alt="button"
+              className="title-text"
+            />
+            {/* <p className="title-text">Let's Play Pixel Pulse!</p> */}
+          </div>
+
           <img
             src="src/Elements/cloud.png"
             alt="Cloud"
@@ -1187,18 +1190,17 @@ const ScrollApp = () => {
             />
           </div>
 
-          <p
-            className="small-bubbletext"
-            style={{ marginLeft: "65vw", marginTop: "0vh" }}
-          >
-            Hi there! hwyyyyyyyyyyyyyy
-          </p>
-
-          {/* <img
+          <img
             src="src/Elements/speechbubble2.png"
             alt="speechbubble"
             className="speechbubble2"
-          /> */}
+          />
+
+          <img
+            src="src/Elements/speechbubble2.png"
+            alt="speechbubble"
+            className="speechbubble2"
+          />
         </section>
 
         {/* HEATMAP */}
@@ -1242,7 +1244,7 @@ const ScrollApp = () => {
           </h3>
           <HeatMap />
           {/* Textbox under the chart */}
-          <div
+          {/* <div
             className="chart-description"
             data-scroll
             style={{
@@ -1272,7 +1274,7 @@ const ScrollApp = () => {
               game industry across various countries. Select the region you
               want, and watch for the X axis!
             </p>
-          </div>
+          </div> */}
           <div
             data-scroll
             data-scroll-speed="5"
@@ -1287,9 +1289,9 @@ const ScrollApp = () => {
             alt="speechbubble"
             className="speechbubble2"
           />
-          <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
+          {/* <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
             Hi there! hwyyyyyyyyyyyyyy
-          </h3>
+          </h3> */}
         </section>
 
         {/* TREEMAP */}
