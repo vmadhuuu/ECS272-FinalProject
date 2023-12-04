@@ -26,7 +26,8 @@ import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
-
+import heatmapbg from "../Elements/heatmapbg.png";
+import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
 
 const ScrollApp = () => {
@@ -48,14 +49,14 @@ const ScrollApp = () => {
     "#000000", // black - globe
     "#000000", // black - shooting
     "#000000", // black - fire
-    "#002642", // prussian blue - genre dominance
+    "#000000", // black - genre dominance
     "#002642", //prussian blue - 1
     "#002642", //prussian blue 2
     "#002642", //picton blue
     "#002642", //prussian blue 4
     "#002642", //prussian blue 5
     "#002642", //prussian blue - barchart
-    "#002642", //prussian blue - sticky hi hi
+    "#000000", // black - heatmap
     "#360a26", // dark red pink
     "#360a26", // dark red pink
   ];
@@ -886,6 +887,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ height: "30vh" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h1
             className="op-class"
             data-scroll
@@ -928,6 +942,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ height: "40vh" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h1
             className="op-class"
             data-scroll
@@ -971,6 +998,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ height: "40vh" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h1
             className="op-class"
             data-scroll
@@ -1023,6 +1063,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ height: "40vh" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h1
             className="op-class"
             data-scroll
@@ -1066,6 +1119,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ height: "40vh" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h1
             className="op-class"
             data-scroll
@@ -1109,7 +1175,7 @@ const ScrollApp = () => {
           id="stick"
           className="contents"
           data-scroll-section
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{ display: "flex", flexDirection: "column", height: "110vh" }}
         >
           <div
             className="background-image-container"
@@ -1145,7 +1211,7 @@ const ScrollApp = () => {
           </h3>
           <BarChart />
           {/* Textbox under the chart */}
-          {/* <div
+          <div
             className="chart-description"
             data-scroll
             style={{
@@ -1164,19 +1230,19 @@ const ScrollApp = () => {
             <p
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
-                width: "30vw",
+                width: "35vw",
                 marginRight: "75vw",
                 fontStyle: "italic",
                 color: "#9cf6f6",
               }}
             >
-              This chart represents the distribution of all-time sales of video
-              game genres of each region. The data is compiled from years
-              1960-2015, highlighting the popularity and market trends in the
-              video game industry across various countries. Select the region
-              you want, and watch for the X axis!
+              This bar chart displays the all-time sales of video game genres,
+              with data spanning from 1960 to 2015. Each bar is color-coded to
+              represent a different genre and the height of the bar indicates
+              the volume of global sales in millions. Use the dropdown menu to
+              choose a specific region which will reflect the sales data!
             </p>
-          </div> */}
+          </div>
           <div
             data-scroll
             data-scroll-speed="5"
@@ -1206,10 +1272,23 @@ const ScrollApp = () => {
         {/* HEATMAP */}
         <section
           ref={addSectionRef}
-          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
           className="contents"
           data-scroll-section
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${heatmapbg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "20%",
+              zIndex: -1,
+            }}
+          ></div>
           <div
             className="background-image-container"
             style={{
@@ -1223,7 +1302,6 @@ const ScrollApp = () => {
               zIndex: -1,
             }}
           ></div>
-
           <h3
             className="op-class"
             data-scroll
@@ -1232,7 +1310,7 @@ const ScrollApp = () => {
               fontFamily: "M04_FATAL FURY BLACK",
               color: "#FFFFFF",
               maxWidth: "90vw",
-              marginRight: "12vw",
+              marginRight: "20vw",
               marginTop: "-5vh",
             }}
             data-scroll-class="fadeIn"
@@ -1264,7 +1342,7 @@ const ScrollApp = () => {
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
                 width: "30vw",
-                marginRight: "75vw",
+                marginRight: "100vw",
                 fontStyle: "italic",
                 color: "#9cf6f6",
               }}
@@ -1297,7 +1375,7 @@ const ScrollApp = () => {
         {/* TREEMAP */}
         <section
           ref={addSectionRef}
-          style={{ height: "100vh", display: "flex", flexDirection: "column" }}
+          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
           className="contents"
           data-scroll-section
         >
@@ -1377,20 +1455,6 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <div
-            className="background-image-container"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(${pixel2})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: "30%",
-              zIndex: -1,
-            }}
-          ></div>
-
           <h3
             className="op-class"
             data-scroll

@@ -108,8 +108,8 @@ const HeatMap = () => {
       //const svg = d3.select(svgRef.current);
       //svg.selectAll("*").remove(); // Clear the SVG
 
-      const margin = { top: 30, right: 30, bottom: 70, left: 130 };
-      const svgWidth = 800;
+      const margin = { top: 30, right: 130, bottom: 70, left: 150 };
+      const svgWidth = 1000;
       const svgHeight = 600;
       const width = svgWidth - margin.left - margin.right;
       const height = svgHeight - margin.top - margin.bottom;
@@ -381,7 +381,7 @@ const HeatMap = () => {
   return (
     <>
       <div className="heatmap-container" style={{ marginLeft: "-30vw" }}>
-        <svg ref={svgRef} width={600} height={500}></svg>
+        <svg ref={svgRef} width={700} height={500}></svg>
       </div>
     </>
   );
