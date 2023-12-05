@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 
-import pixel2 from "../Elements/pixelbg2.jpeg";
+import coin from "../Elements/coin.png";
 import sky from "../Elements/darksky.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 
-const imageArray = [pixel2, sky, dawn]; // Replace with your images
+const imageArray = [coin, sky, dawn]; // Replace with your images
 
 const Slideshow = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -25,10 +25,9 @@ const Slideshow = () => {
       <img
         src={imageArray[currentImageIndex]}
         alt="Slideshow"
-        className="slide-image"
+        className="slides-show"
       />
     </div>
   );
 };
-
 export default Slideshow;

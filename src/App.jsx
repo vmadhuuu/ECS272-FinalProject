@@ -11,6 +11,7 @@ import Sankey from "./Components/Sankey";
 import SecondPage from "./Components/SecondPage";
 import HomeNew from "./Pages/HomeNew";
 import Barchart2 from "./Components/Barchart2";
+import Slideshow from "./Components/Slideshow";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       {/* <HeatMap /> */}
       {/* <SecondPage /> */}
       {/* <Barchart2 /> */}
+
       <HomeNew />
     </>
   );

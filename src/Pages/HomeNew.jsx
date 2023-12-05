@@ -100,7 +100,7 @@ const ScrollApp = () => {
           if (instance.scroll.y >= currentTop && instance.scroll.y < nextTop) {
             progress =
               (instance.scroll.y - currentTop) / (nextTop - currentTop);
-            console.log(progress);
+
             setBackgroundColor(
               interpolateColors(
                 sectionColors[i],
@@ -1491,8 +1491,6 @@ const ScrollApp = () => {
             Hi there! hwyyyyyyyyyyyyyy
           </h3> */}
         </section>
-
-        <Slideshow />
 
         {/* SANKEY */}
         <section

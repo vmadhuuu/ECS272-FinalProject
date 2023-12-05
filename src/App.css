@@ -265,19 +265,12 @@ header {
   text-align: center;
 }
 
-.button-text{
+.button-text {
   font-size: 59px;
   font-family: "M04_FATAL FURY BLACK";
   color: #000000;
-  text-shadow:
-    0 0 7px #000000,
-    0 0 10px #000000,
-    0 0 21px #000000,
-    0 0 42px #0fa,
-    0 0 82px #0fa,
-    0 0 92px #0fa,
-    0 0 102px #0fa,
-   
+  text-shadow: 0 0 7px #000000, 0 0 10px #000000, 0 0 21px #000000,
+    0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa;
 }
 
 .titlebox {
@@ -518,19 +511,14 @@ section {
 }
 
 .slideshow-container {
-  width: 100%;
+  width: 50%;
+  height: 50%;
   position: relative;
 }
 
-.slide-image {
-  width: 100%;
-  height: auto;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.slide-image:enter {
-  opacity: 1;
+.slides-show {
+  width: auto;
+  height: 40%;
 }
 
 /* SCROLLING DO NOT EDIT */
