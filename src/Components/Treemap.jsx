@@ -95,37 +95,37 @@ const TreeMap = () => {
 
       //custom colors
       const customColorScale = [
-        "#66c2a5",
-        "#fc8d62",
-        "#8da0cb",
-        "#e78ac3",
-        "#a6d854",
-        "#ffd92f",
-        "#e5c494",
-        "#b3b3b3",
-        "#1f78b4",
-        "#33a02c",
-        "#e31a1c",
-        "#ff7f00",
-        "#6a3d9a",
-        "#b15928",
-        "#ffff99",
-        "#b2df8a",
-        "#fb9a99",
-        "#fdbf6f",
-        "#cab2d6",
-        "#ffffb3",
-        "#8dd3c7",
-        "#bebada",
-        "#fb8072",
-        "#80b1d3",
-        "#fdb462",
-        "#b3de69",
-        "#fccde5",
-        "#d9d9d9",
-        "#bc80bd",
-        "#ccebc5",
-        "#ffed6f",
+        "#63768D", // slate grey
+        "#8AC6D0", // nonphoto blue
+        "#8da0cb", // vista blue
+        "#C5D86D", // non photo blue
+        "#E2A3C7", // light pink
+        "#828489", // dark green
+        "#e5c494", // sunset yellow
+        "#F7A9A8", // silver
+        "#9FB1BC", //cadet grey
+        "#73AB84", // moss green
+        "#C97D60", // bright red
+        "#F2A541", // gamboge orange yellow
+        "#B9C6AE", // purple
+        "#CECECE", // silver
+        "#ffff99", // mindaro yellow
+        "#b2df8a", //pistachio green
+        "#FF9B71", //salmon pink
+        "#fdbf6f", // earth yellow
+        "#cab2d6", //thistle
+        "#ffffb3", // cream yellow
+        "#8dd3c7", // tiffany blue
+        "#bebada", // periwinkle purple
+        "#2EC4B6", // light seagreen
+        "#80b1d3", //carolina blue
+        "#fdb462", //earth yellow
+        "#b3de69", //yellow green
+        "#fccde5", // fairytale
+        "#d9d9d9", // platinum
+        "#bc80bd", //african violet
+        "#ccebc5", //tea green
+        "#ffed6f", //maize
       ];
 
       // Create a color scale for platforms
@@ -376,8 +376,8 @@ const TreeMap = () => {
 
   return (
     <>
-      <div style={{ marginLeft: "40vw", marginTop: "5vh" }}>
-        <svg ref={svgRef} width={4000} height={1000}></svg>
+      <div style={{ marginLeft: "38vw", marginTop: "0vh" }}>
+        <svg ref={svgRef} width={4000} height={700}></svg>
       </div>
     </>
   );

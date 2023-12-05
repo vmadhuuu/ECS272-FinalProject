@@ -17,6 +17,8 @@ import Sankey from "../Components/Sankey.jsx"; // Update the path to the actual 
 import BarChart from "../Components/Barchart";
 import HeatMap from "../Components/heatmap";
 import TreeMap from "../Components/Treemap";
+import Barchart2 from "../Components/Barchart2";
+import Slideshow from "../Components/Slideshow";
 
 import firstslideimg from "../Elements/firstslideimg.jpg";
 import pixelimg from "../Elements/pixelbg.jpeg";
@@ -26,8 +28,12 @@ import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
+import barchartspeech from "../Elements/barchartspeech.png";
 import heatmapbg from "../Elements/heatmapbg.jpeg";
 import movingclouds from "../Elements/movingclouds.gif";
+import treemapbg from "../Elements/treemapbg.jpeg";
+import thunder from "../Elements/thunder.gif";
+import moon2 from "../Elements/moon2.gif";
 
 import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
@@ -42,25 +48,25 @@ const ScrollApp = () => {
   // light blue, purple, black, dark purple, orange, red, green, gold, dark blue, turqoise, dark green, babypink
   const sectionColors = [
     "#0ba1f4", // lightblue
-    "#00c0ff", // dark purple
+    "#00c0ff", // dark purple - dawn
     "#360a26", // dark red pink
     "#000000", // black nightsky
     "#000000", // black
-    "#2e0820", // dark purple pink
+    "#2e0820", // dark purple pink - arcade explosion
     "#041B15", // grey - home console revolution
     "#000000", // black - globe
     "#000000", // black - shooting
     "#000000", // black - fire
     "#000000", // black - genre dominance
-    "#002642", //prussian blue - 1
-    "#002642", //prussian blue 2
-    "#002642", //picton blue
+    "#002642", //prussian blue - genre dominance
+    "#002642", //prussian blue 1
+    "#002642", //prussian blue- 2
+    "#002642", //prussian blue 3 - text
     "#002642", //prussian blue 4
-    "#002642", //prussian blue 5
     "#002642", //prussian blue - barchart
-    "#002642", // black - heatmap
-    "#360a26", // dark red pink
-    "#360a26", // dark red pink
+    "#002642", //prussian blue - heatmap
+    "#360a26", // dark red pink - treemap
+    "#000000", // black
   ];
 
   const audioRef = useRef(null);
@@ -1261,13 +1267,7 @@ const ScrollApp = () => {
           </div>
 
           <img
-            src="src/Elements/speechbubble2.png"
-            alt="speechbubble"
-            className="speechbubble2"
-          />
-
-          <img
-            src="src/Elements/speechbubble2.png"
+            src="src/Elements/barchartspeech.png"
             alt="speechbubble"
             className="speechbubble2"
           />
@@ -1369,7 +1369,7 @@ const ScrollApp = () => {
         {/* TREEMAP */}
         <section
           ref={addSectionRef}
-          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
+          style={{ height: "120vh", display: "flex", flexDirection: "column" }}
           className="contents"
           data-scroll-section
         >
@@ -1379,7 +1379,7 @@ const ScrollApp = () => {
               position: "absolute",
               width: "100%",
               height: "100%",
-              backgroundImage: `url(${map})`,
+              backgroundImage: `url(${treemapbg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: "30%",
@@ -1393,10 +1393,10 @@ const ScrollApp = () => {
             style={{
               fontSize: 30,
               fontFamily: "M04_FATAL FURY BLACK",
-              color: "#FFFFFF",
+              color: "#F7B538",
               maxWidth: "90vw",
               marginRight: "0vw",
-              marginTop: "15vh",
+              marginTop: "-10vh",
             }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
@@ -1416,7 +1416,7 @@ const ScrollApp = () => {
               maxWidth: "30vw",
               marginBottom: "0vh",
               marginLeft: "0vw",
-              marginRight: "10vw",
+              marginRight: "18vw",
               fontSize: "18px",
               fontFamily: "Arial, sans-serif",
             }}
@@ -1426,20 +1426,73 @@ const ScrollApp = () => {
             <p
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
-                width: "30vw",
-                marginRight: "75vw",
+                width: "50vw",
+                marginRight: "5vw",
+                marginTop: "-5vh",
                 fontStyle: "italic",
-                color: "#9cf6f6",
+                color: "#EFD9CE",
               }}
             >
-              This chart represents the distribution of all-time sales of video
-              game genres of each region. The data is compiled from years
-              1960-2015, highlighting the popularity and market trends in the
-              video game industry across various countries. Select the region
-              you want, and watch for the X axis!
+              This heatmap provides a visual comparison of video game sales
+              across various gaming platforms and genres. Move your cursor over
+              any segment to see a pop-up with detailed sales information for
+              that genre on the specified platform. Use the zoom function to
+              focus on a particular section for a closer look, or zoom out to
+              get an overview of all platforms and genres.
             </p>
           </div>
         </section>
+
+        <section
+          ref={addSectionRef}
+          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
+          className="contents"
+          data-scroll-section
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#fdcfbb",
+              maxWidth: "90vw",
+              marginRight: "27vw",
+              marginTop: "-5vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Genre Popularity
+          </h3>
+          <Slideshow />
+
+          <img
+            src="src/Elements/speechbubble2.png"
+            alt="speechbubble"
+            className="speechbubble2"
+          />
+          {/* <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
+            Hi there! hwyyyyyyyyyyyyyy
+          </h3> */}
+        </section>
+
+        <Slideshow />
 
         {/* SANKEY */}
         <section
@@ -1449,6 +1502,19 @@ const ScrollApp = () => {
           data-scroll-section
           style={{ display: "flex", flexDirection: "column" }}
         >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${pixel2})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
           <h3
             className="op-class"
             data-scroll
@@ -1467,7 +1533,7 @@ const ScrollApp = () => {
             <br />
             Bestselling Genres
           </h3>
-          <Sankey />
+          {/* <Sankey /> */}
           {/* Textbox under the chart */}
           <div
             className="chart-description"

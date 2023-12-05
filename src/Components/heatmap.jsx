@@ -162,11 +162,12 @@ const HeatMap = () => {
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(xScale))
         .selectAll("text")
+        .style("font-size", "13px")
         .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
 
       // Add the Y-axis
-      svg.append("g").call(d3.axisLeft(yScale));
+      svg.append("g").call(d3.axisLeft(yScale)).style("font-size", "13px");
 
       // Draw the rectangles
       const rect = svg

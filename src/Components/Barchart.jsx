@@ -101,11 +101,11 @@ const BarChart = () => {
         "#F4E285", // flax yellow
         "#F4A259", // sandy brown
         "#5B8E7D", // viridian
-        "#BC4B51", //bittersweet shimmer red
+        "#875C74", //bittersweet shimmer red
         "#E3D0D8", // pale purple
         "#BCAC9B", // khakhi
-        "#D4EAC8", // light green
-        "#C94277", //pink
+        "#816E94", // light green
+        "#E06C9F", //pink
         "#9CF6F6", // ice blue
         "#09BC8A", //mint green
         "#A599B5", //rose quartz

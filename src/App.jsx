@@ -20,7 +20,7 @@ function App() {
       {/* <BarChart /> */}
       {/* <HeatMap /> */}
       {/* <SecondPage /> */}
-      <Barchart2 />
+      {/* <Barchart2 /> */}
       <HomeNew />
     </>
   );
