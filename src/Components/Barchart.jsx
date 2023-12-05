@@ -260,7 +260,7 @@ const BarChart = () => {
         .attr("class", "axis-label")
         .attr("font-size", 15)
         .attr("x", width / 2)
-        .attr("y", margin.bottom + 8) // Adjust this value to position the label correctly
+        .attr("y", margin.bottom + 25) // Adjust this value to position the label correctly
         .style("text-anchor", "middle")
         .style("fill", "white") // Adjust the color as needed
         .text("Genres"); // Replace with your actual label
@@ -304,7 +304,7 @@ const BarChart = () => {
           <option value="Other_Sales">Other Sales</option>
         </select>
       </div>
-      <svg ref={svgRef} width={1200} height={620}></svg>
+      <svg ref={svgRef} width={1200} height={640}></svg>
     </>
   );
 };

@@ -10,6 +10,7 @@ import TreeMap from "./Components/Treemap";
 import Sankey from "./Components/Sankey";
 import SecondPage from "./Components/SecondPage";
 import HomeNew from "./Pages/HomeNew";
+import Barchart2 from "./Components/Barchart2";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       {/* <BarChart /> */}
       {/* <HeatMap /> */}
       {/* <SecondPage /> */}
+      <Barchart2 />
       <HomeNew />
     </>
   );

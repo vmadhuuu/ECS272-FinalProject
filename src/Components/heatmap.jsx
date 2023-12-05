@@ -108,7 +108,7 @@ const HeatMap = () => {
       //const svg = d3.select(svgRef.current);
       //svg.selectAll("*").remove(); // Clear the SVG
 
-      const margin = { top: 30, right: 130, bottom: 70, left: 150 };
+      const margin = { top: 30, right: 130, bottom: 70, left: 160 };
       const svgWidth = 1000;
       const svgHeight = 600;
       const width = svgWidth - margin.left - margin.right;
@@ -244,13 +244,13 @@ const HeatMap = () => {
           const luminance = calculateLuminance(colorScale(d.Sales));
           return luminance > 0.179 ? "black" : "white";
         })
-        .style("font-size", "10px") // Adjust the font size as needed
+        .style("font-size", "12px") // Adjust the font size as needed
         .style("opacity", 0);
 
       // Define legend dimensions and position
       const legendWidth = 30;
       const legendHeight = height + 5;
-      const legendPosition = svgWidth - margin.right - legendWidth - 20;
+      const legendPosition = svgWidth - margin.right - legendWidth - 80;
 
       // Append legend container
       const legend = svg

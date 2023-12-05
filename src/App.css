@@ -255,6 +255,31 @@ header {
     fadeOutText 30s ease forwards;
 }
 
+.button-textbox {
+  width: 30vw;
+  height: 20vh;
+  position: absolute;
+  top: 63vh;
+  left: 20vw;
+  background-color: transparent;
+  text-align: center;
+}
+
+.button-text{
+  font-size: 59px;
+  font-family: "M04_FATAL FURY BLACK";
+  color: #000000;
+  text-shadow:
+    0 0 7px #000000,
+    0 0 10px #000000,
+    0 0 21px #000000,
+    0 0 42px #0fa,
+    0 0 82px #0fa,
+    0 0 92px #0fa,
+    0 0 102px #0fa,
+   
+}
+
 .titlebox {
   width: 70vw; /* Adjust width as needed */
   height: 40vh; /* Adjust height as needed */

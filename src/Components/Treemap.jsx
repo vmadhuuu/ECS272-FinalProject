@@ -213,18 +213,18 @@ const TreeMap = () => {
               true
             ); // Highlight all rects with the same ID
           }
-          tooltip
+          tooltip1
             .transition()
             .duration(500) // Transition for smooth appearance
             .style("opacity", 1); // Make tooltip visible
 
-          tooltip.style("background", rectColor);
+          tooltip1.style("background", rectColor);
 
           let tooltipContent = `Genre: ${d.data.name}`;
           if (d.value) {
             tooltipContent += `<br> Sales: ${format(d.value)}`;
           }
-          tooltip
+          tooltip1
             .html(tooltipContent)
             .style("left", event.pageX + 15 + "px")
             .style("top", event.pageY - 28 + "px");
@@ -237,16 +237,16 @@ const TreeMap = () => {
               false
             ); // Remove highlighting from all rects with the same ID
           }
-          tooltip
+          tooltip1
             .transition()
             .duration(500) // Transition for smooth disappearance
             .style("opacity", 0); // Hide tooltip
         });
 
-      var tooltip = d3
+      var tooltip1 = d3
         .select("body")
         .append("div")
-        .attr("class", "tooltip")
+        .attr("class", "tooltip1")
         .style("opacity", 0)
         .style("position", "absolute")
         .style("text-align", "center")
@@ -270,12 +270,12 @@ const TreeMap = () => {
         .attr("stroke-width", 1.5)
         // Add mouseover event
         .on("mouseover", function (event, d) {
-          tooltip
+          tooltip1
             .transition()
             .duration(500) // Transition for smooth appearance
             .style("opacity", 0.9); // Make tooltip visible
 
-          tooltip
+          tooltip1
             .html(
               `Platform: ${d.data.name}<br>Global Sales: ${format(d.value)}`
             )
@@ -283,7 +283,7 @@ const TreeMap = () => {
             .style("top", event.pageY - 10 + "px");
         })
         .on("mouseout", function () {
-          tooltip
+          tooltip1
             .transition()
             .duration(500) // Transition for smooth disappearance
             .style("opacity", 0); // Hide tooltip
@@ -325,14 +325,14 @@ const TreeMap = () => {
         .style("opacity", 1); // end with opacity 1
 
       //zoom in and out
-      const zoom = d3
-        .zoom()
-        .scaleExtent([1, 5]) // Set the minimum and maximum scale
-        .on("zoom", (event) => {
-          treemapGroup.attr("transform", event.transform); // Apply the current zoom transform to the treemap group
-        });
+      // const zoom = d3
+      //   .zoom()
+      //   .scaleExtent([1, 5]) // Set the minimum and maximum scale
+      //   .on("zoom", (event) => {
+      //     treemapGroup.attr("transform", event.transform); // Apply the current zoom transform to the treemap group
+      //   });
 
-      svg.call(zoom);
+      // svg.call(zoom);
 
       // Define legend data based on colorScale domain
       const legendData = colorScale.domain().map((platform) => {
@@ -376,16 +376,7 @@ const TreeMap = () => {
 
   return (
     <>
-      <span
-        style={{
-          fontFamily: "text-anchor, sans-serif",
-          textDecoration: "underline",
-          fontSize: "20px",
-        }}
-      >
-        Platform Power
-      </span>
-      <div style={{ marginLeft: "40vw", marginTop: "10vh" }}>
+      <div style={{ marginLeft: "40vw", marginTop: "5vh" }}>
         <svg ref={svgRef} width={4000} height={1000}></svg>
       </div>
     </>

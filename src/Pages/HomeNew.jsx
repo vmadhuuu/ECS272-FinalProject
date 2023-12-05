@@ -26,7 +26,9 @@ import pixel2 from "../Elements/pixelbg2.jpeg";
 import counterstrike from "../Elements/counterstrikebg.jpeg";
 import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
-import heatmapbg from "../Elements/heatmapbg.png";
+import heatmapbg from "../Elements/heatmapbg.jpeg";
+import movingclouds from "../Elements/movingclouds.gif";
+
 import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
 
@@ -56,7 +58,7 @@ const ScrollApp = () => {
     "#002642", //prussian blue 4
     "#002642", //prussian blue 5
     "#002642", //prussian blue - barchart
-    "#000000", // black - heatmap
+    "#002642", // black - heatmap
     "#360a26", // dark red pink
     "#360a26", // dark red pink
   ];
@@ -206,8 +208,11 @@ const ScrollApp = () => {
               src="src/Elements/button.png"
               alt="button"
               className="title-text"
+              style={{ width: "25vw" }}
             />
-            {/* <p className="title-text">Let's Play Pixel Pulse!</p> */}
+            <div className="button-textbox">
+              <p className="button-text">PRESS START</p>
+            </div>
           </div>
 
           <img
@@ -1207,7 +1212,7 @@ const ScrollApp = () => {
             data-scroll-speed="1"
           >
             <br />
-            Bestselling Genres
+            Genre Dominance
           </h3>
           <BarChart />
           {/* Textbox under the chart */}
@@ -1237,10 +1242,9 @@ const ScrollApp = () => {
               }}
             >
               This bar chart displays the all-time sales of video game genres,
-              with data spanning from 1960 to 2015. Each bar is color-coded to
-              represent a different genre and the height of the bar indicates
-              the volume of global sales in millions. Use the dropdown menu to
-              choose a specific region which will reflect the sales data!
+              with data spanning from 1960 to 2015.
+              <br /> Use the dropdown menu to choose a specific region which
+              will reflect the sales data!
             </p>
           </div>
           <div
@@ -1282,19 +1286,6 @@ const ScrollApp = () => {
               position: "absolute",
               width: "100%",
               height: "100%",
-              backgroundImage: `url(${heatmapbg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: "20%",
-              zIndex: -1,
-            }}
-          ></div>
-          <div
-            className="background-image-container"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
               backgroundImage: `url(${pixel2})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -1308,9 +1299,9 @@ const ScrollApp = () => {
             style={{
               fontSize: 30,
               fontFamily: "M04_FATAL FURY BLACK",
-              color: "#FFFFFF",
+              color: "#fdcfbb",
               maxWidth: "90vw",
-              marginRight: "20vw",
+              marginRight: "27vw",
               marginTop: "-5vh",
             }}
             data-scroll-class="fadeIn"
@@ -1318,11 +1309,11 @@ const ScrollApp = () => {
             data-scroll-speed="1"
           >
             <br />
-            Bestselling Genres
+            Genre Popularity
           </h3>
           <HeatMap />
           {/* Textbox under the chart */}
-          {/* <div
+          <div
             className="chart-description"
             data-scroll
             style={{
@@ -1331,7 +1322,7 @@ const ScrollApp = () => {
               maxWidth: "30vw",
               marginBottom: "0vh",
               marginLeft: "0vw",
-              marginRight: "10vw",
+              marginRight: "20vw",
               fontSize: "18px",
               fontFamily: "Arial, sans-serif",
             }}
@@ -1341,18 +1332,21 @@ const ScrollApp = () => {
             <p
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
-                width: "30vw",
-                marginRight: "100vw",
+                width: "40vw",
+                marginLeft: "-5vw",
+                marginRight: "210vw",
                 fontStyle: "italic",
                 color: "#9cf6f6",
               }}
             >
-              This chart represents the distribution of all-time sales of video
-              game genres of each region. The data is compiled from years video
-              game industry across various countries. Select the region you
-              want, and watch for the X axis!
+              This heatmap visualizes the sales data for various video game
+              genres across three major regions: North America (NA), Europe
+              (EU), and Japan (JP). <br />
+              Move your cursor over any cell to display a tooltip with detailed
+              sales information for that genre and region. Use the zoom feature
+              to focus on specific areas of the heatmap to get a closer look.
             </p>
-          </div> */}
+          </div>
           <div
             data-scroll
             data-scroll-speed="5"
@@ -1385,7 +1379,7 @@ const ScrollApp = () => {
               position: "absolute",
               width: "100%",
               height: "100%",
-              backgroundImage: `url(${pixel2})`,
+              backgroundImage: `url(${map})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: "30%",
@@ -1401,15 +1395,15 @@ const ScrollApp = () => {
               fontFamily: "M04_FATAL FURY BLACK",
               color: "#FFFFFF",
               maxWidth: "90vw",
-              marginRight: "12vw",
-              marginTop: "-5vh",
+              marginRight: "0vw",
+              marginTop: "15vh",
             }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
             <br />
-            Bestselling Genres
+            Platform Power
           </h3>
           <TreeMap />
           {/* Textbox under the chart */}
@@ -1473,7 +1467,7 @@ const ScrollApp = () => {
             <br />
             Bestselling Genres
           </h3>
-          {/* <Sankey /> */}
+          <Sankey />
           {/* Textbox under the chart */}
           <div
             className="chart-description"
