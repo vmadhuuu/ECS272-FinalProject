@@ -28,6 +28,7 @@ import dawn from "../Elements/dawn.jpeg";
 import fire from "../Elements/fire.jpeg";
 import heatmapbg from "../Elements/heatmapbg.jpeg";
 import movingclouds from "../Elements/movingclouds.gif";
+import Barchart2 from "../Components/Barchart2.jsx";
 
 import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
@@ -1437,6 +1438,79 @@ const ScrollApp = () => {
               1960-2015, highlighting the popularity and market trends in the
               video game industry across various countries. Select the region
               you want, and watch for the X axis!
+            </p>
+          </div>
+        </section>
+
+         {/* BARCHART2 */}
+         <section
+          ref={addSectionRef}
+          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
+          className="contents"
+          data-scroll-section
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${map})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "30%",
+              zIndex: -1,
+            }}
+          ></div>
+
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#FFFFFF",
+              maxWidth: "90vw",
+              marginRight: "0vw",
+              marginTop: "15vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Platform Power
+          </h3>
+          <Barchart2 />
+
+
+          {/* Textbox under the chart */}
+          <div
+            className="chart-description"
+            data-scroll
+            style={{
+              color: "#FFFFFF",
+              margin: "0",
+              maxWidth: "30vw",
+              marginBottom: "0vh",
+              marginLeft: "0vw",
+              marginRight: "10vw",
+              fontSize: "18px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-speed="1"
+          >
+            <p
+              style={{
+                fontFamily: "superhelio _regular, sans-serif",
+                width: "30vw",
+                marginRight: "75vw",
+                fontStyle: "italic",
+                color: "#9cf6f6",
+              }}
+            >
+              Apoorva 
             </p>
           </div>
         </section>
