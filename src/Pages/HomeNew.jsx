@@ -34,6 +34,7 @@ import movingclouds from "../Elements/movingclouds.gif";
 import treemapbg from "../Elements/treemapbg.jpeg";
 import thunder from "../Elements/thunder.gif";
 import moon2 from "../Elements/moon2.gif";
+import mariorunning from "../Elements/mariorunning.gif";
 
 import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
@@ -65,6 +66,7 @@ const ScrollApp = () => {
     "#002642", //prussian blue 4
     "#002642", //prussian blue - barchart
     "#002642", //prussian blue - heatmap
+    "#002642", // dark red pink - platform power slideshow
     "#360a26", // dark red pink - treemap
     "#000000", // black
   ];
@@ -1366,6 +1368,62 @@ const ScrollApp = () => {
           </h3> */}
         </section>
 
+        {/* PLATFORM POWER SLIDESHOW */}
+        <section
+          ref={addSectionRef}
+          style={{
+            height: "90vh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+          className="contents"
+          data-scroll-section
+        >
+          <div
+            className="background-image-container"
+            style={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              backgroundImage: `url(${mariorunning})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: "25%",
+              zIndex: -1,
+            }}
+          ></div>
+          <h3
+            className="op-class"
+            data-scroll
+            style={{
+              fontSize: 30,
+              fontFamily: "M04_FATAL FURY BLACK",
+              color: "#fdcfbb",
+              maxWidth: "90vw",
+              marginRight: "45vw",
+              marginBottom: "60vh",
+            }}
+            data-scroll-class="fadeIn"
+            data-scroll-repeat="true"
+            data-scroll-speed="1"
+          >
+            <br />
+            Who Rules the Game World?
+          </h3>
+          <div className="slideshow">
+            <Slideshow />
+          </div>
+
+          {/* <img
+            src="src/Elements/speechbubble2.png"
+            alt="speechbubble"
+            className="speechbubble2"
+          /> */}
+          {/* <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
+            Hi there! hwyyyyyyyyyyyyyy
+          </h3> */}
+        </section>
+
         {/* TREEMAP */}
         <section
           ref={addSectionRef}
@@ -1386,7 +1444,6 @@ const ScrollApp = () => {
               zIndex: -1,
             }}
           ></div>
-
           <h3
             className="op-class"
             data-scroll
@@ -1443,55 +1500,6 @@ const ScrollApp = () => {
           </div>
         </section>
 
-        <section
-          ref={addSectionRef}
-          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
-          className="contents"
-          data-scroll-section
-        >
-          <div
-            className="background-image-container"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(${pixel2})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: "30%",
-              zIndex: -1,
-            }}
-          ></div>
-          <h3
-            className="op-class"
-            data-scroll
-            style={{
-              fontSize: 30,
-              fontFamily: "M04_FATAL FURY BLACK",
-              color: "#fdcfbb",
-              maxWidth: "90vw",
-              marginRight: "27vw",
-              marginTop: "-5vh",
-            }}
-            data-scroll-class="fadeIn"
-            data-scroll-repeat="true"
-            data-scroll-speed="1"
-          >
-            <br />
-            Genre Popularity
-          </h3>
-          <Slideshow />
-
-          <img
-            src="src/Elements/speechbubble2.png"
-            alt="speechbubble"
-            className="speechbubble2"
-          />
-          {/* <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
-            Hi there! hwyyyyyyyyyyyyyy
-          </h3> */}
-        </section>
-
         {/* SANKEY */}
         <section
           ref={addSectionRef}
@@ -1506,10 +1514,10 @@ const ScrollApp = () => {
               position: "absolute",
               width: "100%",
               height: "100%",
-              backgroundImage: `url(${pixel2})`,
+              backgroundImage: `url(${sky})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              opacity: "30%",
+              opacity: "40%",
               zIndex: -1,
             }}
           ></div>
@@ -1521,7 +1529,7 @@ const ScrollApp = () => {
               fontFamily: "M04_FATAL FURY BLACK",
               color: "#FFFFFF",
               maxWidth: "90vw",
-              marginRight: "12vw",
+              marginRight: "7vw",
               marginTop: "-5vh",
             }}
             data-scroll-class="fadeIn"
@@ -1529,9 +1537,9 @@ const ScrollApp = () => {
             data-scroll-speed="1"
           >
             <br />
-            Bestselling Genres
+            Publisher Popularity
           </h3>
-          {/* <Sankey /> */}
+          <Sankey />
           {/* Textbox under the chart */}
           <div
             className="chart-description"
@@ -1552,17 +1560,23 @@ const ScrollApp = () => {
             <p
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
-                width: "30vw",
-                marginRight: "75vw",
+                width: "50vw",
+                marginLeft: "-5vw",
                 fontStyle: "italic",
-                color: "#9cf6f6",
+                color: "#FAF2A1",
               }}
             >
-              This chart represents the distribution of all-time sales of video
-              game genres of each region. The data is compiled from years
-              1960-2015, highlighting the popularity and market trends in the
-              video game industry across various countries. Select the region
-              you want, and watch for the X axis!
+              This Sankey diagram illustrates the relationship between video
+              game publishers, platforms, and genres. The width of the bands is
+              proportional to the sales volume, creating a visual representation
+              of market share and sales flow from publishers to platforms, and
+              then to the genres they support. By clicking on any of the boxes
+              (nodes) representing publishers, platforms, or genres, you can
+              highlight all the connecting flows (links) to easily trace the
+              distribution of sales from that specific category. Positioning
+              your cursor over any of the nodes will reveal detailed sales
+              values, providing an in-depth look at the sales figures associated
+              with that flow.
             </p>
           </div>
         </section>

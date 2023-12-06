@@ -276,7 +276,7 @@ const BarChart = () => {
         .style("text-anchor", "middle")
         .style("fill", "white") // Adjust the color as needed
         .attr("font-size", 15)
-        .text("Sales in Miliions"); // Replace with your actual label
+        .text("Sales ($m)"); // Replace with your actual label
     }
   }, [data, maxSalesValue]);
 

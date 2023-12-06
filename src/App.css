@@ -518,7 +518,15 @@ section {
 
 .slides-show {
   width: auto;
-  height: 40%;
+  height: 100%;
+}
+
+.slideshow {
+  position: absolute;
+  width: auto;
+  height: 60vh;
+  left: 75vw;
+  top: 22vw;
 }
 
 /* SCROLLING DO NOT EDIT */
