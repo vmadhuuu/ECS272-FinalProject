@@ -31,6 +31,7 @@ import fire from "../Elements/fire.jpeg";
 import barchartspeech from "../Elements/barchartspeech.png";
 import heatmapbg from "../Elements/heatmapbg.jpeg";
 import movingclouds from "../Elements/movingclouds.gif";
+import Barchart2 from "../Components/Barchart2.jsx";
 import treemapbg from "../Elements/treemapbg.jpeg";
 import thunder from "../Elements/thunder.gif";
 import moon2 from "../Elements/moon2.gif";
