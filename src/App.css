@@ -233,7 +233,7 @@ header {
 }
 
 .title-textbox {
-  width: 70vw; /* Adjust width as needed */
+  width: 30vw; /* Adjust width as needed */
   height: 40vh; /* Adjust height as needed */
   position: absolute; /* Use 'absolute' or 'fixed' positioning */
   top: 5vh; /* Adjust to position vertically */
@@ -244,7 +244,7 @@ header {
 }
 
 .title-subtitle {
-  font-size: 26px;
+  font-size: 18px;
   margin-bottom: 45vh;
   font-family: "DotGothic16", sans-serif;
 }
@@ -357,7 +357,7 @@ header {
 /* Moving cloud animation */
 @keyframes moveCloudright {
   0% {
-    right: -50vw;
+    right: -5vw;
   }
   100% {
     right: 100%;

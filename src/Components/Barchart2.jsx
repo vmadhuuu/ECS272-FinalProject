@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import React, { useState, useEffect, useRef } from "react";
 
 function Barchart2() {
   const [data, setData] = useState([]);
@@ -158,15 +158,15 @@ function Barchart2() {
       svg.append("g").call(d3.axisLeft(y));
 
       // Bars
-      svg
+      const bars = svg
         .selectAll(".bar")
         .data(dataset, (d) => d.Year)
         .join("rect")
         .attr("class", "bar")
         .attr("x", (d) => x(d.Year))
         .attr("width", x.bandwidth())
-        .attr("y", (d) => y(d.Global_Sales))
-        .attr("height", (d) => height - y(d.Global_Sales))
+        .attr("y", height)
+        .attr("height", 0)
         .attr("fill", (d) => colorScale(d.Year))
         .each(function (d) {
           // Store the original color
@@ -188,8 +188,42 @@ function Barchart2() {
             .attr("width", xScale.bandwidth())
             .attr("x", xScale(d.genre));
         })
-        .style("filter", "url(#glow)");
+        .style("filter", "url(#glow)")
+        // Transition to final state
+        .transition()
+        .duration(2000) // Duration of the animation in milliseconds
+        .attr("y", (d) => y(d.Global_Sales))
+        .attr("height", (d) => height - y(d.Global_Sales));
 
+      // Animate the bars growing
+      bars
+        .transition()
+        .duration(500) // Duration of the animation in milliseconds
+        .delay((d, i) => i * 100)
+        .attr("y", (d) => y(d.Global_Sales))
+        .attr("height", (d) => height - y(d.Global_Sales))
+        .on("end", () => {
+          // Callback after the transition ends
+          // Add vertical text labels for each bar
+          svg
+            .selectAll(".bar-label")
+            .data(dataset, (d) => d.Year)
+            .join("text")
+            .attr("class", "bar-label")
+            .attr("x", (d) => x(d.Year) + x.bandwidth() / 2)
+            .attr("y", (d) => y(d.Global_Sales) + 3)
+            .attr("text-anchor", "start")
+            .attr(
+              "transform",
+              (d) =>
+                `translate(0, -10) rotate(-90, ${
+                  x(d.Year) + x.bandwidth() / 2
+                }, ${y(d.Global_Sales)})`
+            )
+            .text((d) => d.Genre)
+            .style("fill", "white")
+            .style("font-size", "10px");
+        });
       svg
         .append("text")
         .attr("class", "x-axis-label axis-label")
