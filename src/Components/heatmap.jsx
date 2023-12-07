@@ -74,11 +74,11 @@ const HeatMap = () => {
       //const svg = d3.select(svgRef.current);
       //svg.selectAll("*").remove(); // Clear the SVG
 
-      const margin = { top: 30, right: 130, bottom: 60, left: 160 };
+      const margin = { top: 30, right: 130, bottom: 80, left: 160 };
       const svgWidth = 800;
-      const svgHeight = 620;
+      const svgHeight = 650;
       const width = svgWidth - margin.left - margin.right;
-      const height = svgHeight - margin.top - margin.bottom;
+      const height = svgHeight - margin.top - margin.bottom - 20;
 
       //adding a tooltip
       var tooltip = d3
@@ -323,23 +323,23 @@ const HeatMap = () => {
       svg
         .append("text")
         .attr("class", "x-axis-label")
-        .attr("x", width / 2)
+        .attr("x", width / 2 + 20)
         .attr("y", height + margin.bottom) // Adjust the position as needed
         .style("text-anchor", "middle")
-        .style("font-size", "14px") // Adjust font size as needed
+        .style("font-size", "18px") // Adjust font size as needed
         .style("fill", "white")
-        .text("Sales"); // Replace with your label text
+        .text("Regional Sales ($m)"); // Replace with your label text
 
       // Add Y-axis label
       svg
         .append("text")
         .attr("class", "y-axis-label")
         .attr("transform", "rotate(-90)") // Rotate the text for vertical alignment
-        .attr("y", 0 - margin.left + 3) // Adjust the position as needed
+        .attr("y", 0 - margin.left + 50) // Adjust the position as needed
         .attr("x", 0 - height / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .style("font-size", "14px") // Adjust font size as needed
+        .style("font-size", "18px") // Adjust font size as needed
         .style("fill", "white")
         .text("Genres"); // Replace with your label text
     }
@@ -348,7 +348,7 @@ const HeatMap = () => {
   return (
     <>
       <div className="heatmap-container" style={{ marginLeft: "-10vw" }}>
-        <svg ref={svgRef} width={600} height={700}></svg>
+        <svg ref={svgRef} width={600} height={900}></svg>
       </div>
     </>
   );

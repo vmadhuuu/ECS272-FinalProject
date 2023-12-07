@@ -228,7 +228,7 @@ const BarChart = () => {
       // Rotate the text of x-axis labels
       xAxisGroup
         .selectAll("text")
-        .style("font-size", "15px")
+        .style("font-size", "12px")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".10em")
@@ -274,7 +274,7 @@ const BarChart = () => {
       xAxisGroup
         .append("text")
         .attr("class", "axis-label")
-        .attr("font-size", 15)
+        .attr("font-size", 18)
         .attr("x", width / 2)
         .attr("y", margin.bottom + 25) // Adjust this value to position the label correctly
         .style("text-anchor", "middle")
@@ -291,7 +291,7 @@ const BarChart = () => {
         .attr("dy", "1em") // Adjust this value to position the label correctly
         .style("text-anchor", "middle")
         .style("fill", "white") // Adjust the color as needed
-        .attr("font-size", 15)
+        .attr("font-size", 18)
         .text("Sales ($m)"); // Replace with your actual label
     }
   }, [data, maxSalesValue]);

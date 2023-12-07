@@ -150,21 +150,21 @@ function SankeyChart() {
       "#00A4B4", // turquoise
       "#29B6F6", // light blue
       "#9E0031", // bright red
-      "#56445D", // english violet
+      "#E8B4BC", // orchid pink
       "#053C5E", // indigo dye
-      "#776D5A", // dim grey
-      "#8D6E63", // greyish orange
+      "#BBDBB4", // celadon green
+      "#424874", // greyish orange //
       "#AA1155", // amaranth pink
       "#D56D6D", // pinkish red
       "#F05822", // bright orange
       "#034732", // british green
-      "#BA68C8", // pinkish purple
-      "#9F4A54", // red wood
+      "#BA68C8", // french mauve
+      "#C3C9E9", // periwinkle
       // 23
       "#B57F50", //copper
       "#7D80DA", // indigo
       "#FF9770", // tangerine
-      "#5C374C", // eggplant
+      "#DD9296", // puce
       "#D3FAD6", //tea green
       "#E1BC29", //saffron
       "#09BC8A", //mint green

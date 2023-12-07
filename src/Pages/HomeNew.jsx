@@ -65,7 +65,7 @@ const ScrollApp = () => {
     "#002642", //prussian blue- 2
     "#002642", //prussian blue 3 - text
     "#002642", //prussian blue 4
-    "#000000", //prussian blue - barchart 2
+    "#002642", //prussian blue - barchart 2
     "#002642", //prussian blue - barchart
     "#002642", // prussian blue - platform power slideshow
     "#360a26", // dark red pink - treemap
@@ -1000,8 +1000,7 @@ const ScrollApp = () => {
               fontFamily: "superhelio _regular, sans-serif",
             }}
           >
-            There are numerous popular game genres but how did they all perform
-            in sales?{" "}
+            Which Gaming Genres Topped the Charts?{" "}
           </h1>
           <h1
             className="op-class"
@@ -1165,7 +1164,7 @@ const ScrollApp = () => {
               fontFamily: "M04_FATAL FURY BLACK",
               color: "#FFFFFF",
               maxWidth: "90vw",
-              marginRight: "12vw",
+              marginRight: "20vw",
               marginTop: "15vh",
             }}
             data-scroll-class="fadeIn"
@@ -1184,10 +1183,10 @@ const ScrollApp = () => {
               color: "#FFFFFF",
               margin: "0",
               maxWidth: "30vw",
-              marginBottom: "0vh",
+              marginBottom: "15vh",
               marginLeft: "0vw",
-              marginRight: "10vw",
-              fontSize: "18px",
+              marginRight: "27vw",
+              fontSize: "20px",
               fontFamily: "Arial, sans-serif",
             }}
             data-scroll-class="fadeIn"
@@ -1260,12 +1259,12 @@ const ScrollApp = () => {
             className="op-class"
             data-scroll
             style={{
-              fontSize: 35,
+              fontSize: 40,
               fontFamily: "M04_FATAL FURY BLACK",
               color: "#FFFFFF",
               maxWidth: "90vw",
               marginRight: "0vw",
-              marginTop: "-20vh",
+              marginTop: "-10vh",
             }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
@@ -1296,7 +1295,7 @@ const ScrollApp = () => {
               marginBottom: "0vh",
               marginLeft: "0vw",
               marginRight: "10vw",
-              fontSize: "18px",
+              fontSize: "20px",
               fontFamily: "Arial, sans-serif",
             }}
             data-scroll-class="fadeIn"

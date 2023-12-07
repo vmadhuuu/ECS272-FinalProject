@@ -357,7 +357,7 @@ header {
 /* Moving cloud animation */
 @keyframes moveCloudright {
   0% {
-    right: -55vw;
+    right: -50vw;
   }
   100% {
     right: 100%;

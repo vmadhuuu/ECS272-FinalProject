@@ -196,7 +196,7 @@ function Barchart2() {
         .attr("text-anchor", "middle")
         .attr("x", width / 2)
         .attr("y", height + margin.bottom / 2 + 20)
-        .style("font-size", "12px")
+        .style("font-size", "20px")
         .style("fill", "white")
         .text("Year");
 
@@ -208,9 +208,9 @@ function Barchart2() {
         .attr("transform", `rotate(-90)`)
         .attr("x", -(height / 2))
         .attr("y", -margin.left / 2 - 20)
-        .style("font-size", "12px")
+        .style("font-size", "20px")
         .style("fill", "white")
-        .text("Global Sales");
+        .text("Global Sales ($m)");
 
       // Legend
       const legendSpacing = 20;
@@ -309,7 +309,7 @@ function Barchart2() {
         ))}
       </select>
       <div style={{ marginLeft: "-15vw" }}>
-        <svg ref={svgRef} style={{ width: "1200px", height: "900px" }} />
+        <svg ref={svgRef} style={{ width: "1200px", height: "850px" }} />
       </div>
     </div>
   );

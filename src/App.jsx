@@ -21,8 +21,8 @@ function App() {
       {/* <BarChart /> */}
       {/* <HeatMap /> */}
       {/* <SecondPage /> */}
-      {/* <Barchart2 /> */}
-      <HomeNew />
+      <Barchart2 />
+      {/* <HomeNew /> */}
     </>
   );
 }
