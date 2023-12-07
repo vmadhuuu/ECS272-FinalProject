@@ -3,6 +3,8 @@ import * as d3 from "d3";
 
 function Barchart2() {
   const [data, setData] = useState([]);
+  const [genres, setGenres] = useState([]); // State for storing genres for the dropdown
+  const [selectedGenre, setSelectedGenre] = useState(""); // State for storing the selected genre
   const svgRef = useRef(null);
 
   useEffect(() => {
@@ -67,6 +69,16 @@ function Barchart2() {
       // Now you can use genresOfMaxSales for your visualization or further processing
       console.log(maxSalesData, "maxSalesData");
 
+      // Extract unique genres
+      let uniqueGenres = Array.from(new Set(data.map((d) => d.Genre)));
+
+      // Filter out genres that have no data
+      uniqueGenres = uniqueGenres.filter((genre) =>
+        maxSalesData.some((d) => d.Genre === genre)
+      );
+
+      setGenres(uniqueGenres);
+
       setData(maxSalesData);
     });
   }, []);
@@ -74,9 +86,14 @@ function Barchart2() {
   useEffect(() => {
     if (data.length > 0) {
       // Set the dimensions and margins of the graph
-      const margin = { top: 100, right: 100, bottom: 70, left: 90 };
-      const width = 1000 - margin.left - margin.right;
-      const height = 500 - margin.top - margin.bottom;
+      const margin = { top: 100, right: 130, bottom: 70, left: 80 };
+      const width = 1100 - margin.left - margin.right;
+      const height = 800 - margin.top - margin.bottom;
+
+      let dataset =
+        selectedGenre === "" || selectedGenre === "All"
+          ? data
+          : data.filter((d) => d.Genre === selectedGenre);
 
       // Clear any previous SVG content
       d3.select(svgRef.current).selectAll("*").remove();
@@ -84,8 +101,8 @@ function Barchart2() {
       // Create SVG element
       const svg = d3
         .select(svgRef.current)
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width - margin.left - margin.right)
+        .attr("height", height - margin.top - margin.bottom)
         .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -120,11 +137,10 @@ function Barchart2() {
       feMerge.append("feMergeNode").attr("in", "coloredBlur");
       feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-      // X axis
       const x = d3
         .scaleBand()
         .range([0, width])
-        .domain(data.map((d) => d.Year))
+        .domain(dataset.map((d) => d.Year))
         .padding(0.3);
 
       svg
@@ -135,23 +151,23 @@ function Barchart2() {
         .attr("transform", "translate(-10,0)rotate(-45)")
         .style("text-anchor", "end");
 
-      // Y axis
-      const y = d3.scaleLinear().domain([0, 150]).range([height, 0]);
+      // Y axis: scale and draw:
+      const maxSale = d3.max(dataset, (d) => d.Global_Sales);
+      const y = d3.scaleLinear().domain([0, maxSale]).range([height, 0]);
 
       svg.append("g").call(d3.axisLeft(y));
 
       // Bars
       svg
         .selectAll(".bar")
-        .data(data)
-        .enter()
-        .append("rect")
+        .data(dataset, (d) => d.Year)
+        .join("rect")
         .attr("class", "bar")
         .attr("x", (d) => x(d.Year))
         .attr("width", x.bandwidth())
         .attr("y", (d) => y(d.Global_Sales))
         .attr("height", (d) => height - y(d.Global_Sales))
-        .attr("fill", (d, i) => colorScale(i))
+        .attr("fill", (d) => colorScale(d.Year))
         .each(function (d) {
           // Store the original color
           d.originalColor = d3.select(this).attr("fill");
@@ -174,25 +190,24 @@ function Barchart2() {
         })
         .style("filter", "url(#glow)");
 
-      // X axis label
       svg
         .append("text")
-        .attr("class", "axis-label")
+        .attr("class", "x-axis-label axis-label")
         .attr("text-anchor", "middle")
         .attr("x", width / 2)
-        .attr("y", height + margin.bottom / 2 + 20) // Adjust the position based on your bottom margin
+        .attr("y", height + margin.bottom / 2 + 20)
         .style("font-size", "12px")
         .style("fill", "white")
         .text("Year");
 
-      // Y axis label
+      // Y Axis label (create this only once, outside of your useEffect)
       svg
         .append("text")
-        .attr("class", "axis-label")
+        .attr("class", "y-axis-label axis-label")
         .attr("text-anchor", "middle")
         .attr("transform", `rotate(-90)`)
         .attr("x", -(height / 2))
-        .attr("y", -margin.left / 2 - 20) // Adjust the position based on your left margin
+        .attr("y", -margin.left / 2 - 20)
         .style("font-size", "12px")
         .style("fill", "white")
         .text("Global Sales");
@@ -229,44 +244,73 @@ function Barchart2() {
         .text((d) => d.Year);
 
       // // Add text labels for the Genre
-      // svg.selectAll(".text-genre")
+      // svg
+      //   .selectAll(".text-genre")
       //   .data(data)
       //   .enter()
       //   .append("text")
       //   .attr("class", "label-genre")
       //   // Subtract more from y position to move the text further above the bar
-      //   .attr("y", d => y(d.Global_Sales) - 20) // Adjusted space for Genre
+      //   .attr("y", (d) => y(d.Global_Sales) - 20 + 60) // Adjusted space for Genre
       //   // Center the text by setting the x position to the middle of the bar
-      //   .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+      //   .attr("x", (d) => x(d.Year) + x.bandwidth() / 2)
       //   // Rotate the text by -90 degrees around the x, y position
-      //   .attr("transform", d => `rotate(-90) translate(${-y(d.Global_Sales) - 10}, ${x(d.Year) + x.bandwidth() / 2})`)
+      //   .attr(
+      //     "transform",
+      //     (d) =>
+      //       `rotate(-90) translate(${-y(d.Global_Sales) - 10}, ${
+      //         x(d.Year) + x.bandwidth() / 2 - 500
+      //       })`
+      //   )
       //   .attr("text-anchor", "end")
-      //   .text(d => d.Genre)
+      //   .text((d) => d.Genre)
       //   .style("font-size", "10px") // Set the font size
       //   .style("fill", "white"); // Set the text color
 
       // // Add text labels for the Global Sales
-      // svg.selectAll(".text-sales")
+      // svg
+      //   .selectAll(".text-sales")
       //   .data(data)
       //   .enter()
       //   .append("text")
       //   .attr("class", "label-sales")
       //   // Subtract even more from the y position to stack the text above the genre
-      //   .attr("y", d => y(d.Global_Sales) - 35) // Adjusted space for Sales
+      //   .attr("y", (d) => y(d.Global_Sales) - 35) // Adjusted space for Sales
       //   // Center the text by setting the x position to the middle of the bar
-      //   .attr("x", d => x(d.Year) + x.bandwidth() / 2)
+      //   .attr("x", (d) => x(d.Year) + x.bandwidth() / 2)
       //   // Rotate the text by -90 degrees around the x, y position
-      //   .attr("transform", d => `rotate(-90, ${x(d.Year) + x.bandwidth() / 2}, ${y(d.Global_Sales)- 35})`)
+      //   .attr(
+      //     "transform",
+      //     (d) =>
+      //       `rotate(-90, ${x(d.Year) + x.bandwidth() / 2}, ${
+      //         y(d.Global_Sales) - 35
+      //       })`
+      //   )
       //   .attr("text-anchor", "end")
-      //   .text(d => d.Global_Sales)
+      //   .text((d) => d.Global_Sales)
       //   .style("font-size", "10px") // Set the font size
       //   .style("fill", "white"); // Set the text color
     }
-  }, [setData]);
+  }, [selectedGenre, data]);
 
   return (
     <div>
-      <svg ref={svgRef} style={{ width: "100%", height: "500px" }} />
+      <label htmlFor="genre-select">Choose a genre:</label>
+      <select
+        id="genre-select"
+        value={selectedGenre}
+        onChange={(e) => setSelectedGenre(e.target.value)}
+      >
+        <option value="">All</option>
+        {genres.map((genre) => (
+          <option key={genre} value={genre}>
+            {genre}
+          </option>
+        ))}
+      </select>
+      <div style={{ marginLeft: "-15vw" }}>
+        <svg ref={svgRef} style={{ width: "1200px", height: "900px" }} />
+      </div>
     </div>
   );
 }

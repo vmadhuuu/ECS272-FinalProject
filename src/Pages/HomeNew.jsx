@@ -31,11 +31,11 @@ import fire from "../Elements/fire.jpeg";
 import barchartspeech from "../Elements/barchartspeech.png";
 import heatmapbg from "../Elements/heatmapbg.jpeg";
 import movingclouds from "../Elements/movingclouds.gif";
-import Barchart2 from "../Components/Barchart2.jsx";
 import treemapbg from "../Elements/treemapbg.jpeg";
 import thunder from "../Elements/thunder.gif";
 import moon2 from "../Elements/moon2.gif";
 import mariorunning from "../Elements/mariorunning.gif";
+import purplefire from "../Elements/purplefire.jpeg";
 
 import { color } from "d3";
 // import gameconsole from "../Elements/gameconsole.png";
@@ -60,14 +60,14 @@ const ScrollApp = () => {
     "#000000", // black - shooting
     "#000000", // black - fire
     "#000000", // black - genre dominance
-    "#002642", //prussian blue - genre dominance
+    // "#002642", //prussian blue - genre dominance
     "#002642", //prussian blue 1
     "#002642", //prussian blue- 2
     "#002642", //prussian blue 3 - text
     "#002642", //prussian blue 4
+    "#000000", //prussian blue - barchart 2
     "#002642", //prussian blue - barchart
-    "#002642", //prussian blue - heatmap
-    "#002642", // dark red pink - platform power slideshow
+    "#002642", // prussian blue - platform power slideshow
     "#360a26", // dark red pink - treemap
     "#000000", // black
   ];
@@ -216,8 +216,8 @@ const ScrollApp = () => {
             <img
               src="src/Elements/button.png"
               alt="button"
-              className="title-text"
-              style={{ width: "25vw" }}
+              className="button"
+              style={{}}
             />
             <div className="button-textbox">
               <p className="button-text">PRESS START</p>
@@ -845,54 +845,6 @@ const ScrollApp = () => {
           </span>
         </section>
 
-        {/* GENRE DOMINANCE SECTIONS */}
-        <section
-          ref={addSectionRef}
-          // style={{ height: "100vh" }}
-          className="contents"
-          data-scroll-section
-          style={{ display: "flex", flexDirection: "column" }}
-        >
-          <div
-            className="background-image-container"
-            style={{
-              position: "absolute",
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url(${pixel2})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: "30%",
-              zIndex: -1,
-            }}
-          ></div>
-          <h3
-            className="op-class"
-            data-scroll
-            style={{
-              fontSize: 70,
-              fontFamily: "M04_FATAL FURY BLACK",
-              color: "#F72585",
-              maxWidth: "90vw",
-            }}
-            data-scroll-class="fadeIn"
-            data-scroll-repeat="true"
-            data-scroll-speed="1"
-          >
-            Genre Dominance
-          </h3>
-
-          <h3
-            style={{
-              fontFamily: "superhelio _regular, sans-serif",
-              fontSize: 30,
-            }}
-          >
-            <br />
-            Put some text here
-          </h3>
-        </section>
-
         {/* FLYING GENRES SECTIONS */}
         <section
           ref={addSectionRef}
@@ -1182,14 +1134,14 @@ const ScrollApp = () => {
           </h1>
         </section>
 
-        {/* BARCHART */}
+        {/* BARCHART2 */}
         <section
           ref={addSectionRef}
           // style={{ height: "100vh" }}
           id="stick"
           className="contents"
           data-scroll-section
-          style={{ display: "flex", flexDirection: "column", height: "110vh" }}
+          style={{ display: "flex", flexDirection: "column", height: "130vh" }}
         >
           <div
             className="background-image-container"
@@ -1214,16 +1166,16 @@ const ScrollApp = () => {
               color: "#FFFFFF",
               maxWidth: "90vw",
               marginRight: "12vw",
-              marginTop: "-5vh",
+              marginTop: "15vh",
             }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
             <br />
-            Genre Dominance
+            Genre Popularity
           </h3>
-          <BarChart />
+          <Barchart2 />
           {/* Textbox under the chart */}
           <div
             className="chart-description"
@@ -1259,13 +1211,20 @@ const ScrollApp = () => {
           <div
             data-scroll
             data-scroll-speed="5"
-            data-scroll-sticky // Attribute that enables the sticky scroll
-            data-scroll-target="#stick"
+            data-scroll-sticky
+            style={{
+              marginTop: "-5vh",
+              marginLeft: "10vw", // This will set the top margin to 50% of the viewport height
+              transform: "translateY(60vh)", // This will move the element up by 50% of its height
+              zIndex: 55, // This will ensure it's above other elements; you've already set this on the image, but it may be needed here as well
+            }}
+            data-scroll-target="#stick" // Set the target to the end of your section
           >
             <img
               src="src/Elements/marioflip.png"
               className="genremario"
               alt="Mario"
+              style={{ zIndex: "55" }}
             />
           </div>
 
@@ -1276,12 +1235,12 @@ const ScrollApp = () => {
           />
         </section>
 
-        {/* HEATMAP */}
+        {/* BARCHART AND HEATMAP */}
         <section
+          id="stick" // This should be the same as the data-scroll-target above
           ref={addSectionRef}
-          style={{ height: "130vh", display: "flex", flexDirection: "column" }}
-          className="contents"
           data-scroll-section
+          style={{ display: "flex", flexDirection: "column", height: "140vh" }}
         >
           <div
             className="background-image-container"
@@ -1296,25 +1255,36 @@ const ScrollApp = () => {
               zIndex: -1,
             }}
           ></div>
+
           <h3
             className="op-class"
             data-scroll
             style={{
-              fontSize: 30,
+              fontSize: 35,
               fontFamily: "M04_FATAL FURY BLACK",
-              color: "#fdcfbb",
+              color: "#FFFFFF",
               maxWidth: "90vw",
-              marginRight: "27vw",
-              marginTop: "-5vh",
+              marginRight: "0vw",
+              marginTop: "-20vh",
             }}
             data-scroll-class="fadeIn"
             data-scroll-repeat="true"
             data-scroll-speed="1"
           >
             <br />
-            Genre Popularity
+            Genre Dominance
           </h3>
-          <HeatMap />
+          <div style={{ display: "flex", width: "100%" }}>
+            {/* BarChart Component */}
+            <div style={{ width: "50%" }}>
+              <BarChart />
+            </div>
+
+            {/* HeatMap Component */}
+            <div style={{ width: "50%" }}>
+              <HeatMap />
+            </div>
+          </div>
           {/* Textbox under the chart */}
           <div
             className="chart-description"
@@ -1325,7 +1295,7 @@ const ScrollApp = () => {
               maxWidth: "30vw",
               marginBottom: "0vh",
               marginLeft: "0vw",
-              marginRight: "20vw",
+              marginRight: "10vw",
               fontSize: "18px",
               fontFamily: "Arial, sans-serif",
             }}
@@ -1335,38 +1305,18 @@ const ScrollApp = () => {
             <p
               style={{
                 fontFamily: "superhelio _regular, sans-serif",
-                width: "40vw",
-                marginLeft: "-5vw",
-                marginRight: "210vw",
+                width: "35vw",
+                marginRight: "75vw",
                 fontStyle: "italic",
                 color: "#9cf6f6",
               }}
             >
-              This heatmap visualizes the sales data for various video game
-              genres across three major regions: North America (NA), Europe
-              (EU), and Japan (JP). <br />
-              Move your cursor over any cell to display a tooltip with detailed
-              sales information for that genre and region. Use the zoom feature
-              to focus on specific areas of the heatmap to get a closer look.
+              This bar chart displays the all-time sales of video game genres,
+              with data spanning from 1960 to 2015.
+              <br /> Use the dropdown menu to choose a specific region which
+              will reflect the sales data!
             </p>
           </div>
-          <div
-            data-scroll
-            data-scroll-speed="5"
-            data-scroll-sticky // Attribute that enables the sticky scroll
-            data-scroll-target="#stick"
-          >
-            {/* <img src="src/Elements/marioflip.png" alt="Mario" /> */}
-          </div>
-
-          <img
-            src="src/Elements/speechbubble2.png"
-            alt="speechbubble"
-            className="speechbubble2"
-          />
-          {/* <h3 className="small-bubbletext" style={{ marginLeft: "65vw" }}>
-            Hi there! hwyyyyyyyyyyyyyy
-          </h3> */}
         </section>
 
         {/* PLATFORM POWER SLIDESHOW */}
@@ -1409,7 +1359,7 @@ const ScrollApp = () => {
             data-scroll-speed="1"
           >
             <br />
-            Who Rules the Game World?
+            <p class="blinking-text">Who Rules the Game World?</p>
           </h3>
           <div className="slideshow">
             <Slideshow />

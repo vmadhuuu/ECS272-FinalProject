@@ -89,27 +89,43 @@ const BarChart = () => {
       // code for barchart using the loaded data
       // height is 800
       // width is 1200
-      const svgWidth = 1000; // Fixed SVG width
+      const svgWidth = 900; // Fixed SVG width
       const svgHeight = 600;
       const margin = { top: 40, right: 100, bottom: 60, left: 80 };
       const width = svgWidth - margin.left - margin.right;
       const height = svgHeight - margin.top - margin.bottom;
 
       // Color scale
+      // Color scale
       const colors22 = [
         "#8CB369", // olivine
         "#F4E285", // flax yellow
         "#F4A259", // sandy brown
         "#5B8E7D", // viridian
-        "#875C74", //bittersweet shimmer red
+        "#BC4B51", //bittersweet shimmer red
         "#E3D0D8", // pale purple
         "#BCAC9B", // khakhi
-        "#816E94", // light green
-        "#E06C9F", //pink
+        "#D4EAC8", // light green
+        "#C94277", //pink
         "#9CF6F6", // ice blue
         "#09BC8A", //mint green
         "#A599B5", //rose quartz
       ];
+
+      // const colors22 = [
+      //   "#8CB369", // olivine
+      //   "#F4E285", // flax yellow
+      //   "#F4A259", // sandy brown
+      //   "#5B8E7D", // viridian
+      //   "#875C74", //bittersweet shimmer red
+      //   "#E3D0D8", // pale purple
+      //   "#BCAC9B", // khakhi
+      //   "#816E94", // light green
+      //   "#E06C9F", //pink
+      //   "#9CF6F6", // ice blue
+      //   "#09BC8A", //mint green
+      //   "#A599B5", //rose quartz
+      // ];
       const colorScale = d3.scaleOrdinal(colors22);
 
       // Set up scales
@@ -304,7 +320,9 @@ const BarChart = () => {
           <option value="Other_Sales">Other Sales</option>
         </select>
       </div>
-      <svg ref={svgRef} width={1200} height={640}></svg>
+      <div style={{ marginLeft: "5vw" }}>
+        <svg ref={svgRef} width={1200} height={640}></svg>
+      </div>
     </>
   );
 };

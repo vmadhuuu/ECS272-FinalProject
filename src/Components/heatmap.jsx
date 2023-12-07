@@ -1,40 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
 
-// function aggregateData(loadedData) {
-//     // Create a map to hold aggregated sales data
-//     const genreRegionSalesMap = new Map();
-
-//     // Iterate over each data record
-//     loadedData.forEach(d => {
-//        const genres = ['Action', 'Adventure', 'Fighting', 'Misc', 'Platform', 'Puzzle',
-//        'Racing', 'Role-Playing', 'Shooter', 'Simulation', 'Sports', 'Strategy'];
-//       // Define the key as a combination of genre and region
-//       ['NA_Sales', 'EU_Sales', 'JP_Sales'].forEach(region => {
-//         const key = `${d.Genre}-${region}`;
-//         // Initialize if the key doesn't exist
-//         if (!genreRegionSalesMap.has(key)) {
-//           genreRegionSalesMap.set(key, 0);
-//         }
-//         // Parse the sales as a float and add it to the current total
-//         genreRegionSalesMap.set(key, genreRegionSalesMap.get(key) + parseFloat(d[region]));
-//       });
-//     });
-
-//     // Convert the map to an array of objects for D3
-//     const aggregatedData = [];
-//     genreRegionSalesMap.forEach((value, key) => {
-//       const [genre, region] = key.split("-");
-//       aggregatedData.push({
-//         Genre: genre,
-//         Region: region,
-//         Sales: value
-//       });
-//     });
-
-//     return aggregatedData;
-// }
-
 function aggregateData(loadedData) {
   // Create a map to hold aggregated sales data
   const genreRegionSalesMap = new Map();
@@ -108,9 +74,9 @@ const HeatMap = () => {
       //const svg = d3.select(svgRef.current);
       //svg.selectAll("*").remove(); // Clear the SVG
 
-      const margin = { top: 30, right: 130, bottom: 70, left: 160 };
-      const svgWidth = 1000;
-      const svgHeight = 600;
+      const margin = { top: 30, right: 130, bottom: 60, left: 160 };
+      const svgWidth = 800;
+      const svgHeight = 620;
       const width = svgWidth - margin.left - margin.right;
       const height = svgHeight - margin.top - margin.bottom;
 
@@ -153,7 +119,7 @@ const HeatMap = () => {
 
       const colorScale = d3
         .scaleSequential()
-        .interpolator(d3.interpolateReds)
+        .interpolator(d3.interpolateBlues)
         .domain([0, d3.max(data, (d) => d.Sales)]);
 
       // Add the X-axis
@@ -381,8 +347,8 @@ const HeatMap = () => {
 
   return (
     <>
-      <div className="heatmap-container" style={{ marginLeft: "-30vw" }}>
-        <svg ref={svgRef} width={700} height={500}></svg>
+      <div className="heatmap-container" style={{ marginLeft: "-10vw" }}>
+        <svg ref={svgRef} width={600} height={700}></svg>
       </div>
     </>
   );

@@ -269,8 +269,7 @@ header {
   font-size: 59px;
   font-family: "M04_FATAL FURY BLACK";
   color: #000000;
-  text-shadow: 0 0 7px #000000, 0 0 10px #000000, 0 0 21px #000000,
-    0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa;
+  
 }
 
 .titlebox {
@@ -284,10 +283,11 @@ header {
   /* Add more styling as needed */
 }
 
-.title-text {
+.button {
   font-size: 61px;
   margin-top: 60vh;
   height: 90%;
+  left: 60vw;
 }
 
 /* Animation for title slide text to fade in and out */
@@ -467,9 +467,18 @@ section {
   position: absolute;
   width: auto;
   height: 30vh;
-  bottom: -10vh;
+  bottom:10vh;
   animation: mariogenre 10s ease-in-out forwards;
   transform: scaleX(-1);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  1% { opacity: 0; }
+}
+
+.blinking-text {
+  animation: blink 1s linear infinite;
 }
 
 @keyframes mariogenre {
@@ -486,7 +495,7 @@ section {
   width: auto;
   height: 60vh;
   left: 65vw;
-  top: 10vw;
+  bottom: 40vh;
   animation: speechbubble2 30s forwards;
 }
 
@@ -527,6 +536,11 @@ section {
   height: 60vh;
   left: 75vw;
   top: 22vw;
+}
+
+.genremario[data-scroll-sticky] {
+  top: 50vh; /* Adjust this value as needed */
+  transform: translateY(-150vh);
 }
 
 /* SCROLLING DO NOT EDIT */
